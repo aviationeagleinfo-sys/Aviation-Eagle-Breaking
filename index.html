@@ -207,85 +207,86 @@
         @media (max-width: 600px) {
             .top-banner h1 { font-size: 1.4rem; }
             .timeline-event { padding-left: 15px; }
-        }@media (max-width: 768px) {
-    .mobile-splash {
-        display: flex !important; /* Forza la visualizzazione su mobile */
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100vw;
-        height: 100vh;
-        z-index: 100000;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        
-        /* IMMAGINE DI SFONDO - Caccia Militare */
-        background-image: linear-gradient(rgba(15, 23, 42, 0.7), rgba(15, 23, 42, 0.7)), 
-                          url('https://cdn.cizucu.com/images/photos/eWTj5ByZoW8hfBCW9M1p.jpg?auto=format%2Ccompress&fit=max&w=1536&q=90');
-        
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        
-        animation: fadeOutSplash 0.5s ease-in-out 3.5s forwards;
-    }
-
-    .splash-logo {
-        width: 100px;
-        margin-bottom: 20px;
-        filter: drop-shadow(0 0 15px var(--ae-red));
-        animation: pulseTactical 1.5s infinite;
-    }
-
-    .splash-text {
-        color: #ffffff;
-        font-family: 'Courier New', monospace;
-        font-size: 0.9rem;
-        font-weight: bold;
-        text-transform: uppercase;
-        letter-spacing: 2px;
-        margin-bottom: 15px;
-        text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
-    }
-
-    .loading-bar-container {
-        width: 180px;
-        height: 6px;
-        background: rgba(255, 255, 255, 0.2);
-        border: 1px solid rgba(255, 255, 255, 0.3);
-        border-radius: 10px;
-        overflow: hidden;
-    }
-
-    .loading-bar {
-        height: 100%;
-        width: 0%;
-        background: var(--ae-red);
-        box-shadow: 0 0 10px var(--ae-red);
-        animation: fillBar 3s ease-in-out forwards;
-    }
-
-    @keyframes fadeOutSplash {
-        to { opacity: 0; visibility: hidden; pointer-events: none; }
-    }
-
-    @keyframes pulseTactical {
-        0%, 100% { transform: scale(1); opacity: 1; }
-        50% { transform: scale(1.1); opacity: 0.8; }
-    }
-
-    @keyframes fillBar {
-        0% { width: 0%; }
-        100% { width: 100%; }
-    }
+        }/* SPLASH SCREEN UNIVERSALE */
+.global-splash {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 999999; /* Priorità assoluta sopra ogni elemento */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    
+    /* SFONDO TATTICO INTERATTIVO */
+    background-image: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.95)), 
+                      url('https://cdn.cizucu.com/images/photos/eWTj5ByZoW8hfBCW9M1p.jpg?auto=format%2Ccompress&fit=max&w=1920&q=90');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; /* Effetto parallasse su Desktop */
+    
+    /* Animazione di uscita fluida */
+    animation: fadeOutSplash 0.8s ease-in-out 3.5s forwards;
 }
-    </style>
+
+.splash-logo {
+    width: clamp(100px, 15vw, 180px); /* Dimensione adattiva: min 100px, max 180px */
+    margin-bottom: 25px;
+    filter: drop-shadow(0 0 20px var(--ae-red));
+    animation: pulseTactical 2s infinite ease-in-out;
+}
+
+.splash-text {
+    color: #ffffff;
+    font-family: 'Inter', 'Courier New', monospace;
+    font-size: clamp(0.8rem, 2vw, 1.1rem); /* Testo che scala con lo schermo */
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    margin-bottom: 20px;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+.loading-bar-container {
+    width: clamp(200px, 40vw, 400px); /* Più larga su Desktop per un look più professionale */
+    height: 4px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    overflow: hidden;
+    backdrop-filter: blur(5px);
+}
+
+.loading-bar {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, var(--ae-red), #ff4d4d);
+    box-shadow: 0 0 15px var(--ae-red);
+    animation: fillBar 3.2s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+}
+
+/* KEYFRAMES */
+@keyframes fadeOutSplash {
+    from { opacity: 1; transform: scale(1); }
+    to { opacity: 0; transform: scale(1.05); visibility: hidden; pointer-events: none; }
+}
+
+@keyframes pulseTactical {
+    0%, 100% { transform: scale(1); opacity: 1; filter: drop-shadow(0 0 10px var(--ae-red)); }
+    50% { transform: scale(1.08); opacity: 0.9; filter: drop-shadow(0 0 30px var(--ae-red)); }
+}
+
+@keyframes fillBar {
+    0% { width: 0%; }
+    100% { width: 100%; }
+}    </style>
 </head>
 <body>
-<div class="mobile-splash">
+<div class="global-splash">
     <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Aviation_Eagle_Logo.png" class="splash-logo" alt="Aviation Eagle">
-    <div class="splash-text">SITUATION ROOM: CONNECTING...</div>
+    <div class="splash-text">SITUATION ROOM: INITIALIZING UPLINK...</div>
     <div class="loading-bar-container">
         <div class="loading-bar"></div>
     </div>
