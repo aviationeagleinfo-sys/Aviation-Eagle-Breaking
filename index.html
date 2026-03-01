@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aviation Eagle - SITUATION ROOM</title>
+    
+    <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+    <script>
+      window.OneSignalDeferred = window.OneSignalDeferred || [];
+      OneSignalDeferred.push(async function(OneSignal) {
+        await OneSignal.init({ appId: "269599ae-e714-47e7-8fe4-f5e812defd91" });
+      });
+    </script>
+
+    <link rel="icon" type="image/png" href="https://upload.wikimedia.org/wikipedia/commons/0/08/Aviation_Eagle_Logo.png">
+    
+    <style>
+        :root {
+            --ae-red: #ce1126;
+            --ae-gold: #fbc02d;
+            --ae-dark: #0f172a;
+            --ae-blue: #0038b8;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: #eef2f6;
+            margin: 0; padding: 0; color: #1e293b;
+        }
+
+        /* HEADER TATTICO */
+        .top-banner {
+            background: var(--ae-dark);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-bottom: 4px solid var(--ae-red);
+        }
+
+        .logo-main { height: 60px; margin-bottom: 10px; }
+        
+        .status-header {
+            display: flex; justify-content: center; gap: 20px; font-size: 0.8rem;
+            text-transform: uppercase; letter-spacing: 1px; margin-top: 10px;
+        }
+
+        .live-dot { color: var(--ae-red); animation: blink 1s infinite; font-weight: bold; }
+
+        /* CONTAINER */
+        .main-container { max-width: 1000px; margin: 20px auto; padding: 10px; }
+
+        .grid-layout { display: grid; grid-template-columns: 2fr 1fr; gap: 20px; }
+
+        /* CARDS */
+        .card { background: white; border-radius: 12px; padding: 25px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); margin-bottom: 20px; }
+        
+        .card-red { border-top: 6px solid var(--ae-red); }
+        .card-yellow { border-top: 6px solid var(--ae-gold); background: #fffdf2; }
+
+        h2 { margin-top: 0; display: flex; align-items: center; gap: 10px; font-size: 1.4rem; }
+
+        .news-item { border-bottom: 1px solid #f1f5f9; padding: 15px 0; }
+        .news-item:last-child { border: none; }
+
+        .tag { font-size: 0.7rem; padding: 2px 8px; border-radius: 4px; font-weight: bold; color: white; margin-right: 5px; }
+        .tag-iran { background: #1f4a16; }
+        .tag-israel { background: var(--ae-blue); }
+        .tag-usa { background: #002366; }
+
+        /* SIDEBAR */
+        .sidebar { font-size: 0.9rem; }
+        .timeline-box { background: var(--ae-dark); color: white; padding: 20px; border-radius: 12px; }
+        .timeline-event { border-left: 2px solid #334155; padding-left: 15px; margin-bottom: 20px; position: relative; }
+        .timeline-event::before { content: ''; position: absolute; left: -6px; top: 0; width: 10px; height: 10px; background: var(--ae-red); border-radius: 50%; }
+
+        @keyframes blink { 50% { opacity: 0; } }
+        @media (max-width: 850px) { .grid-layout { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+<header class="top-banner">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Aviation_Eagle_Logo.png" class="logo-main" alt="Aviation Eagle">
+    <h1 style="margin:0; font-size: 1.8rem;">AVIATION EAGLE INTELLIGENCE</h1>
+    <div class="status-header">
+        <span><span class="live-dot">●</span> LIVE FEED</span>
+        <span>|</span>
+        <span>DEFCON: 3 - ALERT</span>
+        <span>|</span>
+        <span>FIR STATUS: RESTRICTED</span>
+    </div>
+    <style>
+    /* ... (mantenere gli stili precedenti) ... */
+
+    .war-button-main {
+        background: var(--ae-red);
+        color: white;
+        padding: 15px 25px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: 900;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 20px;
+        border: 2px solid rgba(255,255,255,0.2);
+        animation: pulse-red 2s infinite;
+        cursor: pointer;
+    }
+
+    .floating-war-btn {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background: var(--ae-red);
+        color: white;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 15px rgba(206,17,38,0.5);
+        text-decoration: none;
+        font-size: 1.5rem;
+        z-index: 1000;
+        border: 2px solid white;
+    }
+
+    @keyframes pulse-red {
+        0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(206, 17, 38, 0.7); }
+        70% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(206, 17, 38, 0); }
+        100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(206, 17, 38, 0); }
+    }
+</style>
+
+<div class="main-container">
+
+    <div style="text-align: center;">
+        <a href="inizio-guerra" class="war-button-main">
+            🔥 FOCUS INIZIO GUERRA
+        </a>
+    </div>
+</div>
+
+<a href="inizio-guerra" class="floating-war-btn" title="Vai al Report Guerra">
+    🔥
+</a>
+</header>
+
+<div class="main-container">
+    <div class="grid-layout">
+        
+        <div class="content">
+            
+            <div class="card card-red">
+                <h2>🚨 RAPPORTO DI GUERRA: ESCALATION IN CORSO</h2>
+                <div class="news-item">
+                    <span class="tag tag-iran">IRAN</span> <strong>Esplosioni a Isfahan:</strong> Confermati raid aerei contro siti di produzione droni. La difesa aerea di Teheran è in massima allerta.
+                </div>
+                <div class="news-item">
+                    <span class="tag tag-israel">ISRAELE</span> <strong>Operazione "Scudo di Ferro":</strong> L'IDF ha mobilitato i riservisti dell'aviazione. Aeroporti militari di Haifa e Tel Aviv pronti alla risposta.
+                </div>
+                <div class="news-item">
+                    <span class="tag tag-usa">USA</span> <strong>Movimenti Navali:</strong> La portaerei USS Abraham Lincoln è entrata nel Mar Arabico. Supporto radar attivo per i voli alleati.
+                </div>
+            </div>
+
+            <div class="card card-yellow">
+                <h2>⚠️ AVVISO OPERATIVO LIVELLO 2/5</h2>
+                <p><strong>Impatto Aviazione Civile:</strong></p>
+                <ul style="line-height: 1.6;">
+                    <li><strong>GPS Spoofing:</strong> Rilevato nel Mediterraneo Orientale. Possibili errori di navigazione per voli civili.</li>
+                    <li><strong>Chiusura FIR:</strong> Giordania 🇯🇴 e Libano 🇱🇧 hanno chiuso lo spazio aereo per 24 ore.</li>
+                    <li><strong>Rotte Deviate:</strong> I voli Europa-Asia via Dubai segnalano +120 min di ritardo.</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h3>📡 NOTAM E BOLLETTINO TECNICO</h3>
+                <p><strong>GNSS Interference:</strong> Eurocontrol avverte del rischio "Cyber" per i sistemi di terra. Si consiglia l'uso di procedure ILS CAT III ove disponibili. <br><br>
+                <strong>Security:</strong> Rafforzati i controlli negli hub di Londra e Francoforte per timore di ritorsioni.</p>
+                <img src="https://media.istockphoto.com/id/1093199332/it/foto/iran-e-israele-due-bandiere-insieme-tessuto-tessuto-tessuto-texture.jpg?s=612x612&w=0&k=20&c=j8cLe6WabKAOB3oGqWoQ6Eh12_qjUVKIbIsvpI4p8Kk=" alt="Bandiera Israele-iran" class="card card-yellow">
+                <h3>Israele ha cambiato nome dell'operazione da Operation Rising Lion a Lion's Roar </h3>
+                <div class="card card-yellow">
+                <img src="https://www.gov.il/BlobFolder/news/operation-rising-lion-update/en/English_Swords_of_Iron_Operation-Rising-Lion-Logo.jpg" alt="Operation Rising Lion" >
+                <br>
+                 
+                 
+                 
+                 <br>
+                <img src="https://i.scdn.co/image/ab67616d00001e021b6be76f652a09c1554d572e" alt="Lion's Roar">
+                </div>
+            </div>
+        </div>
+
+        <div class="sidebar">
+    <div class="timeline-box">
+        <h3 style="color: var(--ae-red); margin-top:0;">CRONOLOGIA LIVE</h3>
+        <div class="timeline-event" style="border-left: 3px solid var(--ae-red); background: rgba(255,0,0,0.15);">
+            <strong>19:15 CET</strong> - <b>ITA Airways</b> sospende tutti i voli per Tel Aviv e Dubai. Passeggeri in riprotezione immediata.
+        </div>
+        <div class="timeline-event" style="border-left: 3px solid var(--ae-red); background: rgba(255,0,0,0.15);">
+            <strong>18:50 CET</strong> - <b>Dubai DXB</b>: Oltre 700 voli cancellati. Il più grande hub mondiale è ufficialmente in "Standby Operativo".
+        </div>
+        <div class="timeline-event" style="border-left: 3px solid var(--ae-red); background: rgba(255,0,0,0.15);">
+            <strong>18:30 CET</strong> - <b>Wizz Air</b> estende il blocco totale su Israele, Giordania ed Emirati fino al 7 marzo.
+        </div>
+        <div class="timeline-event" style="border-left: 3px solid var(--ae-red); background: rgba(255,0,0,0.15);">
+            <strong>18:10 CET</strong> - <b>NOTAM Qatar/Bahrain</b>: Chiusura totale degli spazi aerei civili. Traffico deviato su corridoi sauditi saturi.
+        </div>
+        <div class="timeline-event" style="border-left: 3px solid var(--ae-red); background: rgba(255,0,0,0.15);">
+            <strong>17:55 CET</strong> - <b>Turkish Airlines</b> cancella ogni collegamento verso 10 nazioni mediorientali fino al 2 marzo.
+        </div>
+
+        <div class="timeline-event" style="border-left: 3px solid var(--ae-red); background: rgba(255,0,0,0.1);">
+            <strong>17:45 CET</strong> - EASA emette CZIB per l'intero Medio Oriente. Evitare sorvoli sotto FL320.
+        </div>
+        <div class="timeline-event" style="border-left: 3px solid var(--ae-red); background: rgba(255,0,0,0.1);">
+            <strong>17:30 CET</strong> - Teheran annuncia la chiusura totale dello spazio aereo civile per "esercitazioni di difesa".
+        </div>
+        <div class="timeline-event" style="border-left: 3px solid var(--ae-red); background: rgba(255,0,0,0.1);">
+            <strong>17:10 CET</strong> - British Airways e Qatar Airways dirottano i voli verso rotte settentrionali (Turkmenistan).
+        </div>
+        <div class="timeline-event" style="border-left: 3px solid var(--ae-red); background: rgba(255,0,0,0.1);">
+            <strong>16:50 CET</strong> - Segnalate interferenze massicce segnali ADS-B (GPS Spoofing) nel Mediterraneo orientale.
+        </div>
+        <div class="timeline-event" style="border-left: 3px solid var(--ae-red); background: rgba(255,0,0,0.1);">
+            <strong>17:45 CET</strong> - EASA emette CZIB (Conflict Zone Information Bulletin) per l'intero Medio Oriente. Evitare sorvoli sotto FL320.
+        </div>
+        <div class="timeline-event" style="border-left: 3px solid var(--ae-red); background: rgba(255,0,0,0.1);">
+            <strong>17:30 CET</strong> - Teheran annuncia la chiusura totale dello spazio aereo civile per "esercitazioni di difesa aerea" non programmate.
+        </div>
+        <div class="timeline-event" style="border-left: 3px solid var(--ae-red); background: rgba(255,0,0,0.1);">
+            <strong>17:10 CET</strong> - British Airways e Qatar Airways dirottano i voli a lungo raggio verso rotte settentrionali (via Turkmenistan/Azerbaigian).
+        </div>
+       <div class="timeline-event" style="border-left: 3px solid var(--ae-red); background: rgba(255,0,0,0.1);">
+            <strong>16:50 CET</strong> - Segnalate interferenze massicce sui segnali ADS-B nel Mediterraneo orientale. Rischio collisione per perdita tracciamento.
+        </div>
+
+        <div class="timeline-event" style="border-left: 3px solid var(--ae-red); background: rgba(255,0,0,0.1);">
+            <strong>16:25 CET</strong> - Lufthansa e Air France sospendono i sorvoli su Iran e Iraq fino a nuovo ordine.
+        </div>
+       <div class="timeline-event" style="border-left: 3px solid var(--ae-red); background: rgba(255,0,0,0.1);">
+            <strong>16:10 CET</strong> - Decollo massiccio di intercettori dalla base di Incirlik (Turchia). Rotta ignota.
+        </div>
+        <div class="timeline-event" style="border-left: 3px solid var(--ae-red); background: rgba(255,0,0,0.1);">
+            <strong>15:55 CET</strong> - Difesa russa avverte di "conseguenze imprevedibili" per supporto radar NATO.
+        </div>
+        <div class="timeline-event" style="border-left: 3px solid var(--ae-red); background: rgba(255,0,0,0.1);">
+            <strong>15:40 CET</strong> - Cyber Attack: Down parziale dei sistemi di tracciamento voli civili nel Golfo.
+        </div>
+        <div class="timeline-event" style="border-left: 3px solid var(--ae-red); background: rgba(255,0,0,0.1);">
+            <strong>15:20 CET</strong> - IDF conferma completamento prima ondata raid. In corso valutazione danni (BDA).
+        </div>
+       <div class="timeline-event" style="border-left: 3px solid var(--ae-red); background: rgba(255,0,0,0.1);">
+            <strong>15:05 CET</strong> - NOTAM URGENTE: Israele chiude lo spazio aereo settentrionale (Galilea).
+        </div>
+        <div class="timeline-event" style="border-left: 3px solid var(--ae-red); background: rgba(255,0,0,0.1);">
+            <strong>14:45 CET</strong> - Esplosioni riportate nei pressi del porto strategico di Bandar Abbas.
+        </div>
+        <div class="timeline-event" style="border-left: 3px solid var(--ae-red); background: rgba(255,0,0,0.1);">
+            <strong>14:30 CET</strong> - Pentagono conferma supporto difensivo ma nega partecipazione ai raid cinetici.
+        </div>
+       <div class="timeline-event" style="border-left: 3px solid var(--ae-red); background: rgba(255,0,0,0.1);">
+            <strong>14:15 CET</strong> - Sistemi S-300 iraniani attivati a difesa del complesso nucleare di Natanz.
+        </div>
+        <div class="timeline-event" style="border-left: 3px solid var(--ae-red); background: rgba(255,0,0,0.1);">
+            <strong>14:02 CET</strong> - Boeing KC-135 Stratotanker in orbita di rifornimento sul confine Giordano.
+        </div>
+        <div class="timeline-event" style="border-left: 3px solid var(--ae-red); background: rgba(255,0,0,0.1);">
+            <strong>13:55 CET</strong> - Baghdad estende la chiusura dello spazio aereo a tempo indeterminato.
+        </div>
+        <div class="timeline-event" style="border-left: 3px solid var(--ae-red); background: rgba(255,0,0,0.1);">
+            <strong>13:40 CET</strong> - Iran emette avviso di pericolo per navigazione nello stretto di Hormuz.
+        </div>
+        <div class="timeline-event" style="border-left: 3px solid var(--ae-red); background: rgba(255,0,0,0.1);">
+            <strong>13:20 CET</strong> - Perdita totale segnale GNSS (Spoofing) sopra Cipro e Turchia meridionale.
+        </div>
+        <div class="timeline-event" style="border-left: 3px solid var(--ae-red); background: rgba(255,0,0,0.1);">
+            <strong>13:10 CET</strong> - Esplosioni avvertite a Damasco (Siria).
+        </div>
+        <div class="timeline-event" style="border-left: 3px solid var(--ae-red); background: rgba(255,0,0,0.1);">
+            <strong>12:45 CET</strong> - Voli Emirates invertono la rotta verso Dubai (Airborne Holding).
+        </div>
+        <div class="timeline-event" style="border-left: 3px solid var(--ae-red); background: rgba(255,0,0,0.1);">
+            <strong>12:00 CET</strong> - NOTAM d'urgenza emesso dall'autorità di Teheran.
+        </div>
+        <div class="timeline-event" style="border-left: 3px solid var(--ae-red); background: rgba(255,0,0,0.1);">
+            <strong>11:30 CET</strong> - Inizio escalation missilistica nel quadrante.
+        </div>
+    </div>
+</div>
+</div>
+
+            
+        </div>
+
+    </div><style>
+    .source-ticker {
+        background: #fff;
+        padding: 20px 0;
+        overflow: hidden;
+        border-top: 1px solid #e2e8f0;
+        border-bottom: 1px solid #e2e8f0;
+        margin-top: 40px;
+        position: relative;
+    }
+
+    .ticker-track {
+        display: flex;
+        /* Larghezza calcolata per ospitare due set identici di loghi */
+        width: max-content; 
+        animation: scroll 30s linear infinite;
+    }
+
+    .ticker-track img {
+        height: 40px;
+        margin: 0 40px;
+        filter: grayscale(100%);
+        opacity: 0.6;
+        transition: 0.3s;
+        /* Forza il rendering hardware per una maggiore fluidità */
+        backface-visibility: hidden;
+    }
+
+    .ticker-track img:hover {
+        filter: grayscale(0%);
+        opacity: 1;
+    }
+
+    /* Animazione corretta: trasla esattamente della metà della larghezza totale del track */
+    @keyframes scroll {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-50%); }
+    }
+
+    /* Pausa al passaggio del mouse per permettere l'analisi dei loghi (opzionale) */
+    .source-ticker:hover .ticker-track {
+        animation-play-state: paused;
+    }
+</style>
+
+<div class="source-ticker">
+    <div class="ticker-track">
+        <img src="https://upload.wikimedia.org/wikipedia/en/thumb/f/f2/Aljazeera_eng.svg/1280px-Aljazeera_eng.svg.png" alt="Al Jazeera">
+        <img src="https://upload.wikimedia.org/wikipedia/he/thumb/7/76/The_Jerusalem_Post_Logo.svg/1280px-The_Jerusalem_Post_Logo.svg.png" alt="The Jerusalem Post">
+        <img src="https://wp.logos-download.com/wp-content/uploads/2019/06/Israel_Post_Logo.png?dl" alt="Israel Post">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/f/f2/Logo_Haaretz_en_2023_full.svg" alt="Haaretz">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/1/17/Sky_TG24_-_Logo_2021.png" alt="SkyTG24">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/2/24/Rai_News_-_Logo_2021.svg" alt="Rai News">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Aviation_Eagle_Logo.png" alt="Aviation Eagle">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c0/Badge_of_the_Israeli_Defense_Forces_2022_version.svg/1280px-Badge_of_the_Israeli_Defense_Forces_2022_version.svg.png" alt="IDF">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/3/37/Seal_of_the_Islamic_Republic_of_Iran_Army.svg" alt="Iran Army">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/1/10/Roundel_of_the_USAF.svg" alt="US Navy">
+
+        <img src="https://upload.wikimedia.org/wikipedia/en/thumb/f/f2/Aljazeera_eng.svg/1280px-Aljazeera_eng.svg.png" alt="Al Jazeera">
+        <img src="https://upload.wikimedia.org/wikipedia/he/thumb/7/76/The_Jerusalem_Post_Logo.svg/1280px-The_Jerusalem_Post_Logo.svg.png" alt="The Jerusalem Post">
+        <img src="https://wp.logos-download.com/wp-content/uploads/2019/06/Israel_Post_Logo.png?dl" alt="Israel Post">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/f/f2/Logo_Haaretz_en_2023_full.svg" alt="Haaretz">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/1/17/Sky_TG24_-_Logo_2021.png" alt="SkyTG24">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/2/24/Rai_News_-_Logo_2021.svg" alt="Rai News">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Aviation_Eagle_Logo.png" alt="Aviation Eagle">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c0/Badge_of_the_Israeli_Defense_Forces_2022_version.svg/1280px-Badge_of_the_Israeli_Defense_Forces_2022_version.svg.png" alt="IDF">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/3/37/Seal_of_the_Islamic_Republic_of_Iran_Army.svg" alt="Iran Army">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/1/10/Roundel_of_the_USAF.svg" alt="US Navy">
+    </div>
+</div>
+</div>
+    <footer style="text-align: center; padding: 20px; color: #64748b; font-size: 0.8rem;">
+        &copy; 2026 Aviation Eagle Intelligence Service.
+    </footer>
+</div>
+
+</body>
+</html>
