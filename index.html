@@ -208,11 +208,89 @@
         @media (max-width: 600px) {
             .top-banner h1 { font-size: 1.4rem; }
             .timeline-event { padding-left: 15px; }
-        }
+        }@media (max-width: 768px) {
+    .mobile-splash {
+        display: flex !important; /* Forza la visualizzazione su mobile */
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        z-index: 100000;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        
+        /* IMMAGINE DI SFONDO - Caccia Militare */
+        background-image: linear-gradient(rgba(15, 23, 42, 0.7), rgba(15, 23, 42, 0.7)), 
+                          url('https://cdn.cizucu.com/images/photos/eWTj5ByZoW8hfBCW9M1p.jpg?auto=format%2Ccompress&fit=max&w=1536&q=90');
+        
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        
+        animation: fadeOutSplash 0.5s ease-in-out 3.5s forwards;
+    }
+
+    .splash-logo {
+        width: 100px;
+        margin-bottom: 20px;
+        filter: drop-shadow(0 0 15px var(--ae-red));
+        animation: pulseTactical 1.5s infinite;
+    }
+
+    .splash-text {
+        color: #ffffff;
+        font-family: 'Courier New', monospace;
+        font-size: 0.9rem;
+        font-weight: bold;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        margin-bottom: 15px;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+    }
+
+    .loading-bar-container {
+        width: 180px;
+        height: 6px;
+        background: rgba(255, 255, 255, 0.2);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+    .loading-bar {
+        height: 100%;
+        width: 0%;
+        background: var(--ae-red);
+        box-shadow: 0 0 10px var(--ae-red);
+        animation: fillBar 3s ease-in-out forwards;
+    }
+
+    @keyframes fadeOutSplash {
+        to { opacity: 0; visibility: hidden; pointer-events: none; }
+    }
+
+    @keyframes pulseTactical {
+        0%, 100% { transform: scale(1); opacity: 1; }
+        50% { transform: scale(1.1); opacity: 0.8; }
+    }
+
+    @keyframes fillBar {
+        0% { width: 0%; }
+        100% { width: 100%; }
+    }
+}
     </style>
 </head>
 <body>
-
+<div class="mobile-splash">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Aviation_Eagle_Logo.png" class="splash-logo" alt="Aviation Eagle">
+    <div class="splash-text">SITUATION ROOM: CONNECTING...</div>
+    <div class="loading-bar-container">
+        <div class="loading-bar"></div>
+    </div>
+</div>
 <header class="top-banner">
     <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Aviation_Eagle_Logo.png" class="logo-main" alt="Aviation Eagle Logo">
     <h1 style="margin:0;">AVIATION EAGLE INTELLIGENCE</h1>
