@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aviation Eagle - MONITORING STATION</title>
+    
+    <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+    <script>
+      window.OneSignalDeferred = window.OneSignalDeferred || [];
+      OneSignalDeferred.push(async function(OneSignal) {
+        await OneSignal.init({
+          appId: "269599ae-e714-47e7-8fe4-f5e812defd91",
+        });
+      });
+    </script>
+
+    <link rel="icon" type="image/png" href="https://upload.wikimedia.org/wikipedia/commons/0/08/Aviation_Eagle_Logo.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://media.aviationeagle.co.uk/logo.png">
+
+    <style>
+        :root {
+            --ae-red: #ce1126;
+            --ae-dark: #0f172a;
+            --ae-gray: #64748b;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: #eef2f6;
+            margin: 0; padding: 0; color: #1e293b;
+            display: flex; flex-direction: column; min-height: 100vh;
+        }
+
+        /* --- BLOCCO AVVIO (SPLASH SCREEN) - ORIGINALE --- */
+        .global-splash {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100vw; height: 100vh;
+            z-index: 9999999;
+            display: flex; align-items: center; justify-content: center;
+            flex-direction: column;
+            background-color: #0f172a;
+            background-image: linear-gradient(rgba(15, 23, 42, 0.8), rgba(15, 23, 42, 0.9)), 
+                              url('https://cdn.cizucu.com/images/photos/eWTj5ByZoW8hfBCW9M1p.jpg?auto=format%2Ccompress&fit=max&w=1536&q=90');
+            background-size: cover;
+            background-position: center;
+            animation: fadeOutSplash 0.6s ease-in-out 3.5s forwards;
+        }
+
+        .splash-logo {
+            width: clamp(100px, 15vw, 160px);
+            filter: drop-shadow(0 0 15px #ce1126);
+            animation: pulseTactical 1.5s infinite;
+            margin-bottom: 20px;
+        }
+
+        .splash-text {
+            color: #ffffff;
+            font-family: 'Courier New', monospace;
+            font-size: clamp(0.7rem, 2vw, 1rem);
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 15px;
+        }
+
+        .loading-bar-container {
+            width: clamp(180px, 50vw, 400px);
+            height: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .loading-bar {
+            height: 100%; width: 0%;
+            background: #ce1126;
+            box-shadow: 0 0 15px #ce1126;
+            animation: fillBar 3.2s ease-in-out forwards;
+        }
+
+        @keyframes fadeOutSplash { to { opacity: 0; visibility: hidden; pointer-events: none; } }
+        @keyframes pulseTactical { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+        @keyframes fillBar { to { width: 100%; } }
+
+        /* --- LAYOUT PAGINA PULITA --- */
+        header {
+            background: var(--ae-dark);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-bottom: 4px solid var(--ae-red);
+        }
+
+        .main-content {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .empty-state {
+            max-width: 600px;
+            background: white;
+            padding: 50px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            border: 1px dashed var(--ae-gray);
+        }
+
+        .status-icon {
+            font-size: 3rem;
+            color: var(--ae-gray);
+            margin-bottom: 20px;
+        }
+
+        h2 { color: var(--ae-dark); margin-top: 0; }
+        p { color: var(--ae-gray); font-size: 1.1rem; }
+    </style>
+</head>
+<body>
+
+    <div id="ae_splash" class="global-splash">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Aviation_Eagle_Logo.png" class="splash-logo" alt="Aviation Eagle">
+        <div class="splash-text">SITUATION ROOM: CONNECTING...</div>
+        <div class="loading-bar-container">
+            <div class="loading-bar"></div>
+        </div>
+    </div>
+
+    <header>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Aviation_Eagle_Logo.png" alt="Logo" style="height: 50px;">
+    </header>
+
+    <main class="main-content">
+        <div class="empty-state">
+            <div class="status-icon">📡</div>
+            <h2>Frequenza Inattiva</h2>
+            <p>Attualmente non esiste nessun servizio attivo su questo modulo. <br> I sistemi sono in modalità di solo ascolto.</p>
+        </div>
+    </main>
+
+    <script>
+        (function() {
+            const splash = document.getElementById('ae_splash');
+            if (!sessionStorage.getItem('ae_initialized')) {
+                sessionStorage.setItem('ae_initialized', 'true');
+                setTimeout(function() {
+                    if(splash) splash.remove();
+                }, 4500);
+            } else {
+                splash.remove();
+            }
+        })();
+    </script>
+</body>
+</html>
