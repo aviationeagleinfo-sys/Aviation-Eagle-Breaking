@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ALERT: Ryanair Berlin Base</title>
+    
+    <link rel="icon" type="image/png" href="https://media.aviationeagle.co.uk/favicon.ico">
+    
+    <style>
+        :root {
+            /* Ryanair Official Colors */
+            --ryanair-blue: #073590;
+            --ryanair-yellow: #f1c933;
+            --ae-red: #ce1126;
+            --ae-dark: #0f172a;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #f8fafc;
+            margin: 0; padding: 0; color: #1e293b;
+            display: flex; flex-direction: column; min-height: 100vh;
+        }
+
+        /* Tactical Header */
+        header {
+            background: var(--ae-dark);
+            color: white;
+            padding: 15px 20px;
+            text-align: center;
+            border-bottom: 4px solid var(--ae-red);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .ae-logo { height: 40px; }
+
+        /* Alert Container */
+        .alert-wrapper {
+            flex: 1;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .ryanair-card {
+            max-width: 800px;
+            width: 100%;
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            border-top: 8px solid var(--ryanair-blue);
+        }
+
+        .card-header {
+            background: var(--ryanair-blue);
+            padding: 30px;
+            text-align: center;
+        }
+
+        .ryanair-logo {
+            width: 200px;
+            margin-bottom: 15px;
+        }
+
+        .alert-badge {
+            background: var(--ryanair-yellow);
+            color: var(--ryanair-blue);
+            font-weight: 800;
+            padding: 5px 15px;
+            border-radius: 50px;
+            display: inline-block;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+
+        .content-section {
+            padding: 40px;
+        }
+
+        .language-block {
+            margin-bottom: 30px;
+            border-left: 4px solid var(--ryanair-yellow);
+            padding-left: 20px;
+        }
+
+        .language-block:last-child {
+            margin-bottom: 0;
+            border-left-color: var(--ae-red);
+        }
+
+        h1 {
+            color: white;
+            margin: 0;
+            font-size: 1.8rem;
+            line-height: 1.2;
+        }
+
+        h2 {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            color: var(--ae-dark);
+        }
+
+        p {
+            line-height: 1.6;
+            color: #475569;
+            margin: 0;
+        }
+
+        .timestamp {
+            font-family: 'Courier New', monospace;
+            font-size: 0.8rem;
+            color: var(--ae-gray);
+            margin-top: 20px;
+            text-align: right;
+            border-top: 1px solid #e2e8f0;
+            padding-top: 10px;
+        }
+
+        @media (max-width: 600px) {
+            .content-section { padding: 25px; }
+            h1 { font-size: 1.4rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Aviation_Eagle_Logo.png" class="ae-logo" alt="Aviation Eagle">
+        <span style="font-weight: bold; letter-spacing: 1px;">SITUATION ROOM</span>
+    </header>
+
+    <div class="alert-wrapper">
+        <div class="ryanair-card">
+            <div class="card-header">
+                <img src="https://media.aviationeagle.co.uk/loghi/europa/Ryanair-White-Logo.png" class="ryanair-logo" alt="Ryanair"> <br>
+                <div class="alert-badge">Operational Update</div>
+                <h1>BERLIN BASE CLOSURE (7 AIRCRAFT) - OCT 2026</h1>
+            </div>
+
+            <div class="content-section">
+                <div class="language-block">
+                    <h2>Operational Briefing (EN)</h2>
+                    <p>
+                        Ryanair has officially announced the decision to close its base in Berlin (BER) 
+                        consisting of 7 based aircraft effective from <strong>October 2026</strong>. 
+                        The move follows concerns over high airport charges and operational costs at the capital's hub.
+                    </p>
+                </div>
+
+                <div class="language-block">
+                    <h2>Briefing Operativo (IT)</h2>
+                    <p>
+                        Ryanair ha ufficializzato la decisione di chiudere la propria base di Berlino (BER), 
+                        composta da 7 aeromobili, a partire da <strong>Ottobre 2026</strong>. 
+                        La scelta è legata all'elevato costo delle tasse aeroportuali e dei costi operativi presso lo scalo della capitale.
+                    </p>
+                </div>
+
+                <div class="timestamp">
+                    STATUS: URGENT | REF: BER-BASE-2026 | ISSUED: 27 APR 2026
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
