@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guida Completa UK ETA - Electronic Travel Authorisation</title>
+    <style>
+        :root {
+            --uk-blue: #00247D;
+            --uk-red: #CF142B;
+            --gov-grey: #0b0c0c;
+            --light-bg: #f8f9fa;
+            --border-color: #bfc1c3;
+            --text-color: #0b0c0c;
+            --white: #ffffff;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: "GDS Transport", Arial, sans-serif;
+            color: var(--text-color);
+            line-height: 1.6;
+            background-color: #f3f2f1;
+        }
+
+        header {
+            background-color: var(--gov-grey);
+            color: var(--white);
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 10px solid var(--uk-blue);
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .gov-logo {
+            height: 45px;
+            filter: invert(1);
+        }
+
+        .uk-flag-top {
+            height: 30px;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .header-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        /* Language Menu */
+        .lang-menu-container {
+            background-color: var(--white);
+            padding: 15px 30px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .lang-label {
+            font-weight: bold;
+            font-size: 0.95rem;
+            color: #505a5f;
+        }
+
+        .lang-btn {
+            background: none;
+            border: 2px solid transparent;
+            cursor: pointer;
+            padding: 4px;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+        }
+
+        .lang-btn:hover {
+            background-color: #e5e5e5;
+        }
+
+        .lang-btn.active {
+            border-color: var(--uk-blue);
+            background-color: #f3f2f1;
+        }
+
+        .lang-flag {
+            width: 35px;
+            height: 22px;
+            object-fit: cover;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+            border-radius: 2px;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        /* Hero / Overview Section */
+        .overview-card {
+            background-color: var(--white);
+            border: 1px solid var(--border-color);
+            border-top: 5px solid var(--uk-blue);
+            padding: 35px;
+            margin-bottom: 40px;
+            border-radius: 4px;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            color: var(--gov-grey);
+            margin-bottom: 20px;
+        }
+
+        .cta-box {
+            background-color: #f3f2f1;
+            border-left: 5px solid var(--uk-blue);
+            padding: 20px;
+            margin: 25px 0;
+        }
+
+        .btn-apply {
+            display: inline-block;
+            background-color: #00703c;
+            color: var(--white);
+            font-weight: 700;
+            font-size: 1.15rem;
+            padding: 12px 24px;
+            text-decoration: none;
+            border-radius: 3px;
+            box-shadow: 0 3px 0 #004022;
+            transition: background-color 0.2s;
+            margin-top: 10px;
+        }
+
+        .btn-apply:hover {
+            background-color: #005a30;
+        }
+
+        /* Quick Info Table */
+        .info-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+        }
+
+        .info-table th, .info-table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .info-table th {
+            background-color: #f8f9fa;
+            font-weight: 700;
+            width: 30%;
+        }
+
+        /* Country Sections */
+        .country-section {
+            background-color: var(--white);
+            border: 1px solid var(--border-color);
+            margin-bottom: 40px;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+        }
+
+        .country-banner {
+            height: 250px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            display: flex;
+            align-items: flex-end;
+        }
+
+        .country-banner::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.2) 100%);
+        }
+
+        .country-title {
+            position: relative;
+            color: var(--white);
+            font-size: 2rem;
+            padding: 25px 35px;
+            font-weight: 700;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .country-content {
+            padding: 35px;
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            margin: 20px 0 10px 0;
+            color: var(--uk-blue);
+            border-bottom: 2px solid #f3f2f1;
+            padding-bottom: 5px;
+        }
+
+        h3:first-of-type {
+            margin-top: 0;
+        }
+
+        ul {
+            margin-left: 25px;
+            margin-bottom: 15px;
+        }
+
+        li {
+            margin-bottom: 5px;
+        }
+
+        /* Multilingual Visibility Control */
+        .lang-text {
+            display: none;
+        }
+
+        /* Initial display rule for default language (Italian) */
+        body[data-lang="it"] .lang-it { display: block; }
+        body[data-lang="en"] .lang-en { display: block; }
+        body[data-lang="de"] .lang-de { display: block; }
+        body[data-lang="fr"] .lang-fr { display: block; }
+        body[data-lang="es"] .lang-es { display: block; }
+
+        footer {
+            background-color: var(--gov-grey);
+            color: #a1acb2;
+            padding: 30px;
+            text-align: center;
+            font-size: 0.85rem;
+            border-top: 5px solid var(--border-color);
+        }
+
+        footer a {
+            color: var(--white);
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body data-lang="it">
+
+    <header>
+        <div class="header-left">
+            <img src="https://upload.wikimedia.org/wikipedia/en/8/88/UK_Government_logo.svg" class="gov-logo" alt="UK Government Logo">
+            <span class="header-title">HM Government | ETA Portal</span>
+        </div>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Flag_of_the_United_Kingdom_%281-2%29.svg/330px-Flag_of_the_United_Kingdom_%281-2%29.svg.png" class="uk-flag-top" alt="UK Flag">
+    </header>
+
+    <!-- Menu Controllo Lingue con Bandierine -->
+    <div class="lang-menu-container">
+        <span class="lang-label">Lingua / Language / Sprache / Langue / Idioma:</span>
+        <button class="lang-btn active" onclick="setLanguage('it')" title="Italiano">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Flag_of_the_Repubblica_Cisalpina.svg/250px-Flag_of_the_Repubblica_Cisalpina.svg.png" class="lang-flag" alt="IT">
+        </button>
+        <button class="lang-btn" onclick="setLanguage('en')" title="English">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Flag_of_the_United_Kingdom_%281-2%29.svg" class="lang-flag" alt="EN">
+        </button>
+        <button class="lang-btn" onclick="setLanguage('de')" title="Deutsch">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/b/ba/Flag_of_Germany.svg" class="lang-flag" alt="DE">
+        </button>
+        <button class="lang-btn" onclick="setLanguage('fr')" title="Français">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Flag_of_France.svg" class="lang-flag" alt="FR">
+        </button>
+        <button class="lang-btn" onclick="setLanguage('es')" title="Español">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/9/9a/Flag_of_Spain.svg" class="lang-flag" alt="ES">
+        </button>
+    </div>
+
+    <div class="container">
+        
+        <!-- Overview Card -->
+        <div class="overview-card">
+            <!-- IT -->
+            <div class="lang-text lang-it">
+                <h1>Autorizzazione Elettronica di Viaggio (ETA) per il Regno Unito</h1>
+                <p>L'ETA è un nuovo requisito per i cittadini esenti da visto che si recano nel Regno Unito. Esso è collegato digitalmente al passaporto ed è obbligatorio per tutti i viaggi di breve durata, inclusi turismo, visite a familiari, affari e transito aeroportuale.</p>
+            </div>
+            <!-- EN -->
+            <div class="lang-text lang-en">
+                <h1>UK Electronic Travel Authorisation (ETA) Guide</h1>
+                <p>The UK ETA is a new digital requirement for visa-exempt foreign nationals traveling to the United Kingdom. It is electronically linked to your passport and permits entry for short-term stays, including tourism, business, and transit.</p>
+            </div>
+            <!-- DE -->
+            <div class="lang-text lang-de">
+                <h1>Elektronische Reiseeinreisegenehmigung (ETA) für das्र UK</h1>
+                <p>Die ETA ist eine neue digitale Einreisevoraussetzung für visumfreie ausländische Staatsangehörige, die in das Vereinigte Königreich reisen. Sie ist elektronisch mit Ihrem Reisepass verknüpft.</p>
+            </div>
+            <!-- FR -->
+            <div class="lang-text lang-fr">
+                <h1>Autorisation Électronique de Voyage (ETA) au Royaume-Uni</h1>
+                <p>L'ETA è un'exigence numérique pour les ressortissants étrangers exemptés de visa voyageant au Royaume-Uni. Elle est liée électroniquement à votre passeport.</p>
+            </div>
+            <!-- ES -->
+            <div class="lang-text lang-es">
+                <h1>Autorización Electrónica de Viaje (ETA) del Reino Unido</h1>
+                <p>La ETA es un nuevo requisito digital para los ciudadanos extranjeros exentos de visado che viajan al Reino Unido. Está vinculada electrónicamente a su pasaporte.</p>
+            </div>
+
+            <!-- Global Info Table Multilingue -->
+            <table class="info-table">
+                <tr>
+                    <th>Costo / Cost</th>
+                    <td>£10 GBP per applicant</td>
+                </tr>
+                <tr>
+                    <th>Validità / Validity</th>
+                    <td>2 anni o fino alla scadenza del passaporto / 2 years or until passport expires</td>
+                </tr>
+                <tr>
+                    <th>Tempistica / Processing</th>
+                    <td>Entro 3 giorni lavorativi / Within 3 working days</td>
+                </tr>
+            </table>
+
+            <div class="cta-box">
+                <div class="lang-text lang-it">
+                    <p><strong>Pronto per partire?</strong> Compila la domanda ufficiale online prima di recarti in aeroporto o al porto di imbarco.</p>
+                </div>
+                <div class="lang-text lang-en">
+                    <p><strong>Ready to apply?</strong> Complete your official digital application before arriving at your point of departure.</p>
+                </div>
+                <div class="lang-text lang-de">
+                    <p><strong>Bereit zu beantragen?</strong> Füllen Sie Ihren offiziellen Antrag vor der Abreise aus.</p>
+                </div>
+                <div class="lang-text lang-fr">
+                    <p><strong>Prêt à postuler?</strong> Remplissez votre demande officielle en ligne avant votre départ.</p>
+                </div>
+                <div class="lang-text lang-es">
+                    <p><strong>¿Listo para aplicar?</strong> Complete su solicitud oficial en línea antes de su viaje.</p>
+                </div>
+                <a href="https://www.gov.uk/eta/apply" class="btn-apply" target="_blank">Apply Now on GOV.UK &rarr;</a>
+            </div>
+        </div>
+
+        <!-- SEZIONE ITALIA -->
+        <div id="section-italiani" class="country-section">
+            <div class="country-banner" style="background-image: url('https://commercialistalondra.co.uk/wp-content/uploads/2026/06/UK-Italy-Brexit.jpg');">
+                <div class="country-title">
+                    <span>ITALIA / ITALY</span>
+                </div>
+            </div>
+            <div class="country-content">
+                <div class="lang-text lang-it">
+                    <h3>Disposizioni ETA per i Cittadini Italiani</h3>
+                    <p>A partire dal completamento delle fasi di implementazione post-Brexit nel 2025/2026, tutti i cittadini italiani che desiderano entrare nel Regno Unito per turismo, affari a breve termine o transito devono possedere un'ETA approvata prima dello spostamento.</p>
+                    <h3>Requisiti Fondamentali</h3>
+                    <ul>
+                        <li><strong>Passaporto Biometrico:</strong> La carta d'identità italiana non è più accettata. È obbligatorio un passaporto in corso di validità.</li>
+                        <li><strong>Soggiorno Massimo:</strong> Consente una permanenza continuativa fino a 6 mesi per motivi di turismo o business leggero.</li>
+                        <li><strong>Elettronico:</strong> Non serve stampare nulla, l'ETA è associata al microchip del passaporto, verificata ai varchi e-Gate.</li>
+                    </ul>
+                </div>
+                <div class="lang-text lang-en">
+                    <h3>ETA Rules for Italian Citizens</h3>
+                    <p>Italian passport holders traveling to the United Kingdom must obtain an ETA before boarding. This digital system replaces traditional visa-free entries for short stays.</p>
+                    <h3>Key Requirements</h3>
+                    <ul>
+                        <li><strong>Biometric Passport:</strong> Italian National ID cards are no longer valid for entry.</li>
+                        <li><strong>Duration:</strong> Valid for entries up to 6 months per visit.</li>
+                    </ul>
+                </div>
+                <div class="lang-text lang-de">
+                    <h3>ETA-Regelungen für italienische Staatsbürger</h3>
+                    <p>Italienische Staatsbürger müssen vor der Einreise in das Vereinigte Königreich eine gültige ETA beantragen. Der italienische Personalausweis wird nicht mehr akzeptiert; ein Reisepass ist zwingend erforderlich.</p>
+                </div>
+                <div class="lang-text lang-fr">
+                    <h3>Dispositions ETA pour les citoyens italiens</h3>
+                    <p>Tous les citoyens italiens se rendant au Royaume-Uni doivent désormais détenir une ETA valide linked à leur passeport biométrique.</p>
+                </div>
+                <div class="lang-text lang-es">
+                    <h3>Normativa ETA para Ciudadanos Italianos</h3>
+                    <p>Los ciudadanos italianos requieren una ETA aprobada para viajar al Reino Unido. El documento nacional de identidad ya no es válido para cruzar la frontera.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SEZIONE SPAGNA -->
+        <div id="section-spagna" class="country-section">
+            <div class="country-banner" style="background-image: url('https://images.prismic.io/tefl-iberia/aMgo3GGNHVfTPPv6_spainvstheukfeaturedimage.jpg?auto=format,compress');">
+                <div class="country-title">
+                    <span>SPAGNA / SPAIN</span>
+                </div>
+            </div>
+            <div class="country-content">
+                <div class="lang-text lang-it">
+                    <h3>Disposizioni ETA per i Cittadini Spagnoli</h3>
+                    <p>I viaggiatori provenienti dalla Spagna devono allinearsi alle medesime procedure digitali del Regno Unito. L'ETA copre tutti i voli e i transiti marittimi o ferroviari internazionali.</p>
+                    <h3>Note per Studenti ed Escursionisti</h3>
+                    <ul>
+                        <li>I corsi di studio brevi (sotto i 6 mesi) sono consentiti sotto il regime ETA.</li>
+                        <li>L'approvazione richiede di norma pochi minuti, ma si raccomanda l'invio della richiesta almeno 72 ore prima del viaggio.</li>
+                    </ul>
+                </div>
+                <div class="lang-text lang-en">
+                    <h3>ETA Information for Spanish Nationals</h3>
+                    <p>Spanish citizens require an ETA for any short-term stay in the UK. This includes transit through major UK airport hubs such as London Heathrow and Gatwick.</p>
+                </div>
+                <div class="lang-text lang-de">
+                    <h3>ETA für spanische Staatsangehörige</h3>
+                    <p>Reisende aus Spanien müssen vor Reiseantritt eine elektronische Einreisegenehmigung einholen. Dies gilt für Tourismus und Geschäftsreisen.</p>
+                </div>
+                <div class="lang-text lang-fr">
+                    <h3>ETA pour les ressortissants espagnols</h3>
+                    <p>Les citoyens espagnols doivent soumettre leur demande d'ETA sur le portail officiel britannique avant leur enregistrement.</p>
+                </div>
+                <div class="lang-text lang-es">
+                    <h3>Requisitos de ETA per a Ciudadanos Españoles</h3>
+                    <p>Los ciudadanos con pasaporte español deben solicitar de forma obligatoria la autorización ETA antes di abordar su vuelo hacia el Reino Unido.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SEZIONE FRANCIA -->
+        <div id="section-francia" class="country-section">
+            <div class="country-banner" style="background-image: url('https://aws-a.medias-ccifi.org/fileadmin/_processed_/4/1/csm_France-UK-flags_3487673d15.jpg');">
+                <div class="country-title">
+                    <span>FRANCIA / FRANCE</span>
+                </div>
+            </div>
+            <div class="country-content">
+                <div class="lang-text lang-it">
+                    <h3>Disposizioni ETA per i Cittadini Francesi</h3>
+                    <p>Particolare rilevanza assume l'ETA per i collegamenti transcanale (Eurostar ed Eurotunnel). I controlli di frontiera combinati nelle stazioni di Parigi Gare du Nord e Lille verificano lo stato dell'ETA prima della partenza del treno.</p>
+                    <h3>Specifiche di Controllo</h3>
+                    <ul>
+                        <li>I controlli vengono effettuati sul territorio francese prima dell'imbarco sul treno o traghetto.</li>
+                        <li>In assenza di ETA valida, l'imbarco verrà tassativamente rifiutato dalle autorità di frontiera britanniche (UK Border Force).</li>
+                    </ul>
+                </div>
+                <div class="lang-text lang-en">
+                    <h3>ETA Context for French Travelers</h3>
+                    <p>French citizens using Eurostar, Eurotunnel, or ferry services across the English Channel are subject to pre-departure ETA checks performed by the UK Border Force at juxtaposed controls in France.</p>
+                </div>
+                <div class="lang-text lang-de">
+                    <h3>Regeln für französische Reisende</h3>
+                    <p>Französische Staatsbürger, die den Eurostar oder Fähren nutzen, werden bereits auf französischem Boden bezüglich ihrer ETA kontrolliert.</p>
+                </div>
+                <div class="lang-text lang-fr">
+                    <h3>ETA Royaume-Uni pour les voyageurs français</h3>
+                    <p>Les voyageurs français empruntant l'Eurostar ou les ferries doivent impérativement détenir une autorisation de voyage ETA validée avant le passage aux frontières juxtaposées.</p>
+                </div>
+                <div class="lang-text lang-es">
+                    <h3>ETA para Viajeros Franceses</h3>
+                    <p>El control fronterizo británico validará la presencia de la ETA en los puntos de control situados en territorio francés antes del embarque.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SEZIONE GERMANIA -->
+        <div id="section-germania" class="country-section">
+            <div class="country-banner" style="background-image: url('https://us.123rf.com/450wm/alexis84/alexis841604/alexis84160400849/54488648-sventolando-la-bandiera-della-germania-e.jpg?ver=6');">
+                <div class="country-title">
+                    <span>GERMANIA / GERMANY</span>
+                </div>
+            </div>
+            <div class="country-content">
+                <div class="lang-text lang-it">
+                    <h3>Disposizioni ETA per i Cittadini Tedeschi</h3>
+                    <p>I viaggiatori d'affari e i turisti provenienti dalla Germania beneficiano della flessibilità dell'ETA per i frequenti spostamenti verso i centri finanziari di Londra.</p>
+                    <h3>Transito e Scali Aeroportuali</h3>
+                    <ul>
+                        <li>Il transito all'interno degli aeroporti britannici senza passare il controllo passaporti richiede comunque l'ETA.</li>
+                        <li>Valido per molteplici ingressi durante il periodo di validità di due anni.</li>
+                    </ul>
+                </div>
+                <div class="lang-text lang-en">
+                    <h3>ETA Regulations for German Citizens</h3>
+                    <p>German business and leisure travelers must ensure their passports are registered with an approved ETA. This rule applies even to airport transits where travelers do not exit the airside terminal zone.</p>
+                </div>
+                <div class="lang-text lang-de">
+                    <h3>ETA-Leitfaden für deutsche Staatsbürger</h3>
+                    <p>Deutsche Urlauber und Geschäftsreisende müssen eine gültige ETA vorweisen. Dies gilt auch für reine Transitflüge über britische Flughäfen ohne Verlassen des Transitbereichs.</p>
+                </div>
+                <div class="lang-text lang-fr">
+                    <h3>Directives ETA pour les citoyens allemands</h3>
+                    <p>Les ressortissants allemands voyageant ou transitant par le Royaume-Uni doivent soumettre leur formulaire en ligne au préalable.</p>
+                </div>
+                <div class="lang-text lang-es">
+                    <h3>Normas ETA para Ciudadanos Alemanes</h3>
+                    <p>Tanto para turismo como para escalas aeroportuarias de tránsito en el Reino Unido, los ciudadanos alemanes deben contar con su registro ETA activo.</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2026 HM Government - Guida Informativa Internazionale ETA. Link ufficiale di candidatura: <a href="https://www.gov.uk/eta/apply" target="_blank">gov.uk/eta/apply</a></p>
+    </footer>
+
+    <script>
+        function setLanguage(lang) {
+            // Cambia l'attributo data-lang sul body per aggiornare la visibilità CSS
+            document.body.setAttribute('data-lang', lang);
+            
+            // Gestione stato attivo pulsanti menu
+            const buttons = document.querySelectorAll('.lang-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            
+            // Trova il pulsante corrispondente e aggiungi classe active
+            const clickedBtn = window.event.currentTarget;
+            if(clickedBtn) {
+                clickedBtn.classList.add('active');
+            }
+        }
+    </script>
+</body>
+</html>
