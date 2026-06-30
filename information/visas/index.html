@@ -1,0 +1,1219 @@
+<!DOCTYPE html>
+<html lang="it" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <meta id="meta-description" name="description" content="Guida completa sui Visti internazionali e l'Autorizzazione Elettronica di Viaggio (UK ETA). Informazioni essenziali, requisiti e procedure per viaggiatori.">
+    <meta name="keywords" content="Visa information, visto turistico, ETA UK, Electronic Travel Authorisation, United Kingdom visa, UK entry requirements, travel visa rules, التأشيرة, 签证, ויזה, ビザ, visto de viagem, visum, виза">
+    <meta name="author" content="Aviation Eagle">
+
+    <title>Informazioni sui Visti & UK ETA | Aviation Eagle</title>
+    
+    <style>
+        :root {
+            --uk-blue: #00247D;
+            --uk-red: #CF142B;
+            --text-dark: #1a1a1a;
+            --text-light: #f8f9fa;
+            --glass-bg: rgba(255, 255, 255, 0.65);
+            --glass-border: rgba(255, 255, 255, 0.4);
+            --glass-shadow: rgba(0, 0, 0, 0.12);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            color: var(--text-dark);
+            line-height: 1.7;
+            background-image: url('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?q=80&w=2074&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            min-height: 100vh;
+        }
+
+        .glass-panel {
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px var(--glass-shadow);
+            padding: 40px;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        header {
+            background: rgba(11, 12, 12, 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            padding: 15px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 4px solid var(--uk-blue);
+            position: sticky;
+            top: 0;
+            z-index: 999;
+        }
+
+        .ae-logo {
+            height: 65px;
+            object-fit: contain;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
+        }
+
+        /* Gestione RTL e Allineamenti */
+        html[dir="rtl"] body { text-align: right; }
+        html[dir="rtl"] header { flex-direction: row-reverse; }
+        html[dir="rtl"] .toolbar { justify-content: flex-start; }
+        html[dir="rtl"] .eta-highlight { border-left: none; border-right: 6px solid var(--uk-blue); }
+        html[dir="rtl"] .modal-close { left: 20px; right: auto; }
+
+        .toolbar {
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            padding: 12px 40px;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            position: relative;
+            z-index: 998;
+        }
+
+        /* Dropdown Lingue Corretto e Funzionante */
+        .custom-dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-btn {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            border: 1px solid rgba(0,0,0,0.15);
+            padding: 10px 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-radius: 30px;
+            min-width: 180px;
+            justify-content: space-between;
+            color: var(--text-dark);
+            font-weight: bold;
+            font-size: 0.95rem;
+            transition: all 0.2s ease;
+        }
+
+        .dropdown-btn:hover {
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .dropdown-btn img, .dropdown-content img {
+            width: 24px;
+            height: 16px;
+            object-fit: cover;
+            border-radius: 2px;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            min-width: 190px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+            z-index: 1000;
+            border: 1px solid rgba(0,0,0,0.1);
+            border-radius: 12px;
+            top: 115%;
+            left: 0;
+            overflow: hidden;
+        }
+
+        html[dir="rtl"] .dropdown-content { left: auto; right: 0; }
+
+        .dropdown-content.show {
+            display: block;
+        }
+
+        .dropdown-content a {
+            color: var(--text-dark);
+            padding: 12px 18px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 0.95rem;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            transition: background 0.2s;
+        }
+
+        .dropdown-content a:last-child { border-bottom: none; }
+        .dropdown-content a:hover { background: rgba(0, 36, 125, 0.08); color: var(--uk-blue); }
+
+        .container {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        h1, h2, h3 {
+            color: #0b0c0c;
+            margin-bottom: 20px;
+            font-weight: 800;
+        }
+
+        h1 { font-size: 2.6rem; text-shadow: 0 1px 3px rgba(255,255,255,0.8); }
+        h2 { font-size: 1.9rem; border-bottom: 2px solid rgba(0,36,125,0.15); padding-bottom: 8px; margin-top: 20px; }
+        
+        p { margin-bottom: 20px; font-size: 1.1rem; }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 25px;
+        }
+
+        .content-grid img {
+            width: 100%;
+            height: 100%;
+            max-height: 250px;
+            object-fit: cover;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        @media (max-width: 768px) {
+            .content-grid { grid-template-columns: 1fr; }
+        }
+
+        /* Menu Cards */
+        .visa-types-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-top: 20px;
+        }
+
+        .visa-card {
+            background: rgba(255, 255, 255, 0.45);
+            padding: 18px 15px;
+            border-radius: 14px;
+            border: 1px solid rgba(255,255,255,0.5);
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.25s ease-in-out;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+        }
+
+        .visa-card:hover { 
+            transform: translateY(-4px); 
+            background: rgba(255, 255, 255, 0.85); 
+            border-color: var(--uk-blue);
+            box-shadow: 0 6px 20px rgba(0,36,125,0.12);
+        }
+
+        .visa-card h3 { 
+            color: var(--uk-blue); 
+            font-size: 1.15rem; 
+            margin-bottom: 6px; 
+            font-weight: 700;
+        }
+
+        .visa-card p.compact-desc { 
+            font-size: 0.88rem; 
+            margin-bottom: 12px; 
+            line-height: 1.4;
+            opacity: 0.85;
+        }
+
+        .action-badge {
+            font-size: 0.72rem;
+            background: var(--uk-blue);
+            color: white;
+            padding: 3px 12px;
+            border-radius: 20px;
+            text-transform: uppercase;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+        }
+
+        /* Sistema Finestre Pop-Up Modali */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(11, 12, 12, 0.55);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.25s ease;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-window {
+            background: rgba(255, 255, 255, 0.94);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.7);
+            width: 90%;
+            max-width: 560px;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 45px rgba(0,0,0,0.22);
+            position: relative;
+            transform: scale(0.92);
+            transition: transform 0.25s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .modal-overlay.active .modal-window {
+            transform: scale(1);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 1.6rem;
+            background: none;
+            border: none;
+            color: var(--text-dark);
+            cursor: pointer;
+            font-weight: bold;
+            transition: color 0.2s;
+        }
+        .modal-close:hover { color: var(--uk-red); }
+
+        .modal-title {
+            color: var(--uk-blue);
+            font-size: 1.5rem;
+            margin-bottom: 18px;
+            border-bottom: 2px solid rgba(0,36,125,0.08);
+            padding-bottom: 6px;
+        }
+
+        .modal-detail-block {
+            margin-bottom: 14px;
+        }
+
+        .modal-detail-block strong {
+            color: #333;
+            display: block;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            margin-bottom: 3px;
+            opacity: 0.75;
+        }
+
+        .modal-detail-block p {
+            font-size: 0.98rem;
+            margin-bottom: 0;
+            line-height: 1.5;
+        }
+
+        body.modal-open {
+            overflow: hidden;
+        }
+
+        .eta-highlight {
+            background: linear-gradient(135deg, rgba(255,255,255,0.92) 0%, rgba(242,246,252,0.85) 100%);
+            border-left: 6px solid var(--uk-blue);
+        }
+
+        .btn-apply {
+            display: inline-block;
+            background: linear-gradient(to right, #00703c, #005a30);
+            color: var(--text-light);
+            font-weight: 700;
+            font-size: 1.05rem;
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 112, 60, 0.25);
+            transition: all 0.25s ease;
+            margin-top: 15px;
+        }
+
+        .btn-apply:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(0, 112, 60, 0.35);
+            color: white;
+        }
+
+        /* Sezioni Lingue Singole */
+        .lang-section { display: none; }
+        body[data-lang="it"] .lang-it { display: block; }
+        body[data-lang="en"] .lang-en { display: block; }
+        body[data-lang="ar"] .lang-ar { display: block; }
+        body[data-lang="zh"] .lang-zh { display: block; }
+        body[data-lang="he"] .lang-he { display: block; }
+        body[data-lang="ja"] .lang-ja { display: block; }
+        body[data-lang="nl"] .lang-nl { display: block; }
+        body[data-lang="pt"] .lang-pt { display: block; }
+        body[data-lang="ru"] .lang-ru { display: block; }
+        body[data-lang="es"] .lang-es { display: block; }
+        body[data-lang="fr"] .lang-fr { display: block; }
+        body[data-lang="de"] .lang-de { display: block; }
+        body[data-lang="pl"] .lang-pl { display: block; }
+
+    </style>
+</head>
+<body data-lang="it">
+
+    <header>
+        <img src="https://static.wixstatic.com/media/261a20_17a3096e81d4493487d5522533f5c547~mv2.png/v1/fill/w_199,h_87,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Aviation%20EAgle%20Compact%20White%20TM%20RBG.png" class="ae-logo" alt="Aviation Eagle Logo">
+    </header>
+
+    <div class="toolbar">
+        <div class="custom-dropdown">
+            <button class="dropdown-btn" id="dropdownBtn">
+                <div style="display:flex; align-items:center; gap:10px;">
+                    <img id="current-flag" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Flag_of_Italy.svg/250px-Flag_of_Italy.svg.png" alt="IT"> 
+                    <span id="current-lang-name">Italiano</span>
+                </div>
+                <span>▼</span>
+            </button>
+            <div class="dropdown-content" id="langMenu">
+                <a href="#" data-lang="ar"><img src="https://upload.wikimedia.org/wikipedia/commons/c/cb/Flag_of_the_United_Arab_Emirates.svg" alt="AR"> Arabo</a>
+                <a href="#" data-lang="zh"><img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Flag_of_the_People%27s_Republic_of_China.svg" alt="ZH"> Cinese</a>
+                <a href="#" data-lang="he"><img src="https://upload.wikimedia.org/wikipedia/commons/d/d4/Flag_of_Israel.svg" alt="HE"> Ebraico</a>
+                <a href="#" data-lang="fr"><img src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Flag_of_France.svg" alt="FR"> Francese</a>
+                <a href="#" data-lang="ja"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Flag_of_Japan.svg/1280px-Flag_of_Japan.svg.png" alt="JA"> Giapponese</a>
+                <a href="#" data-lang="en"><img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Flag_of_the_United_Kingdom_%281-2%29.svg" alt="EN"> Inglese</a>
+                <a href="#" data-lang="it"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Flag_of_Italy.svg/250px-Flag_of_Italy.svg.png" alt="IT"> Italiano</a>
+                <a href="#" data-lang="nl"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Flag_of_the_Netherlands.svg/1280px-Flag_of_the_Netherlands.svg.png" alt="NL"> Olandese</a>
+                <a href="#" data-lang="pl"><img src="https://upload.wikimedia.org/wikipedia/commons/1/12/Flag_of_Poland.svg" alt="PL"> Polacco</a>
+                <a href="#" data-lang="pt"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Flag_of_Portugal.svg/330px-Flag_of_Portugal.svg.png" alt="PT"> Portoghese</a>
+                <a href="#" data-lang="ru"><img src="https://upload.wikimedia.org/wikipedia/commons/f/f3/Flag_of_Russia.svg" alt="RU"> Russo</a>
+                <a href="#" data-lang="es"><img src="https://upload.wikimedia.org/wikipedia/commons/9/9a/Flag_of_Spain.svg" alt="ES"> Spagnolo</a>
+                <a href="#" data-lang="de"><img src="https://upload.wikimedia.org/wikipedia/commons/b/ba/Flag_of_Germany.svg" alt="DE"> Tedesco</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        
+        <div class="lang-section lang-it">
+            <section class="glass-panel">
+                <h1>Il Passaporto per il Mondo: Cos'è un Visto?</h1>
+                <div class="content-grid">
+                    <div>
+                        <p>Un visto d'ingresso è un'autorizzazione formalmente rilasciata dal governo di un Paese sovrano. Esso consente a un cittadino straniero di richiedere l'ingresso, il transito o il soggiorno per un periodo predeterminato.</p>
+                        <p>A differenza del passaporto, il visto è un permesso specifico rilasciato dalla nazione ospitante. Senza di esso l'accesso può essere negato.</p>
+                    </div>
+                    <div>
+                        <img src="https://www.visitusaita.org/wp-content/uploads/2020/02/visto-usa.jpg" alt="Visto">
+                    </div>
+                </div>
+            </section>
+
+            <section class="glass-panel">
+                <h2>Categorie Principali di Visti</h2>
+                <p>Seleziona una categoria per visualizzare i dettagli completi e i requisiti obbligatori:</p>
+                <div class="visa-types-container">
+                    <div class="visa-card" data-visa="tourist">
+                        <h3>Visto Turistico</h3>
+                        <p class="compact-desc">Viaggi di svago e visite brevi.</p>
+                        <span class="action-badge">Apri Dettagli</span>
+                    </div>
+                    <div class="visa-card" data-visa="work">
+                        <h3>Visto Lavorativo</h3>
+                        <p class="compact-desc">Lavoro dipendente o autonomo.</p>
+                        <span class="action-badge">Apri Dettagli</span>
+                    </div>
+                    <div class="visa-card" data-visa="student">
+                        <h3>Visto Studentesco</h3>
+                        <p class="compact-desc">Iscrizione a corsi e università.</p>
+                        <span class="action-badge">Apri Dettagli</span>
+                    </div>
+                    <div class="visa-card" data-visa="transit">
+                        <h3>Visto di Transito</h3>
+                        <p class="compact-desc">Sosta aeroportuale o di confine.</p>
+                        <span class="action-badge">Apri Dettagli</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="glass-panel eta-highlight">
+                <h2>Attenzione: Nuovo ETA per il Regno Unito</h2>
+                <p>A seguito delle riono delle frontiere, il Regno Unito implementa un sistema digitale per le autorizzazioni di viaggio.</p>
+                <p>Se sei un cittadino europeo e viaggi per turismo o semplice <strong>transito aeroportuale</strong>, sarà <strong>obbligatorio</strong> possedere un'ETA ancorata al passaporto biometrico.</p>
+                <a href="https://breakingnews.aviationeagle.co.uk/information/visas/eta/" class="btn-apply">Richiedi l'ETA UK &rarr;</a>
+            </section>
+        </div>
+
+        <div class="lang-section lang-en">
+            <section class="glass-panel">
+                <h1>Your Gateway to the World: What is a Visa?</h1>
+                <div class="content-grid">
+                    <div>
+                        <p>A travel visa is an official authorization issued by the government of a sovereign nation. It allows a foreign citizen to request entry, transit, or stay within the territory.</p>
+                        <p>Unlike a passport, a visa is a specific permission granted by the host nation. Without it, entry can be denied.</p>
+                    </div>
+                    <div>
+                        <img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=800&q=80" alt="Visas">
+                    </div>
+                </div>
+            </section>
+
+            <section class="glass-panel">
+                <h2>Main Visa Categories</h2>
+                <p>Select a category to display full requirements and validity rules:</p>
+                <div class="visa-types-container">
+                    <div class="visa-card" data-visa="tourist">
+                        <h3>Tourist Visa</h3>
+                        <p class="compact-desc">Leisure travel and short visits.</p>
+                        <span class="action-badge">View Details</span>
+                    </div>
+                    <div class="visa-card" data-visa="work">
+                        <h3>Work Visa</h3>
+                        <p class="compact-desc">Employment and business.</p>
+                        <span class="action-badge">View Details</span>
+                    </div>
+                    <div class="visa-card" data-visa="student">
+                        <h3>Student Visa</h3>
+                        <p class="compact-desc">Academic courses and training.</p>
+                        <span class="action-badge">View Details</span>
+                    </div>
+                    <div class="visa-card" data-visa="transit">
+                        <h3>Transit Visa</h3>
+                        <p class="compact-desc">Airport stopovers and connections.</p>
+                        <span class="action-badge">View Details</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="glass-panel eta-highlight">
+                <h2>Alert: New UK ETA System</h2>
+                <p>Following border reforms, the United Kingdom rolls out a fully digital system for travel authorizations.</p>
+                <p>If you are an EU citizen traveling for tourism or just <strong>airport transit</strong>, you <strong>must</strong> possess an Electronic Travel Authorisation (ETA).</p>
+                <a href="https://breakingnews.aviationeagle.co.uk/information/visas/eta/" class="btn-apply">Apply for UK ETA &rarr;</a>
+            </section>
+        </div>
+
+        <div class="lang-section lang-ar">
+            <section class="glass-panel">
+                <h1>بوابتك إلى العالم: ما هي التأشيرة؟</h1>
+                <p>تصريح رسمي صادر عن حكومة دولة ذات سيادة يتيح للمواطن الأجنبي طلب الدخول أو المرور عبر الحدود لفترة محددة.</p>
+            </section>
+            <section class="glass-panel">
+                <h2>فئات التأشيرات الرئيسية</h2>
+                <div class="visa-types-container">
+                    <div class="visa-card" data-visa="tourist">
+                        <h3>تأشيرة سياحية</h3>
+                        <p class="compact-desc">السفر الترفيهي والزيارات.</p>
+                        <span class="action-badge">التفاصيل</span>
+                    </div>
+                    <div class="visa-card" data-visa="work">
+                        <h3>تأشيرة عمل</h3>
+                        <p class="compact-desc">التوظيف والأعمال.</p>
+                        <span class="action-badge">التفاصيل</span>
+                    </div>
+                    <div class="visa-card" data-visa="student">
+                        <h3>تأشيرة طالب</h3>
+                        <p class="compact-desc">الدراسة والتعليم الفني.</p>
+                        <span class="action-badge">التفاصيل</span>
+                    </div>
+                    <div class="visa-card" data-visa="transit">
+                        <h3>تأشيرة عبور</h3>
+                        <p class="compact-desc">التوقف في المطارات والحدود.</p>
+                        <span class="action-badge">التفاصيل</span>
+                    </div>
+                </div>
+            </section>
+            <section class="glass-panel eta-highlight">
+                <h2>تنبيه: نظام ETA الجديد للمملكة المتحدة</h2>
+                <p>تطبيق نظام رقمي بالكامل لتصاريح السفر الإلكترونية (ETA) المرتبطة بجواز السفر البيومتري للزيارات والترانزيت.</p>
+                <a href="https://breakingnews.aviationeagle.co.uk/information/visas/eta/" class="btn-apply">تعرف على ETA &larr;</a>
+            </section>
+        </div>
+
+        <div class="lang-section lang-zh">
+            <section class="glass-panel">
+                <h1>通往世界的门户：什么是签证？</h1>
+                <p>签证是主权国家政府颁发的官方授权。它允许外国公民在过境点申请入境、过境或在预定期限内停留。</p>
+            </section>
+            <section class="glass-panel">
+                <h2>主要签证类别</h2>
+                <div class="visa-types-container">
+                    <div class="visa-card" data-visa="tourist">
+                        <h3>旅游签证</h3>
+                        <p class="compact-desc">休闲旅游与短期探亲。</p>
+                        <span class="action-badge">查看详情</span>
+                    </div>
+                    <div class="visa-card" data-visa="work">
+                        <h3>工作签证</h3>
+                        <p class="compact-desc">受薪工作与商务运营。</p>
+                        <span class="action-badge">查看详情</span>
+                    </div>
+                    <div class="visa-card" data-visa="student">
+                        <h3>学生签证</h3>
+                        <p class="compact-desc">大学就读与学术进修。</p>
+                        <span class="action-badge">查看详情</span>
+                    </div>
+                    <div class="visa-card" data-visa="transit">
+                        <h3>过境签证</h3>
+                        <p class="compact-desc">机场中转与边境过境。</p>
+                        <span class="action-badge">查看详情</span>
+                    </div>
+                </div>
+            </section>
+            <section class="glass-panel eta-highlight">
+                <h2>注意：英国全新 ETA 系统</h2>
+                <p>短期访问 or 过境的旅客必须持有与其生物特征护照相关联的电子旅行授权（ETA）。</p>
+                <a href="https://breakingnews.aviationeagle.co.uk/information/visas/eta/" class="btn-apply">申请英国 ETA &rarr;</a>
+            </section>
+        </div>
+
+        <div class="lang-section lang-he">
+            <section class="glass-panel">
+                <h1>השער שלך לעולם: מהי ויזה?</h1>
+                <p>ויזת נסיעות היא אישור רשמי המונפק על ידי ממשלת מדינה ריבונית המאפשר לאזרח זר לבקש כניסה או שהייה בשטח הלאומי.</p>
+            </section>
+            <section class="glass-panel">
+                <h2>קטגוריות ויזה עיקריות</h2>
+                <div class="visa-types-container">
+                    <div class="visa-card" data-visa="tourist">
+                        <h3>ויזת תייר</h3>
+                        <p class="compact-desc">טיולי פנאי וביקורים קצרים.</p>
+                        <span class="action-badge">פרטים מלאים</span>
+                    </div>
+                    <div class="visa-card" data-visa="work">
+                        <h3>ויזת עבודה</h3>
+                        <p class="compact-desc">תעסוקה ופיתוח עסקי.</p>
+                        <span class="action-badge">פרטים מלאים</span>
+                    </div>
+                    <div class="visa-card" data-visa="student">
+                        <h3>ויזת סטודנט</h3>
+                        <p class="compact-desc">לימודים אקדמיים והכשרות.</p>
+                        <span class="action-badge">פרטים מלאים</span>
+                    </div>
+                    <div class="visa-card" data-visa="transit">
+                        <h3>ויזת מעבר</h3>
+                        <p class="compact-desc">קונקשנים ועצירות ביניים.</p>
+                        <span class="action-badge">פרטים מלאים</span>
+                    </div>
+                </div>
+            </section>
+            <section class="glass-panel eta-highlight">
+                <h2>התראה: מערכת ETA החדשה של בריטניה</h2>
+                <p>חובה להחזיק באישור נסיעה אלקטרוני (ETA) המקושר לדרכון הביומטרי עבור שהיות קצרות ומעבר בשדה התעופה.</p>
+                <a href="https://breakingnews.aviationeagle.co.uk/information/visas/eta/" class="btn-apply">הגישו בקשה &larr;</a>
+            </section>
+        </div>
+
+        <div class="lang-section lang-ja">
+            <section class="glass-panel">
+                <h1>世界へのゲートウェイ：ビザとは？</h1>
+                <p>旅行ビザは、主権国家の政府が発行する公式の許可証です。これにより、外国の市民は入国、通過、または一定期間の滞在を申請することができます。</p>
+            </section>
+            <section class="glass-panel">
+                <h2>主なビザのカテゴリー</h2>
+                <div class="visa-types-container">
+                    <div class="visa-card" data-visa="tourist">
+                        <h3>観光ビザ</h3>
+                        <p class="compact-desc">レジャー目的・短期訪問。</p>
+                        <span class="action-badge">詳細を見る</span>
+                    </div>
+                    <div class="visa-card" data-visa="work">
+                        <h3>就労ビザ</h3>
+                        <p class="compact-desc">現地就労・ビジネス展開。</p>
+                        <span class="action-badge">詳細を見る</span>
+                    </div>
+                    <div class="visa-card" data-visa="student">
+                        <h3>学生ビザ</h3>
+                        <p class="compact-desc">大学・語学学校への留学。</p>
+                        <span class="action-badge">詳細を見る</span>
+                    </div>
+                    <div class="visa-card" data-visa="transit">
+                        <h3>通過ビザ</h3>
+                        <p class="compact-desc">乗り継ぎ・空港一時滞在。</p>
+                        <span class="action-badge">詳細を見る</span>
+                    </div>
+                </div>
+            </section>
+            <section class="glass-panel eta-highlight">
+                <h2>注意：英国の新しいETAシステム</h2>
+                <p>短期滞在や空港での乗り継ぎには、バイオメトリックパスポートにリンクされた電子渡航認証（ETA）が必須となります。</p>
+                <a href="https://breakingnews.aviationeagle.co.uk/information/visas/eta/" class="btn-apply">英国ETAを申請する &rarr;</a>
+            </section>
+        </div>
+
+        <div class="lang-section lang-nl">
+            <section class="glass-panel">
+                <h1>Uw toegang tot de wereld: Wat is een visum?</h1>
+                <p>Een reisvisum is een officiële machtiging afgegeven door de regering van een soevereine natie om toegang, doorvoer of verblijf aan te vragen.</p>
+            </section>
+            <section class="glass-panel">
+                <h2>Belangrijkste Visumcategorieën</h2>
+                <div class="visa-types-container">
+                    <div class="visa-card" data-visa="tourist">
+                        <h3>Toeristenvisum</h3>
+                        <p class="compact-desc">Vakantie en korte bezoeken.</p>
+                        <span class="action-badge">Details Tonen</span>
+                    </div>
+                    <div class="visa-card" data-visa="work">
+                        <h3>Werkvisum</h3>
+                        <p class="compact-desc">Betaald werk en business.</p>
+                        <span class="action-badge">Details Tonen</span>
+                    </div>
+                    <div class="visa-card" data-visa="student">
+                        <h3>Studentenvisum</h3>
+                        <p class="compact-desc">Studie en universitaire opleiding.</p>
+                        <span class="action-badge">Details Tonen</span>
+                    </div>
+                    <div class="visa-card" data-visa="transit">
+                        <h3>Transitvisum</h3>
+                        <p class="compact-desc">Luchthaventransits en tussenstops.</p>
+                        <span class="action-badge">Details Tonen</span>
+                    </div>
+                </div>
+            </section>
+            <section class="glass-panel eta-highlight">
+                <h2>Let op: Nieuw UK ETA Systeem</h2>
+                <p>Voor korte bezoeken and luchthaventransits is een Electronic Travel Authorisation (ETA) gekoppeld aan uw biometrische paspoort verplicht.</p>
+                <a href="https://breakingnews.aviationeagle.co.uk/information/visas/eta/" class="btn-apply">Vraag UK ETA aan &rarr;</a>
+            </section>
+        </div>
+
+        <div class="lang-section lang-pt">
+            <section class="glass-panel">
+                <h1>O Seu Portal para o Mundo: O que é um Visto?</h1>
+                <p>Um visto de viagem é uma autorização oficial emitida pelo governo de uma nação soberana. Permite solicitar entrada, trânsito ou permanência.</p>
+            </section>
+            <section class="glass-panel">
+                <h2>Principais Categorias de Vistos</h2>
+                <div class="visa-types-container">
+                    <div class="visa-card" data-visa="tourist">
+                        <h3>Visto de Turista</h3>
+                        <p class="compact-desc">Viagens de lazer e visitas curtas.</p>
+                        <span class="action-badge">Ver Detalhes</span>
+                    </div>
+                    <div class="visa-card" data-visa="work">
+                        <h3>Visto de Trabalho</h3>
+                        <p class="compact-desc">Trabalho por conta de outrem.</p>
+                        <span class="action-badge">Ver Detalhes</span>
+                    </div>
+                    <div class="visa-card" data-visa="student">
+                        <h3>Visto de Estudante</h3>
+                        <p class="compact-desc">Estudos académicos e cursos.</p>
+                        <span class="action-badge">Ver Detalhes</span>
+                    </div>
+                    <div class="visa-card" data-visa="transit">
+                        <h3>Visto de Trânsito</h3>
+                        <p class="compact-desc">Escalas aeroportuárias e conexões.</p>
+                        <span class="action-badge">Ver Detalhes</span>
+                    </div>
+                </div>
+            </section>
+            <section class="glass-panel eta-highlight">
+                <h2>Alerta: Novo Sistema ETA do Reino Unido</h2>
+                <p>Deve possuir uma Autorização Eletrónica de Viagem (ETA) associada ao seu passaporte biométrico para trânsito ou estadias curtas.</p>
+                <a href="https://breakingnews.aviationeagle.co.uk/information/visas/eta/" class="btn-apply">Solicite o ETA &rarr;</a>
+            </section>
+        </div>
+
+        <div class="lang-section lang-ru">
+            <section class="glass-panel">
+                <h1>Ваш путь в мир: Что такое виза?</h1>
+                <p>Официальное разрешение, выдаваемое правительством суверенного государства для въезда, транзита или пребывания на его территории.</p>
+            </section>
+            <section class="glass-panel">
+                <h2>Основные категории виз</h2>
+                <div class="visa-types-container">
+                    <div class="visa-card" data-visa="tourist">
+                        <h3>Туристическая виза</h3>
+                        <p class="compact-desc">Отдых, туризм и короткие поездки.</p>
+                        <span class="action-badge">Подробнее</span>
+                    </div>
+                    <div class="visa-card" data-visa="work">
+                        <h3>Рабочая виза</h3>
+                        <p class="compact-desc">Трудоустройство и бизнес.</p>
+                        <span class="action-badge">Подробнее</span>
+                    </div>
+                    <div class="visa-card" data-visa="student">
+                        <h3>Студенческая виза</h3>
+                        <p class="compact-desc">Обучение в вузах и колледжах.</p>
+                        <span class="action-badge">Подробнее</span>
+                    </div>
+                    <div class="visa-card" data-visa="transit">
+                        <h3>Транзитная виза</h3>
+                        <p class="compact-desc">Пересадки в аэропортах и транзит.</p>
+                        <span class="action-badge">Подробнее</span>
+                    </div>
+                </div>
+            </section>
+            <section class="glass-panel eta-highlight">
+                <h2>Внимание: Новая система ETA Великобритании</h2>
+                <p>Для краткосрочных визитов и транзита через аэропорт обязательно наличие электронного разрешения на поездку (ETA).</p>
+                <a href="https://breakingnews.aviationeagle.co.uk/information/visas/eta/" class="btn-apply">Подать заявку на ETA &rarr;</a>
+            </section>
+        </div>
+
+        <div class="lang-section lang-es">
+            <section class="glass-panel">
+                <h1>Su Pasaporte al Mundo: ¿Qué es una Visa?</h1>
+                <div class="content-grid">
+                    <div>
+                        <p>Una visa de viaje es una autorización oficial emitida por el gobierno de una nación soberana. Permite a un ciudadano extranjero solicitar la entrada, el tránsito o la estancia dentro del territorio.</p>
+                        <p>A diferencia de un pasaporte, una visa es un permiso específico otorgado por la nación anfitriona. Sin ella, se puede denegar la entrada.</p>
+                    </div>
+                    <div>
+                        <img src="https://www.visitusaita.org/wp-content/uploads/2020/02/visto-usa.jpg" alt="Visa">
+                    </div>
+                </div>
+            </section>
+
+            <section class="glass-panel">
+                <h2>Categorías Principales de Visas</h2>
+                <p>Seleccione una categoría para mostrar los requisitos completos y las reglas de validez:</p>
+                <div class="visa-types-container">
+                    <div class="visa-card" data-visa="tourist">
+                        <h3>Visa de Turista</h3>
+                        <p class="compact-desc">Viajes de ocio y visitas cortas.</p>
+                        <span class="action-badge">Ver Detalles</span>
+                    </div>
+                    <div class="visa-card" data-visa="work">
+                        <h3>Visa de Trabajo</h3>
+                        <p class="compact-desc">Empleo y negocios profesionales.</p>
+                        <span class="action-badge">Ver Detalles</span>
+                    </div>
+                    <div class="visa-card" data-visa="student">
+                        <h3>Visa de Estudiante</h3>
+                        <p class="compact-desc">Cursos académicos y formación.</p>
+                        <span class="action-badge">Ver Detalles</span>
+                    </div>
+                    <div class="visa-card" data-visa="transit">
+                        <h3>Visa de Tránsito</h3>
+                        <p class="compact-desc">Escalas aeroportuarias y conexiones.</p>
+                        <span class="action-badge">Ver Detalles</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="glass-panel eta-highlight">
+                <h2>Atención: Nuevo Sistema ETA del Reino Unido</h2>
+                <p>Tras las reformas fronterizas, el Reino Unido implementa un sistema totalmente digital para las autorizaciones de viaje.</p>
+                <p>Si es ciudadano europeo y viaja por turismo o simple tránsito aeroportuario, será obligatorio poseer una Autorización Electrónica de Viaje (ETA) vinculada al pasaporte biométrico.</p>
+                <a href="https://breakingnews.aviationeagle.co.uk/information/visas/eta/" class="btn-apply">Solicitar ETA del Reino Unido &rarr;</a>
+            </section>
+        </div>
+
+        <div class="lang-section lang-fr">
+            <section class="glass-panel">
+                <h1>Votre Passeport pour le Monde : Qu'est-ce qu'un Visa ?</h1>
+                <div class="content-grid">
+                    <div>
+                        <p>Un visa de voyage est une autorisation officielle délivrée par le gouvernement d'une nation souveraine. Il permet à un citoyen étranger de demander l'entrée, le transit ou le séjour sur le territoire.</p>
+                        <p>Contrairement à un passeport, un visa est une permission spécifique accordée par le pays d'accueil. Sans lui, l'entrée peut être refusée.</p>
+                    </div>
+                    <div>
+                        <img src="https://www.visitusaita.org/wp-content/uploads/2020/02/visto-usa.jpg" alt="Visa">
+                    </div>
+                </div>
+            </section>
+
+            <section class="glass-panel">
+                <h2>Principales Catégories de Visas</h2>
+                <p>Sélectionnez une catégorie pour afficher les conditions complètes et les règles de validité :</p>
+                <div class="visa-types-container">
+                    <div class="visa-card" data-visa="tourist">
+                        <h3>Visa Touristique</h3>
+                        <p class="compact-desc">Voyages de loisirs et courtes visites.</p>
+                        <span class="action-badge">Voir les Détails</span>
+                    </div>
+                    <div class="visa-card" data-visa="work">
+                        <h3>Visa de Travail</h3>
+                        <p class="compact-desc">Emploi et affaires professionnelles.</p>
+                        <span class="action-badge">Voir les Détails</span>
+                    </div>
+                    <div class="visa-card" data-visa="student">
+                        <h3>Visa d'Études</h3>
+                        <p class="compact-desc">Cours académiques et formation.</p>
+                        <span class="action-badge">Voir les Détails</span>
+                    </div>
+                    <div class="visa-card" data-visa="transit">
+                        <h3>Visa de Transit</h3>
+                        <p class="compact-desc">Escales aéroportuaires et correspondances.</p>
+                        <span class="action-badge">Voir les Détails</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="glass-panel eta-highlight">
+                <h2>Attention : Nouveau Système ETA pour le Royaume-Uni</h2>
+                <p>Suite aux réformes des frontières, le Royaume-Uni déploie un système entièrement numérique pour les autorisations de voyage.</p>
+                <p>Si vous êtes un citoyen européen voyageant pour le tourisme ou un simple transit aéroportuaire, il sera obligatoire de posséder une Autorisation de Voyage Électronique (ETA) liée au passeport biométrique.</p>
+                <a href="https://breakingnews.aviationeagle.co.uk/information/visas/eta/" class="btn-apply">Demander l'ETA UK &rarr;</a>
+            </section>
+        </div>
+
+        <div class="lang-section lang-de">
+            <section class="glass-panel">
+                <h1>Ihr Reisepass für die Welt: Was ist ein Visum?</h1>
+                <div class="content-grid">
+                    <div>
+                        <p>Ein Reisevisum ist eine offizielle Genehmigung, die von der Regierung eines souveränen Staates ausgestellt wird. Es erlaubt einem ausländischen Staatsbürger, die Einreise, den Transit oder den Aufenthalt im Hoheitsgebiet zu beantragen.</p>
+                        <p>Im Gegensatz zu einem Reisepass ist ein Visum eine spezifische Erlaubnis des Gastlandes. Ohne diese kann die Einreise verweigert werden.</p>
+                    </div>
+                    <div>
+                        <img src="https://www.visitusaita.org/wp-content/uploads/2020/02/visto-usa.jpg" alt="Visum">
+                    </div>
+                </div>
+            </section>
+
+            <section class="glass-panel">
+                <h2>Hauptkategorien von Visa</h2>
+                <p>Wählen Sie eine Kategorie aus, um die vollständigen Anforderungen und Gültigkeitsregeln anzuzeigen:</p>
+                <div class="visa-types-container">
+                    <div class="visa-card" data-visa="tourist">
+                        <h3>Touristenvisum</h3>
+                        <p class="compact-desc">Freizeitreisen und Kurzbesuche.</p>
+                        <span class="action-badge">Details anzeigen</span>
+                    </div>
+                    <div class="visa-card" data-visa="work">
+                        <h3>Arbeitsvisum</h3>
+                        <p class="compact-desc">Beschäftigung und Geschäftstätigkeit.</p>
+                        <span class="action-badge">Details anzeigen</span>
+                    </div>
+                    <div class="visa-card" data-visa="student">
+                        <h3>Studentenvisum</h3>
+                        <p class="compact-desc">Akademische Kurse und Ausbildung.</p>
+                        <span class="action-badge">Details anzeigen</span>
+                    </div>
+                    <div class="visa-card" data-visa="transit">
+                        <h3>Transitvisum</h3>
+                        <p class="compact-desc">Zwischenstopps an Flughäfen und Grenzen.</p>
+                        <span class="action-badge">Details anzeigen</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="glass-panel eta-highlight">
+                <h2>Achtung: Neues UK ETA-System</h2>
+                <p>Nach den Grenzreformen führt das Vereinigte Königreich ein vollständig digitales System für Reisevollmachten ein.</p>
+                <p>Wenn Sie europäischer Staatsbürger sind und zu Tourismuszwecken oder für einen einfachen Transit reisen, ist eine elektronische Reiseerlaubnis (ETA) gekoppelt an Ihren biometrischen Reisepass zwingend erforderlich.</p>
+                <a href="https://breakingnews.aviationeagle.co.uk/information/visas/eta/" class="btn-apply">UK ETA beantragen &rarr;</a>
+            </section>
+        </div>
+
+        <div class="lang-section lang-pl">
+            <section class="glass-panel">
+                <h1>Twój Paszport na Świat: Co to jest Wiza?</h1>
+                <div class="content-grid">
+                    <div>
+                        <p>Wiza turystyczna to oficjalne upoważnienie wydawane przez rząd suwerennego państwa. Pozwala obywatelowi obcego kraju ubiegać się o wjazd, tranzyt lub pobyt na jego terytorium.</p>
+                        <p>W przeciwieństwie do paszportu, wiza to szczególne zezwolenie udzielane przez kraj przyjmujący. Bez niej wjazd może zostać odmówiony.</p>
+                    </div>
+                    <div>
+                        <img src="https://www.visitusaita.org/wp-content/uploads/2020/02/visto-usa.jpg" alt="Wiza">
+                    </div>
+                </div>
+            </section>
+
+            <section class="glass-panel">
+                <h2>Główne Kategorie Wiz</h2>
+                <p>Wybierz kategorię, aby wyświetlić pełne wymagania i zasady ważności:</p>
+                <div class="visa-types-container">
+                    <div class="visa-card" data-visa="tourist">
+                        <h3>Wiza Turystyczna</h3>
+                        <p class="compact-desc">Podróże wypoczynkowe i krótkie wizyty.</p>
+                        <span class="action-badge">Otwórz Szczegóły</span>
+                    </div>
+                    <div class="visa-card" data-visa="work">
+                        <h3>Wiza Pracownicza</h3>
+                        <p class="compact-desc">Zatrudnienie i działalność gospodarcza.</p>
+                        <span class="action-badge">Otwórz Szczegóły</span>
+                    </div>
+                    <div class="visa-card" data-visa="student">
+                        <h3>Wiza Studencka</h3>
+                        <p class="compact-desc">Kursy akademickie i szkolenia.</p>
+                        <span class="action-badge">Otwórz Szczegóły</span>
+                    </div>
+                    <div class="visa-card" data-visa="transit">
+                        <h3>Wiza Tranzytowa</h3>
+                        <p class="compact-desc">Przesiadki lotniskowe i graniczne.</p>
+                        <span class="action-badge">Otwórz Szczegóły</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="glass-panel eta-highlight">
+                <h2>Uwaga: Nowy system ETA w Wielkiej Brytanii</h2>
+                <p>W wyniku reform granicznych Wielka Brytania wdraża w pełni cyfrowy system zezwoleń na podróż.</p>
+                <p>Jeśli jesteś obywatelem Europy i podróżujesz w celach turystycznych lub zwykłego tranzytu lotniskowego, posiadanie ETA powiązanej z paszportem biometrycznym będzie obowiązkowe.</p>
+                <a href="https://breakingnews.aviationeagle.co.uk/information/visas/eta/" class="btn-apply">Złóż wniosek o UK ETA &rarr;</a>
+            </section>
+        </div>
+
+    </div>
+
+    <div class="modal-overlay" id="visaModalOverlay">
+        <div class="modal-window">
+            <button class="modal-close" id="modalCloseBtn">✕</button>
+            <h3 class="modal-title" id="modalVisaTitle">Dettagli Visto</h3>
+            
+            <div class="modal-detail-block">
+                <strong id="lbl-desc">Descrizione</strong>
+                <p id="modalVisaDesc">...</p>
+            </div>
+            
+            <div class="modal-detail-block">
+                <strong id="lbl-req">Requisiti d'Accesso</strong>
+                <p id="modalVisaReq">...</p>
+            </div>
+            
+            <div class="modal-detail-block">
+                <strong id="lbl-val">Validità Temporale</strong>
+                <p id="modalVisaVal">...</p>
+            </div>
+            
+            <div class="modal-detail-block" style="margin-bottom: 0;">
+                <strong id="lbl-note">Note Importanti</strong>
+                <p id="modalVisaNotes">...</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Database dei contenuti dei Pop-up multilingua ottimizzato
+        const visaDetails = {
+            'it': {
+                labels: [`Descrizione`, `Requisiti d'Accesso`, `Validità Temporale`, `Note Importanti`],
+                tourist: { title: `Visto Turistico`, desc: `Rilasciato per motivi di svago, vacanze, turismo o visite a parenti/amici.`, req: `Passaporto con validità residua minima di 6 mesi, fototessera, prenotazione dei voli A/R ed estratto conto bancario comprovante fondi sufficienti.`, val: `In genere da un minimo di 14 giorni fino a un massimo di 90 giorni continuativi.`, notes: `È severamente vietato svolgere qualsiasi attività lavorativa remunerata.` },
+                work: { title: `Visto Lavorativo`, desc: `Necessario per esercitare un'attività professionale dipendente o autonoma all'estero.`, req: `Contratto di lavoro firmato da un datore locale, nulla osta del Ministero del Lavoro, sponsorizzazione aziendale e fedina penale pulita.`, val: `Correlata alla durata del contratto di lavoro (generalmente da 1 a 3 anni, rinnovabile).`, notes: `La perdita del posto di lavoro può invalidare il visto entro un termine stabilito (e.g. 60 giorni).` },
+                student: { title: `Visto Studentesco`, desc: `Dedicato a chi intende frequentare corsi accademici, scolastici o di lingua a lungo termine.`, req: `Lettera formale d'iscrizione di un istituto riconosciuto, garanzie finanziarie per il sostentamento e assicurazione sanitaria internazionale.`, val: `Valido per l'intera durata del corso di studi o dell'anno accademico corrente.`, notes: `Spesso permette di lavorare part-time per un numero massimo di 20 ore settimanali.` },
+                transit: { title: `Visto di Transito`, desc: `Permette la sosta tecnica in un Paese intermedio durante un viaggio verso una terza destinazione.`, req: `Biglietto aereo confermato per la destinazione finale e visto valido per il Paese di arrivo finale.`, val: `Molto limitata, solitamente compresa tra 24 ore e un massimo di 72 ore.`, notes: `In molti Paesi è obbligatorio anche solo per rimanere all'interno dell'area transito dell'aeroporto.` }
+            },
+            'en': {
+                labels: [`Description`, `Access Requirements`, `Validity Period`, `Important Notes`],
+                tourist: { title: `Tourist Visa`, desc: `Issued for leisure travel, holidays, sightseeing, or visiting family/friends.`, req: `Passport with at least 6 months validity, passport-sized photo, round-trip flight booking, and bank statements showing sufficient funds.`, val: `Typically between 14 to 90 days depending on the host country.`, notes: `Engaging in any form of employment or commercial activity is strictly prohibited.` },
+                work: { title: `Work Visa`, desc: `Required to engage in employment or independent business activities within the host nation.`, req: `Official employment contract, employer sponsorship certificate, government labor clearance, and clean background check.`, val: `Tied to the duration of employment (usually 1 to 3 years, renewable).`, notes: `Losing your job may revoke the visa unless a new sponsor is found within a limited timeframe.` },
+                student: { title: `Student Visa`, desc: `For individuals enrolled in recognized academic programs, universities, or language courses.`, req: `Official acceptance letter from an accredited school, proof of maintenance funds, and health insurance.`, val: `Valid for the entire duration of the academic course or program.`, notes: `Often grants permission to work part-time up to a maximum of 20 hours per week.` },
+                transit: { title: `Transit Visa`, desc: `Enables brief layovers or crossing through a country en route to a third final destination.`, req: `Confirmed onward travel tickets and a valid visa for the final destination country.`, val: `Extremely short, normally ranging from 24 to 72 hours maximum.`, notes: `Depending on nationality, it may be required even for airside airport transit.` }
+            },
+            'ar': {
+                labels: [`الوصف`, `المتطلبات`, `الصلاحية`, `ملاحظات هامة`],
+                tourist: { title: `تأشيرة سياحية`, desc: `تُمنح لغرض الترفيه أو العطلات أو زيارة الأقارب والأصدقاء.`, req: `جواز سفر صالح لمدة 6 أشهر، صور شخصية، حجز طيران مؤكد، وكشف حساب بنكي.`, val: `تتراوح عادة بين 14 و90 يومًا.`, notes: `يُحظر تمامًا ممارسة أي عمل مدفوع الأجر.` },
+                work: { title: `تأشيرة عمل`, desc: `مطلوبة لممارسة نشاط مهني أو تجاري في الدولة المضيفة.`, req: `عقد عمل رسمي، شهادة كفالة من صاحب العمل، وموافقة وزارة العمل.`, val: `مرتبطة بمدة عقد العمل (عادة من سنة إلى 3 سنوات قابلة للتجديد).`, notes: `فقدان الوظيفة قد يؤدي إلى إلغاء التأشيرة.` },
+                student: { title: `تأشيرة طالب`, desc: `مخصصة للطلاب المسجلين في برامج أكاديمية أو دورات لغة طويلة الأجل.`, req: `خطاب قبول رسمي من مؤسسة تعليمية معتمدة، وإثبات مالي لتغطية التكاليف.`, val: `صالحة طوال فترة الدراسة الأكاديمية.`, notes: `تسمح غالبًا بالعمل الجزئي لمدة لا تتجاوز 20 ساعة أسبوعيًا.` },
+                transit: { title: `تأشيرة عبور`, desc: `تسمح بالتوقف القصير في بلد وسيط أثناء السفر إلى وجهة ثالثة.`, req: `تذاكر طيران مؤكدة للوجهة التالية وتأشيرة سارية للبلد النهائي.`, val: `قصيرة جدًا، وعادة ما تكون بين 24 إلى 72 ساعة كحد أقصى.`, notes: `قد تكون إلزامية حتى للبقاء داخل منطقة الترانزيت بالمطار.` }
+            },
+            'zh': {
+                labels: [`描述`, `申请要求`, `有效期限`, `重要注意事项`],
+                tourist: { title: `旅游签证`, desc: `专为休闲旅游、度假、观光或探亲访友而发行的签证。`, req: `有效期满6个月以上的护照、护照标准照片、往返机票预订单和资金证明。`, val: `通常在14天至90天之间，具体取决于目的地国家。`, notes: `严格禁止从事任何形式的有偿劳务 or 商业活动。` },
+                work: { title: `工作签证`, desc: `在目的地国家合法受雇或开展独立商业 activity 所需 the 签证。`, req: `正式劳动合同、雇主担保凭证、政府劳工部批文以及无犯罪记录证明。`, val: `与雇佣合同期限相绑定（通常为1至3年，可续签）。`, notes: `失去工作可能会导致签证失效，除非在限定时间内找到新雇主。` },
+                student: { title: `学生签证`, desc: `面向在公认的教育机构、大学或语言学校就读长期学术课程的人员。`, req: `学校官方录取通知书、留学期间全额生活费证明以及国际医疗保险。`, val: `在整个学习课程或当前学年内有效。`, notes: `通常允许每周进行最高20小时的有限兼职工作。` },
+                transit: { title: `过境签证`, desc: `允许旅客在前往最终第三目的地的途中在中间国家进行技术性停留。`, req: `已确认的续程机票以及最终目的地国家的有效签证。`, val: `时间极短，通常在24小时至最高72小时之间。`, notes: `取决于您的国籍，有时即使仅在机场不入境转机区（空侧）也需要办理。` }
+            },
+            'he': {
+                labels: [`תיאור`, `דרישות כניסה`, `תוקף הוויזה`, `הערות חשובות`],
+                tourist: { title: `ויזת תייר`, desc: `מונפקת למטרות פנאי, חופשות, סיורים או ביקורי משפחה/חברים.`, req: `דרכון בתוקף ל-6 חודשים לפחות, תמונת פספורט, הזמנת טיסות הלוך ושוב והצהרת בנק.`, val: `בדרך כלל בין 14 ל-90 ימים בהתאם למדינת היעד.`, notes: `חלה איסור מוחレット על עבודה בשכר או פעילות מסחרית כלשהי.` },
+                work: { title: `ויזת עבודה`, desc: `נדרשת לצורך תעסוקה כשכיר או ניהול עסק עצמאי במדינת היעד.`, req: `חוזה עבודה רשמי, תעודת ספונסר מהמעסיק, אישור ממשלתי ובדיקת רקע נקייה.`, val: `צמוד למשך חוזה העבודה (בדרך כלל שנה עד 3 שנים, ניתן להארכה).`, notes: `אובדן מקום העבודה עלול לבטל את הוויזה באופן מיידי.` },
+                student: { title: `ויזת סטודנט`, desc: `מיועדת למי שנרשם לתוכניות אקדמיות, אוניברסיטאות או קורסי שפה ארוכי טווח.`, req: `מכתב קבלה רשמי ממוסד לימודים מוכר, הוכחת אמצעים כספיים וביטוח בריאות.`, val: `תקפה לכל משך תקופת הלימודים או שנת הלימודים הנוכחית.`, notes: `לעיתים קרובות מאפשרת עבודה חלקית של עד 20 שעות שבועיות.` },
+                transit: { title: `ויזת מעבר`, desc: `מאפשרת עצירת ביניים קצרה במדינה שלישית בדרך ליעד הסופי.`, req: `כרטיסי טיסה המשך מאושרים וויזה תקפה (אם נדרש) למדינת היעד הסופית.`, val: `מוגבלת ביותר, בדרך כלל בין 24 ל-72 שעות לכל היותר.`, notes: `במדינות מסוימות היא חובה גם לשהייה באזור הטרנזיט בלבד.` }
+            },
+            'ja': {
+                labels: [`概要描述`, `申請要件`, `有効期間`, `重要注意事項`],
+                tourist: { title: `観光ビザ`, desc: `観光、休暇、見学、または親族・友人の訪問を目的として発行されるビザ。`, req: `有効期限が6ヶ月以上残っているパスポート、証明写真、往復航空券、十分な預金証明。`, val: `訪問国により異なりますが、通常14日から90日間の滞在が可能。`, notes: `いかなる報酬を伴う労働や商業活動を行うことも厳しく禁止されています。` },
+                work: { title: `就労ビザ`, desc: `現地国で雇用に就く、または独立したビジネス活動を行うために必要なビザ。`, req: `公式な雇用契約書、雇い主によるスポンサー証明書、労働許可、無犯罪証明書。`, val: `雇用契約の期間に準ずる（通常1〜3年、現地での更新が可能）。`, notes: `解雇された場合、一定期間内に新たなスポンサーを見つけないとビザが失効します。` },
+                student: { title: `学生ビザ`, desc: `認定された教育機関、大学、または長期の語学学校等に在籍する方向け。`, req: `教育機関からの公式な入学許可書、滞在中の生活費をカバーする資金証明、医療保険。`, val: `在学期間または該当する学年度の終期まで有効。`, notes: `通常、週20時間までの範囲内で限定的なアルバイトが認められます。` },
+                transit: { title: `通過ビザ`, desc: `最終目的地への移動の途中で、経由国に一時的に立ち寄るためのビザ。`, req: `最終目的地までの確定済みの航空券、および最終目的地の有効なビザ。`, val: `極めて短期間であり、通常24時間から最長72時間まで。`, notes: `国籍によっては、空港の制限エリア（空側）に留まるだけでも必須となる場合があります。` }
+            },
+            'nl': {
+                labels: [`Beschrijving`, `Toegangseisen`, `Geldigheidsduur`, `Belangrijke Opmerkingen`],
+                tourist: { title: `Toeristenvisum`, desc: `Uitgegeven voor vakantie, vrijetijdsreizen, sightseeing of bezoek aan familie/vrienden.`, req: `Paspoort dat nog minstens 6 maanden geldig is, pasfoto, retourvluchtboeking en bankafschriften.`, val: `Meestal tussen de 14 en 90 dagen, afhankelijk van het gastland.`, notes: `Het verrichten van werkzaamheden tegen betaling is strikt verboden.` },
+                work: { title: `Werkvisum`, desc: `Vereist om in loondienst te treden of zelfstandige bedrijfsactiviteiten uit te voeren.`, req: `Arbeidsovereenkomst, certificaat van sponsoring door werkgever, overheidsvergunning.`, val: `Gekoppeld aan de duur van de arbeidsovereenkomst (meestal 1 tot 3 jaar, verlengbaar).`, notes: `Bij ontslag kan het visum komen te vervallen tenzij binnen een termijn een nieuwe sponsor wordt gevonden.` },
+                student: { title: `Studentenvisum`, desc: `Voor personen die zijn ingeschreven bij een erkende academische instelling of taalcursus.`, req: `Officiële acceptatiebrief van een erkende school, bewijs van financiële middelen og zorgverzekering.`, val: `Geldig voor de gehele duur van de studie of het lopende academische jaar.`, notes: `Toestemming voor deeltijdwerk tot un maximum van 20 uur per week is vaak inbegrepen.` },
+                transit: { title: `Transitvisum`, desc: `Maakt een korte overstap mogelijk op doorreis naar een definitieve derde bestemming.`, req: `Bevestigde tickets voor de doorreis en een geldig visum voor het eindbestemmingsland.`, val: `Zeer kort, normaal gesproken variërend van 24 tot maximaal 72 uur.`, notes: `Afhankelijk van uw nationaliteit kan dit zelfs vereist zijn voor verblijf in de transitzone.` }
+            },
+            'pt': {
+                labels: [`Descrição`, `Requisitos de Acesso`, `Validade Temporal`, `Notas Importantes`],
+                tourist: { title: `Visto de Turista`, desc: `Emitido para viagens de lazer, férias, passeios ou visitas a familiares/amigos.`, req: `Passaporte com validade mínima de 6 meses, foto tipo passe, reserva de voo de ida/volta e extrato bancário.`, val: `Geralmente entre 14 e 90 dias, dependendo das regras do país anfitrião.`, notes: `É estritamente proibido exercer qualquer atividade laboral remunerada ou comercial.` },
+                work: { title: `Visto de Trabalho`, desc: `Necessário para exercer emprego ou atividades comerciais independentes no país.`, req: `Contrato de trabalho oficial, certificado de patrocínio do empregador, autorização ministerial.`, val: `Vinculado à duração do contrato de trabalho (geralmente de 1 a 3 anos, renovável).`, notes: `A rescisão do contrato pode invalidar o visto caso não encontre novo sponsor em tempo útil.` },
+                student: { title: `Visto de Estudante`, desc: `Destinado a indivíduos matriculados em programas académicos ou cursos de línguas.`, req: `Carta de aceitação oficial de instituição de ensino, comprovativo de fundos e seguro de saúde.`, val: `Válido por toda a duração do curso académico ou programa letivo.`, notes: `Permite frequentemente o exercício de trabalho em tempo parcial até 20 horas semanais.` },
+                transit: { title: `Visto de Trânsito`, desc: `Permite uma escala curta num país intermédio durante uma viagem para um terceiro destino.`, req: `Bilhetes de viagem confirmados para o destino seguinte e visto válido para o país final.`, val: `Altamente restrito, variando normalmente de 24 a 72 horas no máximo.`, notes: `Dependendo da nacionalidade, pode ser exigido mesmo sem sair da zona de trânsito internacional.` }
+            },
+            'ru': {
+                labels: [`Описание`, `Требования для оформления`, `Срок действия визы`, `Важные примечания`],
+                tourist: { title: `Туристическая виза`, desc: `Выдается для отдыха, туризма, осмотра достопримечательностей или визитов к родственникам.`, req: `Паспорт со сроком действия не менее 6 месяцев, фото, бронь авиабилетов в обе стороны и выписка со счета.`, val: `Обычно от 14 до 90 дней в зависимости от правил принимающей страны.`, notes: `Любая оплачиваемая трудовая или коммерческая деятельность строго запрещена.` },
+                work: { title: `Рабочая виза`, desc: `Необходима для официального трудоустройства или ведения бизнеса в принимающей стране.`, req: `Официальный трудовой договор, спонсорский сертификат от работодателя, разрешение министерства.`, val: `Связана со сроком действия контракта (обычно от 1 до 3 лет с правом продления).`, notes: `Увольнение может повлечь аннулирование визы, если новый спонсор не найден в краткие сроки.` },
+                student: { title: `Студенческая виза`, desc: `Для лиц, зачисленных в признанные академические учреждения, вузы или на долгосрочные языковые курсы.`, req: `Официальное письмо о зачислении от школы/вуза, финансовые гарантии и медицинская страховка.`, val: `Действительна в течение всего периода обучения или текущего учебного года.`, notes: `Часто предоставляет право на подработку во внеучебное время (до 20 часов в неделю).` },
+                transit: { title: `Транзитная виза`, desc: `Позволяет совершить краткую остановку в промежуточной стране по пути в третий пункт назначения.`, req: `Подтвержденные билеты на дальнейший рейс и действующая виза в конечную страну назначения.`, val: `Крайне ограничена по времени, обычно от 24 до 72 часов максимум.`, notes: `Для некоторых граждан требуется даже без выхода из транзитной зоны аэропорта.` }
+            },
+            'es': {
+                labels: [`Descripción`, `Requisitos de Acceso`, `Periodo de Validez`, `Notas Importantes`],
+                tourist: { title: `Visa de Turista`, desc: `Emitida para viajes de ocio, vacaciones, turismo o visitas a familiares/amigos.`, req: `Pasaporte con validez mínima de 6 meses, foto tamaño pasaporte, reserva de vuelo de ida y vuelta y extracto bancario que demuestre fondos suficientes.`, val: `Normalmente entre 14 y 90 días, dependiendo del país anfitrión.`, notes: `Está estrictamente prohibido realizar cualquier tipo de trabajo remunerado.` },
+                work: { title: `Visa de Trabajo`, desc: `Requerida para ejercer actividades laborales profesionales o comerciales independientes en la nación anfitriona.`, req: `Contrato de trabajo oficial, certificado de patrocinio del empleador, autorización laboral gubernamental y antecedentes penales limpios.`, val: `Vinculada a la duración del contrato de trabajo (generalmente de 1 a 3 años, renovable).`, notes: `La pérdida del empleo puede invalidar la visa a menos que se encuentre un nuevo patrocinador en un plazo limitado.` },
+                student: { title: `Visa de Estudiante`, desc: `Para personas inscritas en programas académicos reconocidos, universidades o cursos de idiomas de larga duración.`, req: `Carta oficial de aceptación de una institución acreditada, prueba de fondos de manutención y seguro médico internacional.`, val: `Válida para toda la duración del curso académico o programa.`, notes: `A menudo permite trabajar a tiempo parcial hasta un máximo de 20 horas semanales.` },
+                transit: { title: `Visa de Tránsito`, desc: `Permite escalas breves o cruzar un país en ruta hacia un tercer destino final.`, req: `Billetes de viaje confirmados para el destino final y visa válida para el país de destino definitivo.`, val: `Extremadamente corta, normalmente entre 24 y 72 horas como máximo.`, notes: `Dependiendo de la nacionalidad, puede ser requerida incluso para el tránsito aeroportuario sin salir de la zona de embarque.` }
+            },
+            'fr': {
+                labels: [`Description`, `Conditions d'Accès`, `Période de Validité`, `Notes Importantes`],
+                tourist: { title: `Visa Touristique`, desc: `Délivré pour les voyages de loisirs, les vacances, le tourisme ou les visites à la famille/aux amis.`, req: `Passeport valide au moins 6 mois, photo d'identité, réservation de vol aller-retour et relevés bancaires prouvant des fonds suffisants.`, val: `Généralement entre 14 et 90 jours selon le pays d'accueil.`, notes: `Il est strictement interdit d'exercer toute forme d'emploi rémunéré.` },
+                work: { title: `Visa de Travail`, desc: `Requis pour exercer une activité professionnelle salariée ou indépendante dans le pays d'accueil.`, req: `Contrat de travail officiel, certificat de parrainage de l'employeur, autorisation de travail gouvernementale et casier judiciaire vierge.`, val: `Lié à la durée du contrat de travail (généralement 1 à 3 ans, renouvelable).`, notes: `La perte de votre emploi peut annuler le visa à moins qu'un nouveau parrain ne soit trouvé dans un délai limité.` },
+                student: { title: `Visa d'Études`, desc: `Pour les personnes inscrites dans des programmes académiques reconnus, des universités ou des cours de langues à long terme.`, req: `Lettre d'acceptation officielle d'un établissement agréé, preuve de fonds suffisants pour la subsistance et assurance maladie internationale.`, val: `Valide pour toute la durée du cursus universitaire ou du programme.`, notes: `Permet souvent de travailler à temps partiel jusqu'à un maximum de 20 heures par semaine.` },
+                transit: { title: `Visa de Transit`, desc: `Permet de brèves escales ou la traversée d'un pays en route vers une troisième destination finale.`, req: `Billets de transport confirmés pour la suite du voyage et visa valide pour le pays de destination finale.`, val: `Très courte, généralement de 24 à 72 heures maximum.`, notes: `Selon la nationalité, il peut être requis même pour un simple transit aéroportuaire en zone internationale.` }
+            },
+            'de': {
+                labels: [`Beschreibung`, `Einreisebestimmungen`, `Gültigkeitsdauer`, `Wichtige Hinweise`],
+                tourist: { title: `Touristenvisum`, desc: `Ausgestellt für Freizeitreisen, Urlaub, Besichtigungen oder Besuche von Familie/Freunden.`, req: `Reisepass mit einer Restgültigkeit von mindestens 6 Monaten, Passfoto, Hin- und Rückflugbuchung sowie Kontoauszüge zum Nachweis ausreichender Mittel.`, val: `In der Regel zwischen 14 und 90 Tagen, je nach Gastland.`, notes: `Jegliche entgeltliche Beschäftigung oder gewerbliche Tätigkeit ist strengstens untersagt.` },
+                work: { title: `Arbeitsvisum`, desc: `Erforderlich für eine unselbstständige oder selbstständige Erwerbstätigkeit im Gastland.`, req: `Offizieller Arbeitsvertrag, Sponsorzertifikat des Arbeitgebers, behördliche Arbeitsgenehmigung und ein polizeiliches Führungszeugnis ohne Einträge.`, val: `An die Dauer des Arbeitsvertrags gebunden (in der Regel 1 bis 3 Jahre, verlängerbar).`, notes: `Der Verlust des Arbeitsplatzes kann zum Erlöschen des Visums führen, es sei denn, es wird innerhalb einer Frist ein neuer Sponsor gefunden.` },
+                student: { title: `Studentenvisum`, desc: `Für Personen, die an einer anerkannten akademischen Einrichtung, Universität oder einem Langzeit-Sprachkurs eingeschrieben sind.`, req: `Offizieller Zulassungsbescheid einer akkreditierten Schule, Nachweis über ausreichende finanzielle Mittel für den Lebensunterhalt und eine internationale Krankenversicherung.`, val: `Gültig für die gesamte Dauer des Studiengangs oder des aktuellen Studienjahrs.`, notes: `Ermöglicht oft eine Teilzeitbeschäftigung von maximal 20 Stunden pro Woche.` },
+                transit: { title: `Transitvisum`, desc: `Ermöglicht kurze Zwischenstopps oder die Durchreise durch ein Land auf dem Weg zu einem dritten Endziel.`, req: `Bestätigte Tickets für die Weiterreise und ein gültiges Visum für das Endzielland.`, val: `Sehr kurz, normalerweise zwischen 24 und maximal 72 Stunden.`, notes: `Je nach Staatsangehörigkeit kann dies auch nur für den Aufenthalt im Transitbereich des Flughafens erforderlich sein.` }
+            },
+            'pl': {
+                labels: [`Opis`, `Wymagania Wjazdowe`, `Okres Ważności`, `Ważne Uwagi`],
+                tourist: { title: `Wiza Turystyczna`, desc: `Wydawana w celach wypoczynkowych, wakacyjnych, turystycznych lub odwiedzin u rodziny/znajomych.`, req: `Paszport ważny przez co najmniej 6 miesięcy, zdjęcie paszportowe, rezerwacja lotu powrotnego oraz wyciąg z konta bankowego potwierdzający wystarczające środki.`, val: `Zazwyczaj od 14 do maksymalnie 90 dni, w zależności od kraju przyjmującego.`, notes: `Podejmowanie jakiejkolwiek pracy zarobkowej lub działalności komercyjnej jest surowo zabronione.` },
+                work: { title: `Wiza Pracownicza`, desc: `Wymagana do podjęcia pracy najemnej lub prowadzenia samodzielnej działalności gospodarczej za granicą.`, req: `Oficjalna umowa o pracę, certyfikat sponsoringu od pracodawcy, zezwolenie rządu na pracę oraz zaświadczenie o niekaralności.`, val: `Powiązana z czasem trwania umowy o pracę (zazwyczaj od 1 roku do 3 lat, z możliwością przedłużenia).`, notes: `Utrata pracy może unieważnić wizę, chyba że w określonym czasie zostanie znaleziony nowy sponsor.` },
+                student: { title: `Wiza Studencka`, desc: `Dla osób zapisanych na uznane programy akademickie, uniwersytety lub długoterminowe kursy językowe.`, req: `Oficjalny list akceptacyjny z akredytowanej szkoły, dowód posiadania środków finansowych na utrzymanie oraz międzynarodowe ubezpieczenie zdrowotne.`, val: `Ważna przez cały okres trwania studiów lub bieżącego roku akademickiego.`, notes: `Często pozwala na pracę w niepełnym wymiarze godzin, maksymalnie do 20 godzin tygodniowo.` },
+                transit: { title: `Wiza Tranzytowa`, desc: `Umożliwia krótkie przesiadki lub przejazd przez kraj w drodze do trzeciego, docelowego miejsca przeznaczenia.`, req: `Potwierdzone bilety na dalszą podróż oraz ważna wiza do docelowego kraju przeznaczenia.`, val: `Bardzo krótka, zazwyczaj od 24 do maksymalnie 72 godzin.`, notes: `W zakresie od obywatelstwa może być wymagana nawet przy samym tranzycie lotniskowym bez opuszczania strefy zastrzeżonej.` }
+            }
+        };
+
+        const langData = {
+            'ar': { name: 'Arabo', flag: 'https://upload.wikimedia.org/wikipedia/commons/c/cb/Flag_of_the_United_Arab_Emirates.svg', dir: 'rtl' },
+            'zh': { name: 'Cinese', flag: 'https://upload.wikimedia.org/wikipedia/commons/f/fa/Flag_of_the_People%27s_Republic_of_China.svg', dir: 'ltr' },
+            'he': { name: 'Ebraico', flag: 'https://upload.wikimedia.org/wikipedia/commons/d/d4/Flag_of_Israel.svg', dir: 'rtl' },
+            'fr': { name: 'Francese', flag: 'https://upload.wikimedia.org/wikipedia/commons/c/c3/Flag_of_France.svg', dir: 'ltr' },
+            'ja': { name: 'Giapponese', flag: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Flag_of_Japan.svg/1280px-Flag_of_Japan.svg.png', dir: 'ltr' },
+            'en': { name: 'Inglese', flag: 'https://upload.wikimedia.org/wikipedia/commons/a/a5/Flag_of_the_United_Kingdom_%281-2%29.svg', dir: 'ltr' },
+            'it': { name: 'Italiano', flag: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Flag_of_Italy.svg/250px-Flag_of_Italy.svg.png', dir: 'ltr' },
+            'nl': { name: 'Olandese', flag: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Flag_of_the_Netherlands.svg/1280px-Flag_of_the_Netherlands.svg.png', dir: 'ltr' },
+            'pl': { name: 'Polacco', flag: 'https://upload.wikimedia.org/wikipedia/commons/1/12/Flag_of_Poland.svg', dir: 'ltr' },
+            'pt': { name: 'Portoghese', flag: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Flag_of_Portugal.svg/330px-Flag_of_Portugal.svg.png', dir: 'ltr' },
+            'ru': { name: 'Russo', flag: 'https://upload.wikimedia.org/wikipedia/commons/f/f3/Flag_of_Russia.svg', dir: 'ltr' },
+            'es': { name: 'Spagnolo', flag: 'https://upload.wikimedia.org/wikipedia/commons/9/9a/Flag_of_Spain.svg', dir: 'ltr' },
+            'de': { name: 'Tedesco', flag: 'https://upload.wikimedia.org/wikipedia/commons/b/ba/Flag_of_Germany.svg', dir: 'ltr' }
+        };
+
+        let currentLang = 'it';
+
+        // Elementi DOM principali
+        const dropdownBtn = document.getElementById('dropdownBtn');
+        const langMenu = document.getElementById('langMenu');
+        const currentFlag = document.getElementById('current-flag');
+        const currentLangName = document.getElementById('current-lang-name');
+        const modalOverlay = document.getElementById('visaModalOverlay');
+        const modalCloseBtn = document.getElementById('modalCloseBtn');
+
+        // Robust Toggle per il Menu Dropdown
+        dropdownBtn.addEventListener('click', function(event) {
+            event.stopPropagation();
+            langMenu.classList.toggle('show');
+        });
+
+        // Gestione Cambio Lingua Integrata
+        langMenu.addEventListener('click', function(event) {
+            const link = event.target.closest('a');
+            if (!link) return;
+            event.preventDefault();
+
+            const langCode = link.getAttribute('data-lang');
+            if (!langData[langCode]) return;
+
+            currentLang = langCode;
+            document.body.setAttribute('data-lang', langCode);
+            document.documentElement.setAttribute('dir', langData[langCode].dir);
+            document.documentElement.setAttribute('lang', langCode);
+
+            currentFlag.src = langData[langCode].flag;
+            currentFlag.alt = langCode.toUpperCase();
+            currentLangName.textContent = langData[langCode].name;
+
+            langMenu.classList.remove('show');
+        });
+
+        // Chiusura dropdown cliccando all'esterno
+        window.addEventListener('click', function() {
+            langMenu.classList.remove('show');
+        });
+
+        // Logica dei Pop-Up Interattivi Multilingua
+        document.querySelectorAll('.visa-card').forEach(card => {
+            card.addEventListener('click', function() {
+                const visaType = this.getAttribute('data-visa');
+                const data = visaDetails[currentLang] || visaDetails['it'];
+                const details = data[visaType];
+
+                if (!details) return;
+
+                // Aggiorna le etichette della modale
+                document.getElementById('lbl-desc').textContent = data.labels[0];
+                document.getElementById('lbl-req').textContent = data.labels[1];
+                document.getElementById('lbl-val').textContent = data.labels[2];
+                document.getElementById('lbl-note').textContent = data.labels[3];
+
+                // Inserisce i testi dettagliati della categoria selezionata
+                document.getElementById('modalVisaTitle').textContent = details.title;
+                document.getElementById('modalVisaDesc').textContent = details.desc;
+                document.getElementById('modalVisaReq').textContent = details.req;
+                document.getElementById('modalVisaVal').textContent = details.val;
+                document.getElementById('modalVisaNotes').textContent = details.notes;
+
+                // Mostra il pop-up
+                modalOverlay.classList.add('active');
+                document.body.classList.add('modal-open');
+            });
+        });
+
+        function closeModal() {
+            modalOverlay.classList.remove('active');
+            document.body.classList.remove('modal-open');
+        }
+
+        modalCloseBtn.addEventListener('click', closeModal);
+        
+        modalOverlay.addEventListener('click', function(e) {
+            if (e.target === modalOverlay) closeModal();
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeModal();
+        });
+
+        // Rilevamento lingua iniziale basata sul browser
+        document.addEventListener("DOMContentLoaded", () => {
+            const userLang = navigator.language.split('-')[0];
+            if (langData[userLang]) {
+                const initialLink = langMenu.querySelector(`[data-lang="${userLang}"]`);
+                if (initialLink) initialLink.click();
+            } else {
+                const initialLink = langMenu.querySelector(`[data-lang="it"]`);
+                if (initialLink) initialLink.click();
+            }
+        });
+    </script>
+</body>
+</html>
