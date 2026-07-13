@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="page-title">Guida ETA Ryanair & Regole Documenti Regno Unito | Aviation Eagle</title>
+    <style>
+        :root {
+            --ryanair-blue: #003399;
+            --ryanair-yellow: #f1c40f;
+            --bg-glass: rgba(255, 255, 255, 0.07);
+            --border-glass: rgba(255, 255, 255, 0.15);
+            --text-main: #ffffff;
+            --text-muted: #dcdde1;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #001f66 0%, #003399 50%, #0052cc 100%);
+            background-size: 400% 400%;
+            animation: gradientMorph 15s ease infinite;
+            color: var(--text-main);
+            min-height: 100vh;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        @keyframes gradientMorph {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Navbar & Glassmorphism */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(0, 51, 153, 0.4);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-glass);
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .logo-ryanair {
+            height: 40px;
+            filter: drop-shadow(0 2px 8px rgba(0,0,0,0.2));
+            transition: transform 0.3s ease;
+        }
+
+        .logo-ae {
+            height: 35px;
+            filter: drop-shadow(0 2px 8px rgba(0,0,0,0.2));
+            transition: transform 0.3s ease;
+        }
+
+        .logo-ryanair:hover, .logo-ae:hover {
+            transform: scale(1.05);
+        }
+
+        /* Language Selector */
+        .lang-menu {
+            position: relative;
+            display: inline-block;
+        }
+
+        .lang-btn {
+            background: var(--bg-glass);
+            border: 1px solid var(--border-glass);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 30px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+            backdrop-filter: blur(5px);
+            transition: all 0.3s ease;
+        }
+
+        .lang-btn:hover {
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+        }
+
+        .lang-dropdown {
+            display: none;
+            position: absolute;
+            right: 0;
+            top: 45px;
+            background: rgba(0, 31, 102, 0.95);
+            backdrop-filter: blur(15px);
+            border: 1px solid var(--border-glass);
+            border-radius: 15px;
+            min-width: 150px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            overflow: hidden;
+            z-index: 1001;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .lang-dropdown.show {
+            display: block;
+        }
+
+        .lang-option {
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+
+        .lang-option:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .flag-icon {
+            width: 24px;
+            height: auto;
+            border-radius: 2px;
+            object-fit: cover;
+        }
+
+        /* Main Layout */
+        main {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .hero-section {
+            text-align: center;
+            margin-bottom: 50px;
+            padding: 60px 20px;
+            background: var(--bg-glass);
+            border-radius: 30px;
+            border: 1px solid var(--border-glass);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+            animation: floatAnim 6s ease-in-out infinite;
+        }
+
+        @keyframes floatAnim {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+            color: #ffffff;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .hero-section p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 800px;
+            margin: 0 auto 30px auto;
+        }
+
+        /* Content Cards & Sections */
+        .info-card {
+            background: var(--bg-glass);
+            border: 1px solid var(--border-glass);
+            backdrop-filter: blur(12px);
+            border-radius: 24px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.4s ease;
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 45px rgba(0,0,0,0.35);
+            border-color: rgba(255, 255, 255, 0.25);
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+            color: var(--ryanair-yellow);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            border-bottom: 2px solid rgba(241, 196, 15, 0.2);
+            padding-bottom: 10px;
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            margin: 20px 0 10px 0;
+            color: #ffffff;
+        }
+
+        ul, ol {
+            margin-left: 25px;
+            margin-bottom: 20px;
+        }
+
+        li {
+            margin-bottom: 12px;
+            color: var(--text-muted);
+        }
+
+        li strong {
+            color: #white;
+        }
+
+        /* Custom Alert Banner */
+        .alert-banner {
+            background: rgba(231, 76, 60, 0.2);
+            border-left: 5px solid #e74c3c;
+            padding: 20px;
+            border-radius: 0 15px 15px 0;
+            margin: 25px 0;
+        }
+
+        .alert-banner h3 {
+            color: #ff6b6b;
+            margin-top: 0;
+        }
+
+        /* Button CTA styling */
+        .cta-btn {
+            display: inline-flex;
+            align-items: center;
+            background: linear-gradient(90deg, var(--ryanair-yellow) 0%, #f39c12 100%);
+            color: #001f66;
+            padding: 14px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(241, 196, 15, 0.3);
+            margin-top: 15px;
+        }
+
+        .cta-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(241, 196, 15, 0.5);
+        }
+
+        /* Contact Section Grid */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 20px;
+        }
+
+        .contact-item {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+            padding: 20px;
+            border-radius: 15px;
+        }
+
+        .contact-item p {
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+
+        .contact-item a {
+            color: var(--ryanair-yellow);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .contact-item a:hover {
+            text-decoration: underline;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            border-top: 1px solid var(--border-glass);
+            background: rgba(0, 20, 64, 0.5);
+            margin-top: 60px;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 15px;
+                padding: 15px;
+            }
+            .logo-container {
+                flex-direction: row;
+                gap: 15px;
+            }
+            h1 {
+                font-size: 2rem;
+            }
+            .info-card {
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-container">
+            <img src="https://media.aviationeagle.co.uk/loghi/europa/Ryanair-White-Logo.png" alt="Ryanair Logo" class="logo-ryanair">
+            <img src="https://static.wixstatic.com/media/261a20_17a3096e81d4493487d5522533f5c547~mv2.png/v1/fill/w_199,h_87,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Aviation%20EAgle%20Compact%20White%20TM%20RBG.png" alt="Aviation Eagle Logo" class="logo-ae">
+        </div>
+        
+        <div class="lang-menu">
+            <button class="lang-btn" onclick="toggleDropdown()">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Flag_of_Italy.svg/330px-Flag_of_Italy.svg.png?utm_source=it.wikipedia.org&utm_campaign=index&utm_content=thumbnail" alt="IT" class="flag-icon" id="current-flag">
+                <span id="current-lang-text">Italiano</span>
+            </button>
+            <div class="lang-dropdown" id="lang-dropdown">
+                <div class="lang-option" onclick="changeLanguage('it')">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Flag_of_Italy.svg/330px-Flag_of_Italy.svg.png?utm_source=it.wikipedia.org&utm_campaign=index&utm_content=thumbnail" alt="IT" class="flag-icon">
+                    <span>Italiano</span>
+                </div>
+                <div class="lang-option" onclick="changeLanguage('en')">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Flag_of_the_United_Kingdom_%283-5%29.svg/330px-Flag_of_the_United_Kingdom_%283-5%29.svg.png?utm_source=it.wikipedia.org&utm_campaign=parser&utm_content=thumbnail" alt="EN" class="flag-icon">
+                    <span>English</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero-section">
+            <h1 id="hero-title">Procedura Ryanair ETA & Regole di Ingresso nel Regno Unito</h1>
+            <p id="hero-desc">Tutte le informazioni operative necessarie per i passeggeri Ryanair in viaggio verso il Regno Unito. Aggiornamenti sui visti elettronici, controlli al check-in e restrizioni doganali rigide.</p>
+        </section>
+
+        <!-- Sezione 1: Cos'è l'ETA e scadenze -->
+        <section class="info-card">
+            <h2 id="sec1-title">1. Che cos'è l'ETA e Chi Deve Richiederlo?</h2>
+            <div id="sec1-content">
+                <p>L'ETA (Electronic Travel Authorisation) è il nuovo schema di autorizzazione di viaggio digitale introdotto dal governo del Regno Unito, obbligatorio per tutti i cittadini europei ed extra-europei che non necessitano di un visto formale per soggiorni brevi (turismo, transito, affari a breve termine).</p>
+                <h3>Scadenze Operative Fondamentali:</h3>
+                <ul>
+                    <li><strong>Cittadini Extra-UE:</strong> Già in vigore per diverse nazionalità del Medio Oriente e internazionali.</li>
+                    <li><strong>Cittadini Europei (inclusi Italiani):</strong> Obbligatorio per tutti i viaggi a partire dall'inizio del 2025. Nessun passeggero sprovvisto di esenzione o visto preesistente potrà imbarcarsi senza un ETA approvato.</li>
+                </ul>
+                <p>L'ETA è collegato digitalmente al tuo passaporto e ha una validità massima di 2 anni o fino alla scadenza del passaporto stesso (a seconda di quale evento si verifichi per primo).</p>
+            </div>
+        </section>
+
+        <!-- Sezione 2: Procedure di Imbarco Ryanair -->
+        <section class="info-card">
+            <h2 id="sec2-title">2. Linee Guida e Procedure Ryanair sull'ETA</h2>
+            <div id="sec2-content">
+                <p>Ryanair applica controlli rigidissimi in conformità con le direttive del controllo di frontiera del Regno Unito (UK Border Force). La mancata conformità comporta il diniego d'imbarco immediato senza diritto a rimborso.</p>
+                <h3>Fasi della Procedura Ryanair:</h3>
+                <ol>
+                    <li><strong>Verifica in Fase di Check-In Online:</strong> Durante il web check-in sul sito o app Ryanair, ti verrà richiesto di inserire i dettagli dell'ETA approvato o di confermare lo stato del tuo documento d'identità.</li>
+                    <li><strong>Controllo Documenti Obbligatorio (Visa/Document Check):</strong> Indipendentemente dalla nazionalità, tutti i passeggeri che viaggiano verso rotte Extra-Schengen/UK con Ryanair devono presentarsi al desk dei check-in in aeroporto per la verifica fisica dei documenti prima di superare i varchi di sicurezza. Gli agenti verificheranno telematicamente che l'ETA sia attivo nel sistema.</li>
+                    <li><strong>Ai Varchi d'Imbarco (Gate):</strong> Viene eseguito un ulteriore controllo di corrispondenza tra la carta d'imbarco e il passaporto associato all'ETA.</li>
+                </ol>
+                <div class="alert-banner">
+                    <h3>Nota Bene per i Passeggeri:</h3>
+                    <p>Ryanair consiglia di richiedere l'ETA almeno 72 ore prima del volo. Riceverai un'e-mail di conferma dal governo britannico, ma l'associazione è digitale. Porta sempre una copia stampata della conferma per sicurezza durante i controlli a terra.</p>
+                </div>
+                <a href="https://breakingnews.aviationeagle.co.uk/information/visas/eta/" class="cta-btn" id="cta-link">Approfondisci l'ETA su Aviation Eagle</a>
+            </div>
+        </section>
+
+        <!-- Sezione 3: Regole Importazione Cibo UK -->
+        <section class="info-card" id="food-import">
+            <h2 id="sec3-title">3. Regole di Arrivo in UK: Restrizioni Doganali Alimentari</h2>
+            <div id="sec3-content">
+                <p>A seguito delle normative post-Brexit, l'introduzione di determinati prodotti di origine animale nel Regno Unito è severamente vietata per ragioni sanitarie e di biosicurezza. I controlli doganali agli arrivi negli aeroporti britannici (come Stansted, Manchester, Gatwick) sono sistematici.</p>
+                <div class="alert-banner" style="background: rgba(230, 126, 34, 0.2); border-left-color: #e67e22;">
+                    <h3 style="color: #e67e22;">DIVIETO ASSOLUTO DI PRODOTTI FRESCHI E DA BANCO</h3>
+                    <p>È severamente vietato introdurre dal territorio dell'Unione Europea nel Regno Unito nel bagaglio a mano o da stiva:</p>
+                    <ul style="margin-top: 10px; margin-left: 20px;">
+                        <li><strong>Insalumi e Affettati:</strong> Prosciutto crudo, prosciutto cotto, salame, bresaola, mortadella, ecc.</li>
+                        <li><strong>Formaggi:</strong> Qualsiasi tipo di formaggio fresco, stagionato, a pasta molle o dura.</li>
+                        <li><strong>Carne Fresca o Lavorata:</strong> Qualsiasi alimento contenente carne bovina, suina, ovina o di pollame.</li>
+                        <li><strong>Latte e derivati:</strong> Latte fresco, panna e prodotti affini.</li>
+                    </ul>
+                </div>
+                <h3>Cosa succede in caso di violazione?</h3>
+                <p>Se vieni trovato in possesso di questi alimenti non dichiarati, la merce verrà interamente sequestrata e distrutta. Nei casi più gravi o in caso di reiterazione, le autorità doganali possono applicare sanzioni pecuniarie elevate o invalidare l'ETA/visto di ingresso con conseguente respingimento alla frontiera.</p>
+            </div>
+        </section>
+
+        <!-- Sezione 4: Contatti e Supporto -->
+        <section class="info-card">
+            <h2 id="sec4-title">4. Contatti Utili e Canali di Supporto</h2>
+            <div id="sec4-content">
+                <p>In caso di problemi con la prenotazione Ryanair, il caricamento dei documenti o ritardi nell'approvazione dell'ETA, utilizza i seguenti canali ufficiali:</p>
+                <div class="contact-grid">
+                    <div class="contact-item">
+                        <h3>Ryanair Customer Service</h3>
+                        <p>Assistenza Clienti e Live Chat attiva 24/7 per problemi di check-in.</p>
+                        <a href="https://www.ryanair.com" target="_blank">Sito Ufficiale Ryanair</a>
+                    </div>
+                    <div class="contact-item">
+                        <h3>UK Home Office / ETA Support</h3>
+                        <p>Per verificare lo stato della tua domanda o risolvere errori nei dati inseriti online.</p>
+                        <a href="https://www.gov.uk/electronic-travel-authorisation" target="_blank">GOV.UK - Official ETA Portal</a>
+                    </div>
+                    <div class="contact-item">
+                        <h3>Aviation Eagle Info Desk</h3>
+                        <p>Il nostro network editoriale per rimanere aggiornato sulle regolamentazioni aeree internazionali.</p>
+                        <a href="https://aviationeagle.co.uk" target="_blank">Aviation Eagle Platform</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Aviation Eagle Network & Ryanair Info Hub. Sviluppato per scopi informativi e supporto operativo passeggeri.</p>
+    </footer>
+
+    <script>
+        const translations = {
+            it: {
+                pageTitle: "Guida ETA Ryanair & Regole Documenti Regno Unito | Aviation Eagle",
+                heroTitle: "Procedura Ryanair ETA & Regole di Ingresso nel Regno Unito",
+                heroDesc: "Tutte le informazioni operative necessarie per i passeggeri Ryanair in viaggio verso il Regno Unito. Aggiornamenti sui visti elettronici, controlli al check-in e restrizioni doganali rigide.",
+                sec1Title: "1. Che cos'è l'ETA e Chi Deve Richiederlo?",
+                sec1Content: `
+                    <p>L'ETA (Electronic Travel Authorisation) è il nuovo schema di autorizzazione di viaggio digitale introdotto dal governo del Regno Unito, obbligatorio per tutti i cittadini europei ed extra-europei che non necessitano di un visto formale per soggiorni brevi (turismo, transito, affari a breve termine).</p>
+                    <h3>Scadenze Operative Fondamentali:</h3>
+                    <ul>
+                        <li><strong>Cittadini Extra-UE:</strong> Già in vigore per diverse nazionalità del Medio Oriente e internazionali.</li>
+                        <li><strong>Cittadini Europei (inclusi Italiani):</strong> Obbligatorio per tutti i viaggi a partire dall'inizio del 2025. Nessun passeggero sprovvisto di esenzione o visto preesistente potrà imbarcarsi senza un ETA approvato.</li>
+                    </ul>
+                    <p>L'ETA è collegato digitalmente al tuo passaporto e ha una validità massima di 2 anni o fino alla scadenza del passaporto stesso (a seconda di quale evento si verifichi per primo).</p>
+                `,
+                sec2Title: "2. Linee Guida e Procedure Ryanair sull'ETA",
+                sec2Content: `
+                    <p>Ryanair applica controlli rigidissimi in conformità con le direttive del controllo di frontiera del Regno Unito (UK Border Force). La mancata conformità comporta il diniego d'imbarco immediato senza diritto a rimborso.</p>
+                    <h3>Fasi della Procedura Ryanair:</h3>
+                    <ol>
+                        <li><strong>Verifica in Fase di Check-In Online:</strong> Durante il web check-in sul sito o app Ryanair, ti verrà richiesto di inserire i dettagli dell'ETA approvato o di confermare lo stato del tuo documento d'identità.</li>
+                        <li><strong>Controllo Documenti Obbligatorio (Visa/Document Check):</strong> Indipendentemente dalla nazionalità, tutti i passeggeri che viaggiano verso rotte Extra-Schengen/UK con Ryanair devono presentarsi al desk dei check-in in aeroporto per la verifica fisica dei documenti prima di superare i varchi di sicurezza. Gli agenti verificheranno telematicamente che l'ETA sia attivo nel sistema.</li>
+                        <li><strong>Ai Varchi d'Imbarco (Gate):</strong> Viene eseguito un ulteriore controllo di corrispondenza tra la carta d'imbarco e il passaporto associato all'ETA.</li>
+                    </ol>
+                    <div class="alert-banner">
+                        <h3>Nota Bene per i Passeggeri:</h3>
+                        <p>Ryanair consiglia di richiedere l'ETA almeno 72 ore prima del volo. Riceverai un'e-mail di conferma dal governo britannico, ma l'associazione è digitale. Porta sempre una copia stampata della conferma per sicurezza durante i controlli a terra.</p>
+                    </div>
+                    <a href="https://breakingnews.aviationeagle.co.uk/information/visas/eta/" class="cta-btn" id="cta-link">Approfondisci l'ETA su Aviation Eagle</a>
+                `,
+                sec3Title: "3. Regole di Arrivo in UK: Restrizioni Doganali Alimentari",
+                sec3Content: `
+                    <p>A seguito delle normative post-Brexit, l'introduzione di determinati prodotti di origine animale nel Regno Unito è severamente vietata per ragioni sanitarie e di biosicurezza. I controlli doganali agli arrivi negli aeroporti britannici (come Stansted, Manchester, Gatwick) sono sistematici.</p>
+                    <div class="alert-banner" style="background: rgba(230, 126, 34, 0.2); border-left-color: #e67e22;">
+                        <h3 style="color: #e67e22;">DIVIETO ASSOLUTO DI PRODOTTI FRESCHI E DA BANCO</h3>
+                        <p>È severamente vietato introdurre dal territorio dell'Unione Europea nel Regno Unito nel bagaglio a mano o da stiva:</p>
+                        <ul style="margin-top: 10px; margin-left: 20px;">
+                            <li><strong>Insalumi e Affettati:</strong> Prosciutto crudo, prosciutto cotto, salame, bresaola, mortadella, ecc.</li>
+                            <li><strong>Formaggi:</strong> Qualsiasi tipo di formaggio fresco, stagionato, a pasta molle o dura.</li>
+                            <li><strong>Carne Fresca o Lavorata:</strong> Qualsiasi alimento contenente carne bovina, suina, ovina o di pollame.</li>
+                            <li><strong>Latte e derivati:</strong> Latte fresco, panna e prodotti affini.</li>
+                        </ul>
+                    </div>
+                    <h3>Cosa succede in caso di violazione?</h3>
+                    <p>Se vieni trovato in possesso di questi alimenti non dichiarati, la merce verrà interamente sequestrata e distrutta. Nei casi più gravi o in caso di reiterazione, le autorità doganali possono applicare sanzioni pecuniarie elevate o invalidare l'ETA/visto di ingresso con conseguente respingimento alla frontiera.</p>
+                `,
+                sec4Title: "4. Contatti Utili e Canali di Supporto",
+                sec4Content: `
+                    <p>In caso di problemi con la prenotazione Ryanair, il caricamento dei documenti o ritardi nell'approvazione dell'ETA, utilizza i seguenti canali ufficiali:</p>
+                    <div class="contact-grid">
+                        <div class="contact-item">
+                            <h3>Ryanair Customer Service</h3>
+                            <p>Assistenza Clienti e Live Chat attiva 24/7 per problemi di check-in.</p>
+                            <a href="https://www.ryanair.com" target="_blank">Sito Ufficiale Ryanair</a>
+                        </div>
+                        <div class="contact-item">
+                            <h3>UK Home Office / ETA Support</h3>
+                            <p>Per verificare lo stato della tua domanda o risolvere errori nei dati inseriti online.</p>
+                            <a href="https://www.gov.uk/electronic-travel-authorisation" target="_blank">GOV.UK - Official ETA Portal</a>
+                        </div>
+                        <div class="contact-item">
+                            <h3>Aviation Eagle Info Desk</h3>
+                            <p>Il nostro network editoriale per rimanere aggiornato sulle regolamentazioni aeree internazionali.</p>
+                            <a href="https://aviationeagle.co.uk" target="_blank">Aviation Eagle Platform</a>
+                        </div>
+                    </div>
+                `
+            },
+            en: {
+                pageTitle: "Ryanair ETA Guide & UK Entry Document Rules | Aviation Eagle",
+                heroTitle: "Ryanair ETA Procedure & United Kingdom Entry Rules",
+                heroDesc: "All operational information required for Ryanair passengers traveling to the United Kingdom. Updates on electronic travel authorisations, check-in requirements, and strict customs restrictions.",
+                sec1Title: "1. What is the ETA and Who Needs to Apply?",
+                sec1Content: `
+                    <p>The ETA (Electronic Travel Authorisation) is the new digital travel permit scheme introduced by the UK Government, mandatory for all EU and non-EU citizens who do not require a formal visa for short stays (tourism, transit, short-term business).</p>
+                    <h3>Key Operational Deadlines:</h3>
+                    <ul>
+                        <li><strong>Non-EU Citizens:</strong> Already in effect for various Middle Eastern and international nationalities.</li>
+                        <li><strong>EU Citizens (including Italians):</strong> Mandatory for all travel starting early 2025. No passenger lacking an exemption or pre-existing visa will be permitted to board without an approved ETA.</li>
+                    </ul>
+                    <p>The ETA is digitally linked to your passport and is valid for a maximum of 2 years or until your passport expires (whichever comes first).</p>
+                `,
+                sec2Title: "2. Ryanair Guidelines and Procedures regarding ETA",
+                sec2Content: `
+                    <p>Ryanair enforces highly stringent checks in compliance with the UK Border Force directives. Failure to comply results in immediate boarding denial without refund eligibility.</p>
+                    <h3>Ryanair Procedure Breakdown:</h3>
+                    <ol>
+                        <li><strong>Online Check-In Verification:</strong> During the web check-in on the Ryanair website or app, you will be required to input your approved ETA details or confirm your identity document status.</li>
+                        <li><strong>Mandatory Document Check (Visa/Document Desk):</strong> Regardless of nationality, all passengers traveling on Non-Schengen/UK routes with Ryanair must present themselves at the airport check-in desk for a physical document check before heading to security. Counter agents will digitally verify your active ETA status.</li>
+                        <li><strong>At the Boarding Gate:</strong> A final cross-check matches your boarding pass details with the passport linked to your ETA.</li>
+                    </ol>
+                    <div class="alert-banner">
+                        <h3>Important Note for Passengers:</h3>
+                        <p>Ryanair strongly recommends applying for your ETA at least 72 hours before your flight. You will receive a confirmation email from the UK government, but the link is entirely digital. Keeping a printed copy during ground checks is recommended.</p>
+                    </div>
+                    <a href="https://breakingnews.aviationeagle.co.uk/information/visas/eta/" class="cta-btn" id="cta-link">Read more about ETA on Aviation Eagle</a>
+                `,
+                sec3Title: "3. UK Arrival Rules: Strict Food Customs Restrictions",
+                sec3Content: `
+                    <p>Following post-Brexit regulations, bringing certain products of animal origin into the United Kingdom is strictly prohibited due to health and biosecurity regulations. Border force inspections at UK airports (such as Stansted, Manchester, Gatwick) are systematic and rigorous.</p>
+                    <div class="alert-banner" style="background: rgba(230, 126, 34, 0.2); border-left-color: #e67e22;">
+                        <h3 style="color: #e67e22;">ABSOLUTE BAN ON FRESH AND CURED ANIMAL PRODUCTS</h3>
+                        <p>It is strictly forbidden to bring the following items from the EU into the UK in either cabin or checked luggage:</p>
+                        <ul style="margin-top: 10px; margin-left: 20px;">
+                            <li><strong>Cured Meats & Cold Cuts:</strong> Prosciutto, ham, salami, bresaola, mortadella, etc.</li>
+                            <li><strong>Cheeses:</strong> All fresh, aged, soft, or hard cheeses.</li>
+                            <li><strong>Fresh or Processed Meat:</strong> Any food content containing beef, pork, lamb, or poultry.</li>
+                            <li><strong>Dairy Products:</strong> Fresh milk, cream, and associated derivatives.</li>
+                        </ul>
+                    </div>
+                    <h3>What happens in case of a violation?</h3>
+                    <p>If you are found holding these undeclared foodstuffs, they will be entirely confiscated and destroyed. Severe violations or repeated offenses can lead to hefty fines or the cancellation of your ETA/visa, followed by immediate border refusal.</p>
+                `,
+                sec4Title: "4. Useful Contacts and Support Channels",
+                sec4Content: `
+                    <p>In case of disruptions with your Ryanair booking, difficulties uploading documents, or processing delays with your ETA, refer to the official support platforms:</p>
+                    <div class="contact-grid">
+                        <div class="contact-item">
+                            <h3>Ryanair Customer Service</h3>
+                            <p>Customer Care and Live Chat available 24/7 for check-in related assistance.</p>
+                            <a href="https://www.ryanair.com" target="_blank">Ryanair Official Site</a>
+                        </div>
+                        <div class="contact-item">
+                            <h3>UK Home Office / ETA Support</h3>
+                            <p>To verify application status or resolve errors in your submitted data details.</p>
+                            <a href="https://www.gov.uk/electronic-travel-authorisation" target="_blank">GOV.UK - Official ETA Portal</a>
+                        </div>
+                        <div class="contact-item">
+                            <h3>Aviation Eagle Info Desk</h3>
+                            <p>Our editorial platform network to stay updated on international aviation mandates.</p>
+                            <a href="https://aviationeagle.co.uk" target="_blank">Aviation Eagle Platform</a>
+                        </div>
+                    </div>
+                `
+            }
+        };
+
+        function toggleDropdown() {
+            document.getElementById('lang-dropdown').classList.toggle('show');
+        }
+
+        window.onclick = function(event) {
+            if (!event.target.matches('.lang-btn') && !event.target.closest('.lang-btn')) {
+                const dropdown = document.getElementById('lang-dropdown');
+                if (dropdown.classList.contains('show')) {
+                    dropdown.classList.remove('show');
+                }
+            }
+        }
+
+        function changeLanguage(lang) {
+            const data = translations[lang];
+            
+            // Applica modifiche testi
+            document.getElementById('page-title').innerText = data.pageTitle;
+            document.getElementById('hero-title').innerText = data.heroTitle;
+            document.getElementById('hero-desc').innerText = data.heroDesc;
+            
+            document.getElementById('sec1-title').innerText = data.sec1Title;
+            document.getElementById('sec1-content').innerHTML = data.sec1Content;
+            
+            document.getElementById('sec2-title').innerText = data.sec2Title;
+            document.getElementById('sec2-content').innerHTML = data.sec2Content;
+            
+            document.getElementById('sec3-title').innerText = data.sec3Title;
+            document.getElementById('sec3-content').innerHTML = data.sec3Content;
+            
+            document.getElementById('sec4-title').innerText = data.sec4Title;
+            document.getElementById('sec4-content').innerHTML = data.sec4Content;
+
+            // Aggiorna bottone principale lingua
+            const flagImg = lang === 'it' 
+                ? 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Flag_of_Italy.svg/330px-Flag_of_Italy.svg.png?utm_source=it.wikipedia.org&utm_campaign=index&utm_content=thumbnail'
+                : 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Flag_of_the_United_Kingdom_%283-5%29.svg/330px-Flag_of_the_United_Kingdom_%283-5%29.svg.png?utm_source=it.wikipedia.org&utm_campaign=parser&utm_content=thumbnail';
+            
+            document.getElementById('current-flag').src = flagImg;
+            document.getElementById('current-lang-text').innerText = lang === 'it' ? 'Italiano' : 'English';
+            
+            document.getElementById('lang-dropdown').classList.remove('show');
+        }
+    </script>
+</body>
+</html>
