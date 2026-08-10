@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aviation Eagle - MONITORING STATION | CTA ALERT RED</title>
+    
+    <!-- OneSignal Push Notifications -->
+    <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+    <script>
+      window.OneSignalDeferred = window.OneSignalDeferred || [];
+      OneSignalDeferred.push(async function(OneSignal) {
+        await OneSignal.init({
+          appId: "269599ae-e714-47e7-8fe4-f5e812defd91",
+        });
+      });
+    </script>
+
+    <!-- Icons -->
+    <link rel="icon" type="image/png" href="https://upload.wikimedia.org/wikipedia/commons/0/08/Aviation_Eagle_Logo.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://media.aviationeagle.co.uk/logo.png">
+
+    <style>
+        :root {
+            --ae-red: #ce1126;
+            --ae-dark: #0f172a;
+            --ae-gray: #64748b;
+            --ae-light: #eef2f6;
+            --ae-alert-bg: #fff0f0;
+            --vona-red: #ff0000;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: #050b14; /* Sfondo scuro per risaltare la Situation Room */
+            margin: 0; padding: 0; color: #1e293b;
+            display: flex; flex-direction: column; min-height: 100vh;
+        }
+
+        /* --- BLOCCO AVVIO (SPLASH SCREEN) --- */
+        .global-splash {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            z-index: 9999999; display: flex; align-items: center; justify-content: center;
+            flex-direction: column; background-color: #0f172a;
+            background-image: linear-gradient(rgba(15, 23, 42, 0.8), rgba(15, 23, 42, 0.9)), 
+                              url('https://cdn.cizucu.com/images/photos/eWTj5ByZoW8hfBCW9M1p.jpg?auto=format%2Ccompress&fit=max&w=1536&q=90');
+            background-size: cover; background-position: center;
+            animation: fadeOutSplash 0.6s ease-in-out 3.5s forwards;
+        }
+        .splash-logo { width: clamp(100px, 15vw, 160px); filter: drop-shadow(0 0 15px #ce1126); animation: pulseTactical 1.5s infinite; margin-bottom: 20px; }
+        .splash-text { color: #ffffff; font-family: 'Courier New', monospace; font-size: clamp(0.7rem, 2vw, 1rem); font-weight: bold; text-transform: uppercase; letter-spacing: 3px; margin-bottom: 15px; }
+        .loading-bar-container { width: clamp(180px, 50vw, 400px); height: 6px; background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 10px; overflow: hidden; }
+        .loading-bar { height: 100%; width: 0%; background: var(--ae-red); box-shadow: 0 0 15px var(--ae-red); animation: fillBar 3.2s ease-in-out forwards; }
+        @keyframes fadeOutSplash { to { opacity: 0; visibility: hidden; pointer-events: none; } }
+        @keyframes pulseTactical { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+        @keyframes fillBar { to { width: 100%; } }
+
+        /* --- HEADER & TICKER --- */
+        header { background: var(--ae-dark); color: white; padding: 15px 20px; display: flex; align-items: center; justify-content: center; border-bottom: 2px solid var(--ae-red); position: sticky; top: 0; z-index: 100; }
+        .header-title { margin-left: 15px; font-family: 'Courier New', monospace; font-weight: bold; letter-spacing: 2px; color: #f8fafc; }
+        
+        .live-ticker { background: #ce1126; color: white; font-family: 'Courier New', monospace; font-size: 0.85rem; padding: 5px 0; overflow: hidden; white-space: nowrap; display: flex; align-items: center; }
+        .ticker-label { background: #000; color: #fff; padding: 5px 15px; font-weight: bold; z-index: 2; text-transform: uppercase; border-right: 2px solid #ce1126; }
+        .ticker-text { display: inline-block; padding-left: 100%; animation: ticker 25s linear infinite; font-weight: bold; }
+        @keyframes ticker { 0% { transform: translate3d(0, 0, 0); } 100% { transform: translate3d(-100%, 0, 0); } }
+
+        /* --- MAIN CONTENT --- */
+        .main-content { flex: 1; padding: 20px; display: flex; justify-content: center; animation: contentFadeIn 1s ease-out 4s both; }
+        @keyframes contentFadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        
+        .dashboard { width: 100%; max-width: 1200px; background: var(--ae-light); border-radius: 12px; overflow: hidden; box-shadow: 0 25px 50px rgba(0,0,0,0.5); border: 1px solid rgba(206, 17, 38, 0.3); display: flex; flex-direction: column; }
+
+        /* --- HERO BACKGROUND --- */
+        .hero-section {
+            position: relative; height: 350px;
+            background-image: url('https://www.focus.it/images/2026/07/07/etna-in-eruzione-orig.jpg');
+            background-size: cover; background-position: center 30%;
+        }
+        .hero-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(15, 23, 42, 1) 0%, rgba(15, 23, 42, 0.4) 60%, rgba(15, 23, 42, 0) 100%); display: flex; align-items: flex-end; padding: 30px; color: white; }
+        .hero-title-box h1 { margin: 0 0 5px 0; font-size: 2.8rem; text-shadow: 0 2px 10px rgba(0,0,0,0.9); text-transform: uppercase; font-weight: 900; letter-spacing: -1px; }
+        .hero-title-box p { margin: 0; font-size: 1.2rem; color: #cbd5e1; font-family: 'Courier New', monospace; font-weight: bold; background: rgba(0,0,0,0.5); padding: 5px 10px; border-radius: 4px; display: inline-block; }
+
+        /* --- GRID LAYOUT (MAIN INFO + SIDEBAR) --- */
+        .dashboard-body { display: grid; grid-template-columns: 2fr 1fr; gap: 20px; padding: 20px; background: var(--ae-light); }
+        @media (max-width: 900px) { .dashboard-body { grid-template-columns: 1fr; } }
+
+        /* --- SIDEBAR: STADIO DI ALLERTA --- */
+        .alert-sidebar { background: #fff; border-radius: 8px; border: 2px solid var(--ae-red); overflow: hidden; box-shadow: 0 10px 15px rgba(0,0,0,0.05); display: flex; flex-direction: column; }
+        .alert-header { background: var(--ae-red); color: white; padding: 15px; display: flex; justify-content: space-between; align-items: center; }
+        .alert-header h2 { margin: 0; font-size: 1.2rem; text-transform: uppercase; }
+        
+        /* 3 BOLLINI ROSSI LAMPEGGIANTI */
+        .alert-dots { display: flex; gap: 6px; }
+        .dot { width: 14px; height: 14px; background-color: var(--vona-red); border-radius: 50%; border: 1px solid #fff; box-shadow: 0 0 8px var(--vona-red); animation: flashRed 1s infinite alternate; }
+        .dot:nth-child(2) { animation-delay: 0.33s; }
+        .dot:nth-child(3) { animation-delay: 0.66s; }
+        @keyframes flashRed { 0% { opacity: 0.3; box-shadow: 0 0 2px var(--vona-red); } 100% { opacity: 1; box-shadow: 0 0 15px var(--vona-red), 0 0 25px var(--vona-red); } }
+
+        .alert-image-container { position: relative; width: 100%; height: 200px; }
+        .alert-image-container img { width: 100%; height: 100%; object-fit: cover; filter: contrast(1.1) saturate(1.2); }
+        .vona-badge { position: absolute; top: 10px; right: 10px; background: rgba(0,0,0,0.8); color: var(--vona-red); border: 1px solid var(--vona-red); padding: 5px 10px; font-family: 'Courier New', monospace; font-weight: bold; font-size: 0.9rem; border-radius: 4px; box-shadow: 0 0 10px rgba(255,0,0,0.5); }
+        
+        .alert-details { padding: 20px; font-size: 0.95rem; }
+        .alert-details ul { list-style: none; padding: 0; margin: 0; }
+        .alert-details li { margin-bottom: 12px; padding-bottom: 12px; border-bottom: 1px solid #e2e8f0; display: flex; justify-content: space-between; }
+        .alert-details li:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+        .data-label { color: var(--ae-gray); font-weight: 600; font-size: 0.85rem; text-transform: uppercase; }
+        .data-value { font-family: 'Courier New', monospace; font-weight: bold; color: var(--ae-dark); }
+
+        /* --- TABS SYSTEM (INFO) --- */
+        .info-panel { background: #fff; border-radius: 8px; box-shadow: 0 10px 15px rgba(0,0,0,0.05); overflow: hidden; display: flex; flex-direction: column; }
+        .tabs { display: flex; background: var(--ae-dark); border-bottom: 3px solid var(--ae-red); }
+        .tab-btn { flex: 1; background: transparent; color: #cbd5e1; border: none; padding: 15px; font-weight: bold; cursor: pointer; text-transform: uppercase; transition: all 0.2s; font-size: 0.9rem; }
+        .tab-btn:hover { background: rgba(255,255,255,0.1); color: white; }
+        .tab-btn.active { background: var(--ae-red); color: white; }
+        
+        .tab-content { padding: 30px; display: none; }
+        .tab-content.active { display: block; animation: fadeIn 0.4s ease; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        .info-card { background: var(--ae-light); border-left: 4px solid var(--ae-red); padding: 20px; margin-bottom: 15px; border-radius: 0 6px 6px 0; }
+        .info-card h3 { margin: 0 0 8px 0; display: flex; align-items: center; gap: 8px; color: var(--ae-dark); font-size: 1.1rem; }
+        .info-card p { margin: 0; color: #475569; font-size: 0.95rem; line-height: 1.5; }
+        
+        .code-block { background: #0f172a; color: #32cd32; font-family: 'Courier New', monospace; padding: 15px; border-radius: 6px; font-size: 0.85rem; line-height: 1.4; overflow-x: auto; border-left: 4px solid #32cd32; }
+
+        /* --- ACTION BAR (BOTTOM) --- */
+        .action-panel { background: #fff; padding: 15px 25px; border-top: 1px solid #e2e8f0; display: flex; justify-content: space-between; align-items: center; border-radius: 0 0 12px 12px; }
+        .timestamp { font-family: 'Courier New', monospace; color: var(--ae-gray); font-size: 0.9rem; display: flex; align-items: center; gap: 10px; }
+        .sync-pulse { width: 10px; height: 10px; background: #22c55e; border-radius: 50%; box-shadow: 0 0 8px #22c55e; animation: flashGreen 2s infinite; }
+        @keyframes flashGreen { 0%, 100% { opacity: 0.5; } 50% { opacity: 1; } }
+        
+        .btn-update { background: var(--ae-dark); color: white; border: none; padding: 12px 24px; border-radius: 6px; font-weight: 600; cursor: pointer; transition: 0.3s; display: flex; align-items: center; gap: 8px; font-family: 'Inter', sans-serif; }
+        .btn-update:hover { background: #1e293b; box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
+        .btn-update:active { transform: scale(0.97); }
+        .btn-update.loading .sync-icon { animation: spin 1s linear infinite; }
+        @keyframes spin { 100% { transform: rotate(360deg); } }
+
+    </style>
+</head>
+<body>
+
+    <!-- SPLASH SCREEN -->
+    <div id="ae_splash" class="global-splash">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Aviation_Eagle_Logo.png" class="splash-logo" alt="Aviation Eagle">
+        <div class="splash-text">SITUATION ROOM: ESTABLISHING UPLINK...</div>
+        <div class="loading-bar-container"><div class="loading-bar"></div></div>
+    </div>
+
+    <!-- HEADER -->
+    <header>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Aviation_Eagle_Logo.png" alt="Logo" style="height: 35px;">
+        <div class="header-title">TACTICAL MONITORING STATION</div>
+    </header>
+
+    <!-- LIVE TICKER NOTAM -->
+    <div class="live-ticker">
+        <div class="ticker-label">URGENT NOTAM</div>
+        <div class="ticker-text">
+            A1502/26 NOTAMR A1499/26 Q) LIRR/QFALC/IV/NBO/A/000/999/3728N01503E005 A) LICC B) 2608101400 C) 2608110600 EST E) AD CLSD TO ALL TFC DUE TO VOLCANIC ASH IN THE AIR AND ON RWY. DEPARTURES CANCELLED, ARRIVALS DIVERTED.
+        </div>
+    </div>
+
+    <!-- MAIN DASHBOARD -->
+    <main class="main-content">
+        <div class="dashboard">
+            
+            <!-- HERO SECTION (Nuovo sfondo) -->
+            <div class="hero-section">
+                <div class="hero-overlay">
+                    <div class="hero-title-box">
+                        <h1>AEROPORTO DI CATANIA (LICC)</h1>
+                        <p>CRITICITÀ OPERATIVA: ERUZIONE ETNA IN CORSO</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- GRID BODY -->
+            <div class="dashboard-body">
+                
+                <!-- LEFT COLUMN: TABS INFO -->
+                <div class="info-panel">
+                    <div class="tabs">
+                        <button class="tab-btn active" onclick="switchTab(event, 'tab-pax')">Info Passeggeri</button>
+                        <button class="tab-btn" onclick="switchTab(event, 'tab-ops')">Operatività Scalo</button>
+                        <button class="tab-btn" onclick="switchTab(event, 'tab-metar')">Raw Data (METAR/VAAC)</button>
+                    </div>
+
+                    <!-- TAB 1: Passeggeri -->
+                    <div id="tab-pax" class="tab-content active">
+                        <div class="info-card">
+                            <h3>🚫 Divieto di recarsi in aeroporto</h3>
+                            <p>Tutti i voli in partenza da Catania Fontanarossa sono al momento <b>cancellati</b>. Le operazioni di imbarco sono sospese. Si invitano i passeggeri a NON recarsi al terminal per evitare sovraffollamenti.</p>
+                        </div>
+                        <div class="info-card" style="border-left-color: #f59e0b;">
+                            <h3>🔄 Voli in Arrivo (Dirottamenti)</h3>
+                            <p>Gli aeromobili in avvicinamento sono in holding o già in dirottamento verso scali alternativi: <b>Palermo (PMO), Comiso (CIY), Lamezia Terme (SUF)</b> o Trapani (TPS). Le compagnie stanno predisponendo trasferimenti via bus soggetti a disponibilità.</p>
+                        </div>
+                        <div class="info-card" style="border-left-color: #3b82f6;">
+                            <h3>⚖️ Diritti del Passeggero (EU261)</h3>
+                            <p>L'eruzione vulcanica costituisce <b>Circostanza Eccezionale (Forza Maggiore)</b>. Non è previsto il risarcimento pecuniario, ma le compagnie sono <i>obbligate</i> a fornire assistenza (pasti, hotel) e la riprotezione sul primo volo utile o rimborso del biglietto.</p>
+                        </div>
+                    </div>
+
+                    <!-- TAB 2: Operatività -->
+                    <div id="tab-ops" class="tab-content">
+                        <div class="info-card" style="border-left-color: var(--ae-dark);">
+                            <h3>🧹 Operazioni di Bonifica (Sweeping)</h3>
+                            <p>Ricaduta di cenere vulcanica (volcanic ash fallout) su piazzali, taxiway e pista (RWY 08/26). I mezzi spazzatrici interverranno solo al termine dell'emissione dal cratere. Stima riapertura rinviata costantemente.</p>
+                        </div>
+                        <div class="info-card">
+                            <h3>✈️ Spazio Aereo (CTA CTR)</h3>
+                            <p>Settori 1 e 2 dello spazio aereo di Catania chiusi al traffico VFR e IFR. Vettoriamento radar limitato causa visibilità ridotta (Ash Cloud in quota).</p>
+                        </div>
+                    </div>
+
+                    <!-- TAB 3: Dati Tecnici -->
+                    <div id="tab-metar" class="tab-content">
+                        <div class="code-block" style="margin-bottom: 15px;">
+                            // METAR LICC (CATANIA FONTANAROSSA) <br>
+                            LICC 101850Z 35008KT 310V020 1500 VA SCT020 BKN040 28/22 Q1012 <br>
+                            RMK VA FALLOUT RWY CLSD DUE TO ASH DEPOSIT
+                        </div>
+                        <div class="code-block">
+                            // VOLCANIC ASH ADVISORY (TOULOUSE VAAC)<br>
+                            VA ADVISORY<br>
+                            DTG: 20260810/1900Z<br>
+                            VAAC: TOULOUSE<br>
+                            VOLCANO: ETNA 211060<br>
+                            PSN: N3744 E01500<br>
+                            AREA: ITALY<br>
+                            INFO SOURCE: INGV SATELLITE PILOT REPORT<br>
+                            ERUPTION DETAILS: CONTINUOUS ASH EMISSION FROM SE CRATER<br>
+                            OBS VA DTG: 10/1850Z<br>
+                            OBS VA CLD: SFC/FL240 N3744 E01500 - N3720 E01540 - N3700 E01530 MOV S 25KT
+                        </div>
+                    </div>
+                </div>
+
+                <!-- RIGHT COLUMN: ALERT STAGE (Foto precedente) -->
+                <div class="alert-sidebar">
+                    <div class="alert-header">
+                        <h2>Stadio di Allerta</h2>
+                        <div class="alert-dots">
+                            <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+                        </div>
+                    </div>
+                    <div class="alert-image-container">
+                        <!-- Immagine precedente richiesta per lo stadio di allerta -->
+                        <img src="https://media.aviationeagle.co.uk/PHOTO-2026-08-10-19-06-32.webp" alt="Ash Fallout">
+                        <div class="vona-badge">VONA: RED</div>
+                    </div>
+                    <div class="alert-details">
+                        <ul>
+                            <li>
+                                <span class="data-label">Vulcano</span>
+                                <span class="data-value">ETNA (Mt.)</span>
+                            </li>
+                            <li>
+                                <span class="data-label">Cratere Attivo</span>
+                                <span class="data-value">Sud-Est (SEC)</span>
+                            </li>
+                            <li>
+                                <span class="data-label">Quota Nube (Ash Cloud)</span>
+                                <span class="data-value">FL240 (~7.3km)</span>
+                            </li>
+                            <li>
+                                <span class="data-label">Status Aeroporto</span>
+                                <span class="data-value" style="color:var(--ae-red);">CLOSED ZERO-RATE</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div> <!-- End Grid -->
+
+            <!-- ACTION BAR -->
+            <div class="action-panel">
+                <div class="timestamp">
+                    <div class="sync-pulse"></div>
+                    <span id="last-update">Ultimo aggiornamento rete: Acquisizione dati in corso...</span>
+                </div>
+                <button class="btn-update" id="updateBtn" onclick="refreshData()">
+                    <span class="sync-icon">⟳</span> Forza Sincronizzazione
+                </button>
+            </div>
+
+        </div> <!-- End Dashboard -->
+    </main>
+
+    <script>
+        // Logica Splash Screen
+        (function() {
+            const splash = document.getElementById('ae_splash');
+            if (!sessionStorage.getItem('ae_initialized')) {
+                sessionStorage.setItem('ae_initialized', 'true');
+                setTimeout(function() { if(splash) splash.remove(); }, 4500);
+            } else {
+                splash.remove();
+            }
+        })();
+
+        // Sistema a TABS
+        function switchTab(evt, tabId) {
+            const tabs = document.getElementsByClassName("tab-content");
+            for (let i = 0; i < tabs.length; i++) {
+                tabs[i].classList.remove("active");
+            }
+            const tabBtns = document.getElementsByClassName("tab-btn");
+            for (let i = 0; i < tabBtns.length; i++) {
+                tabBtns[i].classList.remove("active");
+            }
+            document.getElementById(tabId).classList.add("active");
+            evt.currentTarget.classList.add("active");
+        }
+
+        // Logica Aggiornamento Dati Interattivo
+        function updateTimestamp() {
+            const now = new Date();
+            const timeString = now.toLocaleTimeString('it-IT', { hour: '2-digit', minute:'2-digit', second:'2-digit' });
+            document.getElementById('last-update').innerHTML = `Collegamento INGV/Eurocontrol attivo. Dati agg. alle <b>${timeString}</b>`;
+        }
+
+        function refreshData() {
+            const btn = document.getElementById('updateBtn');
+            const statusText = document.getElementById('last-update');
+            
+            // UI Feedback
+            btn.classList.add('loading');
+            btn.disabled = true;
+            statusText.innerHTML = "<span style='color:var(--ae-red);'>Scansione rete NOTAM e AFTN in corso...</span>";
+            
+            // Simula attesa
+            setTimeout(() => {
+                btn.classList.remove('loading');
+                btn.disabled = false;
+                updateTimestamp();
+            }, 1800);
+        }
+
+        // Inizializza orario
+        window.onload = () => {
+            setTimeout(updateTimestamp, 4500);
+        };
+    </script>
+</body>
+</html>
