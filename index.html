@@ -16,9 +16,10 @@
       });
     </script>
 
-    <!-- Icons -->
+    <!-- Icons & Fonts -->
     <link rel="icon" type="image/png" href="https://upload.wikimedia.org/wikipedia/commons/0/08/Aviation_Eagle_Logo.png">
     <link rel="apple-touch-icon" sizes="180x180" href="https://media.aviationeagle.co.uk/logo.png">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;900&display=swap" rel="stylesheet">
 
     <style>
         :root {
@@ -28,11 +29,14 @@
             --ae-light: #eef2f6;
             --ae-alert-bg: #fff0f0;
             --vona-red: #ff0000;
+            --ae-green: #22c55e;
+            --ae-blue: #3b82f6;
+            --ae-orange: #f59e0b;
         }
 
         body {
             font-family: 'Inter', -apple-system, sans-serif;
-            background: #050b14; /* Sfondo scuro per risaltare la Situation Room */
+            background: #050b14;
             margin: 0; padding: 0; color: #1e293b;
             display: flex; flex-direction: column; min-height: 100vh;
         }
@@ -68,7 +72,7 @@
         .main-content { flex: 1; padding: 20px; display: flex; justify-content: center; animation: contentFadeIn 1s ease-out 4s both; }
         @keyframes contentFadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
         
-        .dashboard { width: 100%; max-width: 1200px; background: var(--ae-light); border-radius: 12px; overflow: hidden; box-shadow: 0 25px 50px rgba(0,0,0,0.5); border: 1px solid rgba(206, 17, 38, 0.3); display: flex; flex-direction: column; }
+        .dashboard { width: 100%; max-width: 1300px; background: var(--ae-light); border-radius: 12px; overflow: hidden; box-shadow: 0 25px 50px rgba(0,0,0,0.5); border: 1px solid rgba(206, 17, 38, 0.3); display: flex; flex-direction: column; }
 
         /* --- HERO BACKGROUND --- */
         .hero-section {
@@ -77,65 +81,90 @@
             background-size: cover; background-position: center 30%;
         }
         .hero-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(15, 23, 42, 1) 0%, rgba(15, 23, 42, 0.4) 60%, rgba(15, 23, 42, 0) 100%); display: flex; align-items: flex-end; padding: 30px; color: white; }
-        .hero-title-box h1 { margin: 0 0 5px 0; font-size: 2.8rem; text-shadow: 0 2px 10px rgba(0,0,0,0.9); text-transform: uppercase; font-weight: 900; letter-spacing: -1px; }
-        .hero-title-box p { margin: 0; font-size: 1.2rem; color: #cbd5e1; font-family: 'Courier New', monospace; font-weight: bold; background: rgba(0,0,0,0.5); padding: 5px 10px; border-radius: 4px; display: inline-block; }
+        .hero-title-box h1 { margin: 0 0 5px 0; font-size: clamp(1.8rem, 4vw, 2.8rem); text-shadow: 0 2px 10px rgba(0,0,0,0.9); text-transform: uppercase; font-weight: 900; letter-spacing: -1px; }
+        .hero-title-box p { margin: 0; font-size: clamp(0.9rem, 2vw, 1.2rem); color: #cbd5e1; font-family: 'Courier New', monospace; font-weight: bold; background: rgba(0,0,0,0.6); padding: 5px 10px; border-radius: 4px; display: inline-block; border-left: 3px solid var(--ae-red); }
 
-        /* --- GRID LAYOUT (MAIN INFO + SIDEBAR) --- */
-        .dashboard-body { display: grid; grid-template-columns: 2fr 1fr; gap: 20px; padding: 20px; background: var(--ae-light); }
-        @media (max-width: 900px) { .dashboard-body { grid-template-columns: 1fr; } }
+        /* --- GRID LAYOUT --- */
+        .dashboard-body { display: grid; grid-template-columns: 2.2fr 1fr; gap: 20px; padding: 20px; background: var(--ae-light); }
+        @media (max-width: 1024px) { .dashboard-body { grid-template-columns: 1fr; } }
 
-        /* --- SIDEBAR: STADIO DI ALLERTA --- */
-        .alert-sidebar { background: #fff; border-radius: 8px; border: 2px solid var(--ae-red); overflow: hidden; box-shadow: 0 10px 15px rgba(0,0,0,0.05); display: flex; flex-direction: column; }
-        .alert-header { background: var(--ae-red); color: white; padding: 15px; display: flex; justify-content: space-between; align-items: center; }
-        .alert-header h2 { margin: 0; font-size: 1.2rem; text-transform: uppercase; }
-        
-        /* 3 BOLLINI ROSSI LAMPEGGIANTI */
-        .alert-dots { display: flex; gap: 6px; }
-        .dot { width: 14px; height: 14px; background-color: var(--vona-red); border-radius: 50%; border: 1px solid #fff; box-shadow: 0 0 8px var(--vona-red); animation: flashRed 1s infinite alternate; }
-        .dot:nth-child(2) { animation-delay: 0.33s; }
-        .dot:nth-child(3) { animation-delay: 0.66s; }
-        @keyframes flashRed { 0% { opacity: 0.3; box-shadow: 0 0 2px var(--vona-red); } 100% { opacity: 1; box-shadow: 0 0 15px var(--vona-red), 0 0 25px var(--vona-red); } }
-
-        .alert-image-container { position: relative; width: 100%; height: 200px; }
-        .alert-image-container img { width: 100%; height: 100%; object-fit: cover; filter: contrast(1.1) saturate(1.2); }
-        .vona-badge { position: absolute; top: 10px; right: 10px; background: rgba(0,0,0,0.8); color: var(--vona-red); border: 1px solid var(--vona-red); padding: 5px 10px; font-family: 'Courier New', monospace; font-weight: bold; font-size: 0.9rem; border-radius: 4px; box-shadow: 0 0 10px rgba(255,0,0,0.5); }
-        
-        .alert-details { padding: 20px; font-size: 0.95rem; }
-        .alert-details ul { list-style: none; padding: 0; margin: 0; }
-        .alert-details li { margin-bottom: 12px; padding-bottom: 12px; border-bottom: 1px solid #e2e8f0; display: flex; justify-content: space-between; }
-        .alert-details li:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
-        .data-label { color: var(--ae-gray); font-weight: 600; font-size: 0.85rem; text-transform: uppercase; }
-        .data-value { font-family: 'Courier New', monospace; font-weight: bold; color: var(--ae-dark); }
-
-        /* --- TABS SYSTEM (INFO) --- */
+        /* --- TABS SYSTEM --- */
         .info-panel { background: #fff; border-radius: 8px; box-shadow: 0 10px 15px rgba(0,0,0,0.05); overflow: hidden; display: flex; flex-direction: column; }
-        .tabs { display: flex; background: var(--ae-dark); border-bottom: 3px solid var(--ae-red); }
-        .tab-btn { flex: 1; background: transparent; color: #cbd5e1; border: none; padding: 15px; font-weight: bold; cursor: pointer; text-transform: uppercase; transition: all 0.2s; font-size: 0.9rem; }
+        .tabs { display: flex; flex-wrap: wrap; background: var(--ae-dark); border-bottom: 3px solid var(--ae-red); }
+        .tab-btn { flex: 1; min-width: 120px; background: transparent; color: #cbd5e1; border: none; padding: 12px; font-weight: bold; cursor: pointer; text-transform: uppercase; transition: all 0.2s; font-size: 0.85rem; }
         .tab-btn:hover { background: rgba(255,255,255,0.1); color: white; }
         .tab-btn.active { background: var(--ae-red); color: white; }
         
-        .tab-content { padding: 30px; display: none; }
+        .tab-content { padding: 25px; display: none; }
         .tab-content.active { display: block; animation: fadeIn 0.4s ease; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
         .info-card { background: var(--ae-light); border-left: 4px solid var(--ae-red); padding: 20px; margin-bottom: 15px; border-radius: 0 6px 6px 0; }
         .info-card h3 { margin: 0 0 8px 0; display: flex; align-items: center; gap: 8px; color: var(--ae-dark); font-size: 1.1rem; }
         .info-card p { margin: 0; color: #475569; font-size: 0.95rem; line-height: 1.5; }
-        
         .code-block { background: #0f172a; color: #32cd32; font-family: 'Courier New', monospace; padding: 15px; border-radius: 6px; font-size: 0.85rem; line-height: 1.4; overflow-x: auto; border-left: 4px solid #32cd32; }
 
-        /* --- ACTION BAR (BOTTOM) --- */
-        .action-panel { background: #fff; padding: 15px 25px; border-top: 1px solid #e2e8f0; display: flex; justify-content: space-between; align-items: center; border-radius: 0 0 12px 12px; }
+        /* --- ACCORDION FAQ --- */
+        details { background: var(--ae-light); margin-bottom: 10px; border-radius: 6px; border-left: 3px solid var(--ae-blue); overflow: hidden; }
+        summary { padding: 15px; font-weight: 600; cursor: pointer; background: #f8fafc; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+        summary::-webkit-details-marker { display: none; }
+        summary::after { content: '+'; font-size: 1.2rem; font-weight: bold; color: var(--ae-blue); transition: transform 0.3s; }
+        details[open] summary::after { transform: rotate(45deg); }
+        .details-content { padding: 15px; border-top: 1px solid #e2e8f0; font-size: 0.9rem; color: #475569; line-height: 1.5; }
+
+        /* --- WHATSAPP FORM --- */
+        .wa-form-container { background: #f0fdf4; border: 1px solid #bbf7d0; padding: 20px; border-radius: 8px; }
+        .wa-header { display: flex; align-items: center; gap: 10px; margin-bottom: 15px; color: #166534; font-weight: 900; font-size: 1.2rem; }
+        .form-group { margin-bottom: 15px; }
+        .form-group label { display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 5px; color: #374151; text-transform: uppercase; }
+        .form-control { width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 6px; font-family: inherit; font-size: 0.95rem; box-sizing: border-box; }
+        .form-control:focus { outline: none; border-color: var(--ae-green); box-shadow: 0 0 0 3px rgba(34,197,94,0.2); }
+        .btn-whatsapp { background: #25D366; color: white; border: none; width: 100%; padding: 14px; font-size: 1rem; font-weight: bold; border-radius: 6px; cursor: pointer; transition: 0.3s; text-transform: uppercase; display: flex; justify-content: center; align-items: center; gap: 10px; }
+        .btn-whatsapp:hover { background: #1ebd57; transform: translateY(-2px); }
+
+        /* --- SIDEBAR COMPONENTS --- */
+        .sidebar-module { background: #fff; border-radius: 8px; border: 1px solid #e2e8f0; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.05); margin-bottom: 20px; }
+        .sidebar-header { background: var(--ae-dark); color: white; padding: 12px 15px; font-size: 0.95rem; text-transform: uppercase; font-weight: bold; display: flex; justify-content: space-between; align-items: center; }
+        
+        /* Alert Stage Specific */
+        .alert-header { background: var(--ae-red); }
+        .alert-dots { display: flex; gap: 6px; }
+        .dot { width: 12px; height: 12px; background-color: var(--vona-red); border-radius: 50%; border: 1px solid #fff; box-shadow: 0 0 8px var(--vona-red); animation: flashRed 1s infinite alternate; }
+        .dot:nth-child(2) { animation-delay: 0.33s; }
+        .dot:nth-child(3) { animation-delay: 0.66s; }
+        @keyframes flashRed { 0% { opacity: 0.3; } 100% { opacity: 1; box-shadow: 0 0 15px var(--vona-red); } }
+        
+        .alert-details { padding: 15px; font-size: 0.85rem; }
+        .data-row { display: flex; justify-content: space-between; border-bottom: 1px solid #f1f5f9; padding: 8px 0; }
+        .data-row:last-child { border-bottom: none; }
+        .data-label { color: var(--ae-gray); font-weight: 600; text-transform: uppercase; }
+        .data-value { font-family: 'Courier New', monospace; font-weight: bold; color: var(--ae-dark); }
+
+        /* Countdown */
+        .countdown-display { padding: 20px; text-align: center; background: #000; color: var(--vona-red); font-family: 'Courier New', monospace; font-size: 1.8rem; font-weight: bold; text-shadow: 0 0 10px rgba(255,0,0,0.5); }
+
+        /* Alt Airports Grid */
+        .airport-grid { padding: 10px; display: grid; gap: 10px; }
+        .airport-card { border: 1px solid #e2e8f0; border-radius: 6px; padding: 10px; font-size: 0.85rem; position: relative; }
+        .ac-code { font-weight: 900; font-size: 1.1rem; color: var(--ae-dark); }
+        .ac-status { position: absolute; top: 10px; right: 10px; padding: 3px 8px; border-radius: 12px; font-size: 0.7rem; font-weight: bold; color: white; }
+        .status-ok { background: var(--ae-green); }
+        .status-warn { background: var(--ae-orange); }
+        .status-full { background: var(--ae-red); }
+        
+        /* User Memory Banner */
+        #user-banner { background: #fef08a; padding: 10px; text-align: center; font-size: 0.85rem; font-weight: 600; color: #854d0e; display: none; }
+
+        /* --- ACTION BAR --- */
+        .action-panel { background: #fff; padding: 15px 25px; border-top: 1px solid #e2e8f0; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; }
         .timestamp { font-family: 'Courier New', monospace; color: var(--ae-gray); font-size: 0.9rem; display: flex; align-items: center; gap: 10px; }
         .sync-pulse { width: 10px; height: 10px; background: #22c55e; border-radius: 50%; box-shadow: 0 0 8px #22c55e; animation: flashGreen 2s infinite; }
         @keyframes flashGreen { 0%, 100% { opacity: 0.5; } 50% { opacity: 1; } }
         
-        .btn-update { background: var(--ae-dark); color: white; border: none; padding: 12px 24px; border-radius: 6px; font-weight: 600; cursor: pointer; transition: 0.3s; display: flex; align-items: center; gap: 8px; font-family: 'Inter', sans-serif; }
+        .btn-update { background: var(--ae-dark); color: white; border: none; padding: 12px 24px; border-radius: 6px; font-weight: 600; cursor: pointer; transition: 0.3s; display: flex; align-items: center; gap: 8px; }
         .btn-update:hover { background: #1e293b; box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
-        .btn-update:active { transform: scale(0.97); }
-        .btn-update.loading .sync-icon { animation: spin 1s linear infinite; }
-        @keyframes spin { 100% { transform: rotate(360deg); } }
-
+        .btn-onesignal { background: #ea4335; color: white; border: none; padding: 12px; border-radius: 6px; font-weight: bold; cursor: pointer; transition: 0.3s; font-size: 0.85rem; }
+        .btn-onesignal:hover { background: #c5221f; }
     </style>
 </head>
 <body>
@@ -156,16 +185,18 @@
     <!-- LIVE TICKER NOTAM -->
     <div class="live-ticker">
         <div class="ticker-label">URGENT NOTAM</div>
-        <div class="ticker-text">
-            A1502/26 NOTAMR A1499/26 Q) LIRR/QFALC/IV/NBO/A/000/999/3728N01503E005 A) LICC B) 2608101400 C) 2608110600 EST E) AD CLSD TO ALL TFC DUE TO VOLCANIC ASH IN THE AIR AND ON RWY. DEPARTURES CANCELLED, ARRIVALS DIVERTED.
+        <div class="ticker-text" id="notam-ticker">
+            A1502/26 NOTAMR A1499/26 Q) LIRR/QFALC/IV/NBO/A/000/999/3728N01503E005 A) LICC B) 2608101400 C) 2608110600 EST E) AD CLSD TO ALL TFC DUE TO VOLCANIC ASH... 
         </div>
     </div>
 
-    <!-- MAIN DASHBOARD -->
+    <!-- USER MEMORY BANNER -->
+    <div id="user-banner">Bentornato. Monitoraggio ripristinato per il volo: <span id="saved-flight"></span></div>
+
     <main class="main-content">
         <div class="dashboard">
             
-            <!-- HERO SECTION (Nuovo sfondo) -->
+            <!-- HERO SECTION -->
             <div class="hero-section">
                 <div class="hero-overlay">
                     <div class="hero-title-box">
@@ -181,167 +212,299 @@
                 <!-- LEFT COLUMN: TABS INFO -->
                 <div class="info-panel">
                     <div class="tabs">
-                        <button class="tab-btn active" onclick="switchTab(event, 'tab-pax')">Info Passeggeri</button>
-                        <button class="tab-btn" onclick="switchTab(event, 'tab-ops')">Operatività Scalo</button>
-                        <button class="tab-btn" onclick="switchTab(event, 'tab-metar')">Raw Data (METAR/VAAC)</button>
+                        <button class="tab-btn active" onclick="switchTab(event, 'tab-live')">🔴 Live News</button>
+                        <button class="tab-btn" onclick="switchTab(event, 'tab-pax')">Pax & FAQ</button>
+                        <button class="tab-btn" onclick="switchTab(event, 'tab-ops')">Operatività</button>
+                        <button class="tab-btn" onclick="switchTab(event, 'tab-wa')" style="background-color: #166534; color:white;">💬 Richiedi Assistenza</button>
                     </div>
 
-                    <!-- TAB 1: Passeggeri -->
-                    <div id="tab-pax" class="tab-content active">
-                        <div class="info-card">
-                            <h3>🚫 Divieto di recarsi in aeroporto</h3>
-                            <p>Tutti i voli in partenza da Catania Fontanarossa sono al momento <b>cancellati</b>. Le operazioni di imbarco sono sospese. Si invitano i passeggeri a NON recarsi al terminal per evitare sovraffollamenti.</p>
+                    <!-- TAB 1: LIVE NEWS (Dynamic Feed) -->
+                    <div id="tab-live" class="tab-content active">
+                        <div class="info-card" style="border-left-color: var(--ae-red);">
+                            <h3>🔴 ULTIMA ORA</h3>
+                            <p id="live-news-content"><b>Aggiornamento INGV:</b> Prosegue l'attività stromboliana al Cratere Sud-Est. Nube di cenere dispersa verso Sud. Spazzatrici in stand-by causa ricaduta continua. I voli della serata sono stati ufficialmente dirottati su Palermo (PMO).</p>
                         </div>
+                        <div class="info-card" style="border-left-color: var(--ae-blue);">
+                            <h3>🔄 Disposizione Vettori</h3>
+                            <p>I passeggeri dei voli deviati a PMO sono pregati di ritirare i bagagli al nastro 4. I bus navetta per il rientro a Catania sono in allestimento al Terminal Arrivi. Priorità a donne in gravidanza e disabili.</p>
+                        </div>
+                    </div>
+
+                    <!-- TAB 2: PAX & FAQ (Accordion) -->
+                    <div id="tab-pax" class="tab-content">
                         <div class="info-card" style="border-left-color: #f59e0b;">
-                            <h3>🔄 Voli in Arrivo (Dirottamenti)</h3>
-                            <p>Gli aeromobili in avvicinamento sono in holding o già in dirottamento verso scali alternativi: <b>Palermo (PMO), Comiso (CIY), Lamezia Terme (SUF)</b> o Trapani (TPS). Le compagnie stanno predisponendo trasferimenti via bus soggetti a disponibilità.</p>
+                            <h3>Divieto di recarsi in aeroporto</h3>
+                            <p>Tutti i voli in partenza da LICC sono cancellati. NON recarsi al terminal.</p>
                         </div>
-                        <div class="info-card" style="border-left-color: #3b82f6;">
-                            <h3>⚖️ Diritti del Passeggero (EU261)</h3>
-                            <p>L'eruzione vulcanica costituisce <b>Circostanza Eccezionale (Forza Maggiore)</b>. Non è previsto il risarcimento pecuniario, ma le compagnie sono <i>obbligate</i> a fornire assistenza (pasti, hotel) e la riprotezione sul primo volo utile o rimborso del biglietto.</p>
-                        </div>
+                        
+                        <h4 style="margin-top: 25px; text-transform: uppercase; color: var(--ae-dark);">Diritti del Passeggero (EU261)</h4>
+                        
+                        <details>
+                            <summary>Ho diritto al risarcimento pecuniario (es. 250€)?</summary>
+                            <div class="details-content">
+                                <b>NO.</b> L'eruzione vulcanica è classificata come "Circostanza Eccezionale" (Forza Maggiore). Le compagnie aeree non sono tenute a pagare la compensazione pecuniaria extra.
+                            </div>
+                        </details>
+                        <details>
+                            <summary>Ho diritto al rimborso del biglietto?</summary>
+                            <div class="details-content">
+                                <b>SÌ.</b> Se il tuo volo è stato cancellato, hai diritto a scegliere tra la riprotezione sul primo volo utile o il rimborso integrale del biglietto non utilizzato.
+                            </div>
+                        </details>
+                        <details>
+                            <summary>Chi paga l'hotel se devo aspettare fino a domani?</summary>
+                            <div class="details-content">
+                                La compagnia aerea è obbligata a fornire il "Diritto all'Assistenza". Questo include pasti, bevande e sistemazione in hotel (con relativi trasferimenti) finché non viene fornito un volo alternativo, a prescindere dalla causa della cancellazione.
+                            </div>
+                        </details>
                     </div>
 
-                    <!-- TAB 2: Operatività -->
+                    <!-- TAB 3: OPERATIVITÀ -->
                     <div id="tab-ops" class="tab-content">
-                        <div class="info-card" style="border-left-color: var(--ae-dark);">
-                            <h3>🧹 Operazioni di Bonifica (Sweeping)</h3>
-                            <p>Ricaduta di cenere vulcanica (volcanic ash fallout) su piazzali, taxiway e pista (RWY 08/26). I mezzi spazzatrici interverranno solo al termine dell'emissione dal cratere. Stima riapertura rinviata costantemente.</p>
-                        </div>
-                        <div class="info-card">
-                            <h3>✈️ Spazio Aereo (CTA CTR)</h3>
-                            <p>Settori 1 e 2 dello spazio aereo di Catania chiusi al traffico VFR e IFR. Vettoriamento radar limitato causa visibilità ridotta (Ash Cloud in quota).</p>
-                        </div>
-                    </div>
-
-                    <!-- TAB 3: Dati Tecnici -->
-                    <div id="tab-metar" class="tab-content">
                         <div class="code-block" style="margin-bottom: 15px;">
-                            // METAR LICC (CATANIA FONTANAROSSA) <br>
-                            LICC 101850Z 35008KT 310V020 1500 VA SCT020 BKN040 28/22 Q1012 <br>
+                            // METAR LICC<br>
+                            LICC 111550Z 35008KT 1500 VA SCT020 BKN040 28/22 Q1012<br>
                             RMK VA FALLOUT RWY CLSD DUE TO ASH DEPOSIT
                         </div>
                         <div class="code-block">
                             // VOLCANIC ASH ADVISORY (TOULOUSE VAAC)<br>
-                            VA ADVISORY<br>
-                            DTG: 20260810/1900Z<br>
-                            VAAC: TOULOUSE<br>
                             VOLCANO: ETNA 211060<br>
-                            PSN: N3744 E01500<br>
-                            AREA: ITALY<br>
-                            INFO SOURCE: INGV SATELLITE PILOT REPORT<br>
                             ERUPTION DETAILS: CONTINUOUS ASH EMISSION FROM SE CRATER<br>
-                            OBS VA DTG: 10/1850Z<br>
-                            OBS VA CLD: SFC/FL240 N3744 E01500 - N3720 E01540 - N3700 E01530 MOV S 25KT
+                            OBS VA CLD: SFC/FL240 N3744 E01500 MOV S 25KT
                         </div>
                     </div>
-                </div>
 
-                <!-- RIGHT COLUMN: ALERT STAGE (Foto precedente) -->
-                <div class="alert-sidebar">
-                    <div class="alert-header">
-                        <h2>Stadio di Allerta</h2>
-                        <div class="alert-dots">
-                            <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+                    <!-- TAB 4: MODULO WHATSAPP -->
+                    <div id="tab-wa" class="tab-content">
+                        <div class="wa-form-container">
+                            <div class="wa-header">
+                                💬 LINEA DIRETTA OPERATIVA (WHATSAPP)
+                            </div>
+                            <p style="font-size:0.85rem; margin-bottom: 20px; color: #475569;">Compila i dati per inviare una richiesta formattata direttamente al nostro centro operativo per assistenza immediata sulla tua riprotezione.</p>
+                            
+                            <form onsubmit="sendWhatsApp(event)">
+                                <div class="form-group">
+                                    <label>Nome Passeggero (o PNR)</label>
+                                    <input type="text" id="wa-nome" class="form-control" placeholder="Es. Mario Rossi" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Codice Volo</label>
+                                    <input type="text" id="wa-volo" class="form-control" placeholder="Es. AZ1739 o FR485" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Scalo di Riprotezione (Dirottamento)</label>
+                                    <select id="wa-scalo" class="form-control" required>
+                                        <option value="">-- Seleziona Scalo --</option>
+                                        <option value="PMO - Palermo">PMO - Palermo Punta Raisi</option>
+                                        <option value="CIY - Comiso">CIY - Comiso Pio La Torre</option>
+                                        <option value="TPS - Trapani">TPS - Trapani Birgi</option>
+                                        <option value="SUF - Lamezia Terme">SUF - Lamezia Terme</option>
+                                        <option value="Sconosciuto">Non ancora comunicato</option>
+                                    </select>
+                                </div>
+                                <div class="form-group" style="background: #fff; padding: 10px; border-radius: 6px; border: 1px solid #cbd5e1;">
+                                    <label style="margin: 0; display: flex; align-items: center; gap: 10px; cursor: pointer; text-transform: none; font-size: 0.95rem;">
+                                        <input type="checkbox" id="wa-bus" style="width: 18px; height: 18px;">
+                                        Richiedo info/assistenza per il trasferimento navetta/bus
+                                    </label>
+                                </div>
+                                <div class="form-group">
+                                    <label>Messaggio Libero</label>
+                                    <textarea id="wa-messaggio" class="form-control" rows="3" placeholder="Specifica necessità particolari (es. neonato a bordo, coincidenza persa...)"></textarea>
+                                </div>
+                                <button type="submit" class="btn-whatsapp">
+                                    INVIA RICHIESTA VIA WHATSAPP ➔
+                                </button>
+                            </form>
                         </div>
                     </div>
-                    <div class="alert-image-container">
-                        <!-- Immagine precedente richiesta per lo stadio di allerta -->
-                        <img src="https://media.aviationeagle.co.uk/PHOTO-2026-08-10-19-06-32.webp" alt="Ash Fallout">
-                        <div class="vona-badge">VONA: RED</div>
-                    </div>
-                    <div class="alert-details">
-                        <ul>
-                            <li>
-                                <span class="data-label">Vulcano</span>
-                                <span class="data-value">ETNA (Mt.)</span>
-                            </li>
-                            <li>
-                                <span class="data-label">Cratere Attivo</span>
-                                <span class="data-value">Sud-Est (SEC)</span>
-                            </li>
-                            <li>
-                                <span class="data-label">Quota Nube (Ash Cloud)</span>
-                                <span class="data-value">FL240 (~7.3km)</span>
-                            </li>
-                            <li>
-                                <span class="data-label">Status Aeroporto</span>
-                                <span class="data-value" style="color:var(--ae-red);">CLOSED ZERO-RATE</span>
-                            </li>
-                        </ul>
-                    </div>
+
                 </div>
 
+                <!-- RIGHT COLUMN: WIDGETS -->
+                <div class="sidebar">
+                    
+                    <!-- Alert Stage -->
+                    <div class="sidebar-module">
+                        <div class="sidebar-header alert-header">
+                            Stadio di Allerta
+                            <div class="alert-dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+                        </div>
+                        <div class="alert-details">
+                            <div class="data-row"><span class="data-label">Vulcano</span><span class="data-value">ETNA</span></div>
+                            <div class="data-row"><span class="data-label">VONA Level</span><span class="data-value" style="color:red;">RED</span></div>
+                            <div class="data-row"><span class="data-label">Status CTA</span><span class="data-value" style="color:red;">CLOSED</span></div>
+                        </div>
+                    </div>
+
+                    <!-- Countdown NOTAM -->
+                    <div class="sidebar-module">
+                        <div class="sidebar-header">Orario Previsto Riapertura Catania:</div>
+                        <div class="countdown-display" id="countdown-timer">00:00:00</div>
+                    </div>
+
+                    <!-- Scali Alternativi (Interactive Map/Cards) -->
+                    <div class="sidebar-module">
+                        <div class="sidebar-header" style="background: var(--ae-blue);">Scali Alternativi (Divert)</div>
+                        <div class="airport-grid">
+                            
+                            <div class="airport-card">
+                                <span class="ac-code">PMO - Palermo</span>
+                                <span class="ac-status status-warn">HEAVY TFC</span>
+                                <div style="margin-top:8px; color:var(--ae-gray);">Distanza: 235 km <br> 🚌 Tempo Bus: ~2h 45m</div>
+                            </div>
+                            
+                            <div class="airport-card">
+                                <span class="ac-code">CIY - Comiso</span>
+                                <span class="ac-status status-full">NO PARKING</span>
+                                <div style="margin-top:8px; color:var(--ae-gray);">Distanza: 85 km <br> 🚌 Tempo Bus: ~1h 15m</div>
+                            </div>
+
+                            <div class="airport-card">
+                                <span class="ac-code">TPS - Trapani</span>
+                                <span class="ac-status status-ok">AVAILABLE</span>
+                                <div style="margin-top:8px; color:var(--ae-gray);">Distanza: 310 km <br> 🚌 Tempo Bus: ~3h 40m</div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
             </div> <!-- End Grid -->
 
             <!-- ACTION BAR -->
             <div class="action-panel">
                 <div class="timestamp">
                     <div class="sync-pulse"></div>
-                    <span id="last-update">Ultimo aggiornamento rete: Acquisizione dati in corso...</span>
+                    <span id="last-update">Collegamento Rete attivo.</span>
                 </div>
-                <button class="btn-update" id="updateBtn" onclick="refreshData()">
-                    <span class="sync-icon">⟳</span> Forza Sincronizzazione
-                </button>
+                <div style="display:flex; gap:10px;">
+                    <button class="btn-onesignal" onclick="OneSignal.showNativePrompt()">🔔 Attiva Notifiche Push</button>
+                    <button class="btn-update" id="updateBtn" onclick="refreshData()">
+                        ⟳ Aggiorna Dati
+                    </button>
+                </div>
             </div>
 
         </div> <!-- End Dashboard -->
     </main>
 
     <script>
-        // Logica Splash Screen
-        (function() {
+        // --- 1. Splash Screen & Local Storage Memory ---
+        document.addEventListener('DOMContentLoaded', () => {
             const splash = document.getElementById('ae_splash');
             if (!sessionStorage.getItem('ae_initialized')) {
                 sessionStorage.setItem('ae_initialized', 'true');
-                setTimeout(function() { if(splash) splash.remove(); }, 4500);
+                setTimeout(() => { if(splash) splash.remove(); }, 3500);
             } else {
                 splash.remove();
             }
-        })();
 
-        // Sistema a TABS
+            // Controlla memoria LocalStorage
+            const savedFlight = localStorage.getItem('ae_last_flight');
+            if (savedFlight) {
+                document.getElementById('user-banner').style.display = 'block';
+                document.getElementById('saved-flight').innerText = savedFlight;
+                document.getElementById('wa-volo').value = savedFlight; // Precompila il form
+            }
+
+            updateTimestamp();
+            startCountdown();
+        });
+
+        // --- 2. TABS Logic ---
         function switchTab(evt, tabId) {
-            const tabs = document.getElementsByClassName("tab-content");
-            for (let i = 0; i < tabs.length; i++) {
-                tabs[i].classList.remove("active");
-            }
-            const tabBtns = document.getElementsByClassName("tab-btn");
-            for (let i = 0; i < tabBtns.length; i++) {
-                tabBtns[i].classList.remove("active");
-            }
+            document.querySelectorAll(".tab-content").forEach(el => el.classList.remove("active"));
+            document.querySelectorAll(".tab-btn").forEach(el => el.classList.remove("active"));
             document.getElementById(tabId).classList.add("active");
             evt.currentTarget.classList.add("active");
         }
 
-        // Logica Aggiornamento Dati Interattivo
+        // --- 3. Invio WhatsApp ---
+        function sendWhatsApp(e) {
+            e.preventDefault();
+            
+            // ATTENZIONE COMANDANTE: Sostituire con il numero reale (incluso prefisso, senza + o spazi, es. 393331234567)
+            const TARGET_NUMBER = "393445941246"; 
+            
+            const nome = document.getElementById('wa-nome').value.trim();
+            const volo = document.getElementById('wa-volo').value.trim().toUpperCase();
+            const scalo = document.getElementById('wa-scalo').value;
+            const navetta = document.getElementById('wa-bus').checked ? "✅ RICHIESTA" : "❌ NON RICHIESTA";
+            const messaggio = document.getElementById('wa-messaggio').value.trim();
+
+            // Salva il volo per le visite future
+            localStorage.setItem('ae_last_flight', volo);
+
+            let testoMessage = `🚨 *RICHIESTA ASSISTENZA LICC* 🚨%0A%0A`;
+            testoMessage += `👤 *Passeggero:* ${nome}%0A`;
+            testoMessage += `✈️ *Volo:* ${volo}%0A`;
+            testoMessage += `📍 *Scalo Dirottato:* ${scalo}%0A`;
+            testoMessage += `🚌 *Navetta Bus:* ${navetta}%0A`;
+            if (messaggio) {
+                testoMessage += `%0A📝 *Note:* ${messaggio}`;
+            }
+
+            const waUrl = `https://wa.me/${TARGET_NUMBER}?text=${testoMessage}`;
+            window.open(waUrl, '_blank');
+        }
+
+        // --- 4. Countdown Dinamico (Simulazione prossimo aggiornamento) ---
+   function startCountdown() {
+    // Target: Domani alle 11:00 (12 Agosto 2026)
+    let targetTime = new Date('2026-08-12T11:00:00').getTime(); 
+    
+    function updateTimer() {
+        let now = new Date().getTime();
+        let distance = targetTime - now;
+
+        if (distance < 0) {
+            document.getElementById("countdown-timer").innerHTML = "SCADUTO / IN CORSO";
+            return;
+        }
+
+        // Calcolo ore totali, minuti e secondi
+        let hours = Math.floor(distance / (1000 * 60 * 60));
+        let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        // Formattazione a due cifre
+        hours = hours < 10 ? "0" + hours : hours;
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+
+        document.getElementById("countdown-timer").innerHTML = `T- ${hours}:${minutes}:${seconds}`;
+    }
+
+    // Esegue subito il calcolo all'avvio della pagina e poi ogni secondo
+    updateTimer();
+    setInterval(updateTimer, 1000);
+}
+
+        // --- 5. Aggiornamento Dati Interattivo ---
         function updateTimestamp() {
             const now = new Date();
             const timeString = now.toLocaleTimeString('it-IT', { hour: '2-digit', minute:'2-digit', second:'2-digit' });
-            document.getElementById('last-update').innerHTML = `Collegamento INGV/Eurocontrol attivo. Dati agg. alle <b>${timeString}</b>`;
+            document.getElementById('last-update').innerHTML = `Ultimo sync INGV/AFTN: <b>${timeString}</b>`;
         }
 
         function refreshData() {
             const btn = document.getElementById('updateBtn');
             const statusText = document.getElementById('last-update');
             
-            // UI Feedback
-            btn.classList.add('loading');
+            btn.innerHTML = "Scansione...";
             btn.disabled = true;
-            statusText.innerHTML = "<span style='color:var(--ae-red);'>Scansione rete NOTAM e AFTN in corso...</span>";
+            statusText.innerHTML = "<span style='color:var(--ae-red);'>Scansione rete in corso...</span>";
             
-            // Simula attesa
             setTimeout(() => {
-                btn.classList.remove('loading');
+                btn.innerHTML = "⟳ Aggiorna Dati";
                 btn.disabled = false;
                 updateTimestamp();
-            }, 1800);
+                
+                // Simula un aggiornamento della news feed
+                document.getElementById('live-news-content').innerHTML = `<b>Aggiornamento:</b> Dati METAR ricalcolati. Le ceneri si stanno dirigendo verso il settore Sud-Est. Stima riapertura pista posticipata.`;
+            }, 1500);
         }
-
-        // Inizializza orario
-        window.onload = () => {
-            setTimeout(updateTimestamp, 4500);
-        };
     </script>
 </body>
 </html>
