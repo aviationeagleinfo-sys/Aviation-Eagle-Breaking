@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aviation Eagle - Monitoraggio & Allerta</title>
+
+    <!-- OneSignal Push Notifications SDK -->
+    <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+    <script>
+      window.OneSignalDeferred = window.OneSignalDeferred || [];
+      OneSignalDeferred.push(async function(OneSignal) {
+        await OneSignal.init({
+          appId: "269599ae-e714-47e7-8fe4-f5e812defd91",
+        });
+      });
+    </script>
+
+    <!-- Favicon e Asset -->
+    <link rel="icon" type="image/png" href="https://upload.wikimedia.org/wikipedia/commons/0/08/Aviation_Eagle_Logo.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://media.aviationeagle.co.uk/logo.png">
+
+    <style>
+        :root {
+            --ae-red: #ce1126;
+            --ae-dark: #0f172a;
+            --ae-gray: #64748b;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background-color: #eef2f6;
+            margin: 0;
+            padding: 20px;
+            color: #212529;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* --- BLOCCO AVVIO (SPLASH SCREEN) --- */
+        .global-splash {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100vw; height: 100vh;
+            z-index: 9999999;
+            display: flex; 
+            align-items: center; 
+            justify-content: center;
+            flex-direction: column;
+            background-color: #0f172a;
+            background-image: linear-gradient(rgba(15, 23, 42, 0.8), rgba(15, 23, 42, 0.9)), 
+                              url('https://cdn.cizucu.com/images/photos/eWTj5ByZoW8hfBCW9M1p.jpg?auto=format%2Ccompress&fit=max&w=1536&q=90');
+            background-size: cover;
+            background-position: center;
+            animation: fadeOutSplash 0.6s ease-in-out 3.5s forwards;
+        }
+
+        .splash-logo {
+            width: clamp(100px, 15vw, 160px);
+            filter: drop-shadow(0 0 15px #ce1126);
+            animation: pulseTactical 1.5s infinite;
+            margin-bottom: 20px;
+        }
+
+        .splash-text {
+            color: #ffffff;
+            font-family: 'Courier New', monospace;
+            font-size: clamp(0.7rem, 2vw, 1rem);
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 15px;
+        }
+
+        .loading-bar-container {
+            width: clamp(180px, 50vw, 400px);
+            height: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .loading-bar {
+            height: 100%; width: 0%;
+            background: #ce1126;
+            box-shadow: 0 0 15px #ce1126;
+            animation: fillBar 3.2s ease-in-out forwards;
+        }
+
+        @keyframes fadeOutSplash { to { opacity: 0; visibility: hidden; pointer-events: none; } }
+        @keyframes pulseTactical { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+        @keyframes fillBar { to { width: 100%; } }
+
+        /* --- STILE CONTENITORE ALLERTA NAZIONALE --- */
+        .national-alert-container {
+            background-color: #ffffff;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+            overflow: hidden;
+            border: 1px solid #dee2e6;
+            position: relative;
+            max-width: 800px;
+            width: 100%;
+        }
+
+        /* Barra tricolore in alto */
+        .tricolore-bar {
+            width: 100%;
+            height: 8px;
+            display: flex;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        .tricolore-bar div {
+            height: 100%;
+            width: 33.33%;
+        }
+        .green { background-color: #009246; }
+        .white-bar { background-color: #ffffff; }
+        .red { background-color: #ce2b37; }
+
+        /* Contenitore stemmi */
+        .emblems-header {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        .emblem {
+            max-height: 55px;
+        }
+
+        /* Badge di allerta animato */
+        .alert-badge {
+            background-color: #ce2b37;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 1.1em;
+            display: inline-block;
+            animation: pulse 1.5s infinite;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(206, 43, 55, 0.7); }
+            70% { transform: scale(1.05); box-shadow: 0 0 0 12px rgba(206, 43, 55, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(206, 43, 55, 0); }
+        }
+
+        .alert-title {
+            margin-top: 15px;
+            font-size: 1.6em;
+            font-weight: bold;
+            color: #212529;
+        }
+        
+        .alert-subtitle {
+            font-size: 1.1em;
+            color: #d9534f;
+            font-weight: bold;
+            margin-top: 5px;
+            text-transform: uppercase;
+        }
+
+        .alert-body {
+            margin-top: 20px;
+            font-size: 1.1em;
+            line-height: 1.6;
+        }
+
+        /* Sezione Azioni Finali */
+        .actions-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 1px solid #dee2e6;
+        }
+
+        .action-button {
+            background-color: #009246;
+            color: white;
+            padding: 12px 25px;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: background-color 0.3s, transform 0.2s;
+            text-transform: uppercase;
+            border: none;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        
+        .action-button:hover {
+            background-color: #007a3b;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- SPLASH SCREEN -->
+    <div id="ae_splash" class="global-splash">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Aviation_Eagle_Logo.png" class="splash-logo" alt="Aviation Eagle">
+        <div class="splash-text">SITUATION ROOM: CONNECTING...</div>
+        <div class="loading-bar-container">
+            <div class="loading-bar"></div>
+        </div>
+    </div>
+
+    <!-- CONTENUTO PRINCIPALE / ALLERTA NAZIONALE -->
+    <div class="national-alert-container">
+        
+        <div class="tricolore-bar">
+            <div class="green"></div>
+            <div class="white-bar"></div>
+            <div class="red"></div>
+        </div>
+
+        <div class="emblems-header">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/0/00/Emblem_of_Italy.svg" alt="Stemma della Repubblica Italiana" class="emblem">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/0/06/Protezione_Civile.png" alt="Stemma della Protezione Civile" class="emblem">
+            <img src="https://www.esercito.difesa.it/comunicazione/calendesercito/PublishingImages/esercito-stella.png" alt="Stemma dell'Esercito Italiano" class="emblem">
+        </div>
+
+        <div class="alert-badge">ALLERTA NAZIONALE</div>
+        
+        <div class="alert-title">
+            Violazione della Sovranità della Repubblica Italiana 🇮🇹.
+        </div>
+
+        <div class="alert-subtitle">
+            Questa non è un'esercitazione.
+        </div>
+
+        <div class="alert-body">
+            Si comunica alla cittadinanza che è stata <strong>deliberatamente attaccata la sovranità dello Stato Italiano</strong>. <br> 
+            Attualmente <strong>NON</strong> sono state dispiegate forze armate contro i raid Houti Yemeniti in Arabia Saudita che hanno causato la perdita di un Caccia Eurofighter e di un Cacciatorpediniere. La Repubblica <strong>NON È IN GUERRA.</strong>
+        </div>
+
+        <div class="actions-container">
+            <a href="https://www.protezionecivile.gov.it" class="action-button" target="_blank">
+                Aggiornamenti Ufficiali
+            </a>
+        </div>
+
+    </div>
+
+    <!-- SCRIPT GESTIONE SPLASH SCREEN -->
+    <script>
+        (function() {
+            const splash = document.getElementById('ae_splash');
+            if (!sessionStorage.getItem('ae_initialized')) {
+                sessionStorage.setItem('ae_initialized', 'true');
+                setTimeout(function() {
+                    if(splash) splash.remove();
+                }, 4500);
+            } else {
+                if(splash) splash.remove();
+            }
+        })();
+    </script>
+</body>
+</html>
